@@ -8,7 +8,7 @@ const ProductsCategory = () => {
   const products = useRef<HTMLDivElement | null>(null);
   let idx = 0;
   const rightScroll = () => {
-    if (idx > productsList.length - 1) {
+    if (idx * 148 > productsList.length * 148) {
       idx = 0;
     } else {
       idx += 3;
