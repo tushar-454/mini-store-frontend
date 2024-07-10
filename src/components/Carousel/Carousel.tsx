@@ -13,10 +13,10 @@ const Carousel = () => {
       currentSlider === sliders.length - 1 ? 0 : currentSlider + 1,
     );
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      nextSlider();
-    }, 3000);
-    return () => clearInterval(intervalId);
+    //   const intervalId = setInterval(() => {
+    //   nextSlider();
+    // }, 3000);
+    //   return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSlider]);
 

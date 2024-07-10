@@ -10,4 +10,8 @@
   .drowdown-nav-item {
     @apply flex cursor-pointer items-center whitespace-nowrap px-4 py-1 font-bold text-neutral-600 transition-all hover:bg-neutral-200 hover:text-neutral-900;
   }
+  /* offer countdown styles */
+  .offer-countdown {
+    @apply grid h-20 w-24 flex-grow basis-[96px] place-items-center rounded-lg bg-green-500 p-2 font-bold text-white;
+  }
 }
