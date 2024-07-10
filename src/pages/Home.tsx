@@ -3,6 +3,7 @@ import Carousel from '../components/Carousel/Carousel';
 import DealandOffer from '../components/DealandOffer/DealandOffer';
 import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
 import ProductsCategory from '../components/ProductsCategory/ProductsCategory';
+import TrendyProducts from '../components/TrendyProducts/TrendyProducts';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <BrandSponsor />
       <ProductsCategory />
       <FeaturedProducts />
+      <TrendyProducts />
     </>
   );
 };
