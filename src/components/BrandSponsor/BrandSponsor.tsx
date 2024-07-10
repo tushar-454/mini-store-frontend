@@ -11,7 +11,7 @@ const BrandSponsor = () => {
     <section className='bg-green-500'>
       <Container>
         {/* wrapper  */}
-        <div className='mb-20 flex items-center justify-evenly gap-5 py-12'>
+        <div className='mb-20 flex flex-wrap items-center justify-evenly gap-5 py-12'>
           <img
             src={amazon}
             alt='amazon icons'
