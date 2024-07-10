@@ -8,7 +8,7 @@ const Header = () => {
     <header>
       <Container>
         {/* wrapper  */}
-        <div className='flex items-center justify-between'>
+        <div className='relative flex items-center justify-between py-4'>
           <Logo />
           <Nav />
           {/* login button or user action icon */}

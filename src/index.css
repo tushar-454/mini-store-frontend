@@ -5,9 +5,9 @@
 @layer components {
   /* nav item styles */
   .nav-item {
-    @apply flex cursor-pointer items-center font-bold text-neutral-600 transition-all hover:text-neutral-900;
+    @apply flex cursor-pointer items-center whitespace-nowrap font-bold text-neutral-600 transition-all hover:text-neutral-900;
   }
   .drowdown-nav-item {
-    @apply flex cursor-pointer items-center px-4 py-1 font-bold text-neutral-600 transition-all hover:bg-neutral-200 hover:text-neutral-900;
+    @apply flex cursor-pointer items-center whitespace-nowrap px-4 py-1 font-bold text-neutral-600 transition-all hover:bg-neutral-200 hover:text-neutral-900;
   }
 }
