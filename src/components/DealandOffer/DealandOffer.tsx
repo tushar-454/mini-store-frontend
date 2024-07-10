@@ -5,7 +5,7 @@ const DealandOffer = () => {
     <section>
       <Container>
         {/* wrapper  */}
-        <div className='flex flex-col items-center justify-between gap-5 pt-10 lg:items-start xl:flex-row'>
+        <div className='flex flex-col items-center justify-between gap-5 py-20 lg:items-start xl:flex-row'>
           {/* offer coundown  */}
           <div>
             <span className='mb-4 block text-center text-3xl font-black text-black lg:text-start'>
