@@ -20,7 +20,7 @@ const UserAction = () => {
               </Link>
             </li>
             <li>
-              <Link to={'/'} className='text-2xl'>
+              <Link to={'/wishlist'} className='text-2xl'>
                 <CiHeart />
               </Link>
             </li>
