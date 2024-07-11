@@ -10,7 +10,7 @@ const UserAction = () => {
         <div>
           <ul className='flex items-center gap-4'>
             <li>
-              <Link to={'/'} className='text-2xl'>
+              <Link to={'/product/filter'} className='text-2xl'>
                 <CiSearch />
               </Link>
             </li>

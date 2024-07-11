@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* remove input number spinner */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @layer components {
   /* nav item styles */
   .nav-item {
@@ -17,5 +24,9 @@
   /* featured tab stayle  */
   .featured-tab {
     @apply grid flex-grow basis-auto cursor-pointer place-items-center rounded-lg border border-orange-500 bg-white px-4 py-2 font-medium text-black transition-all hover:bg-orange-100;
+  }
+  /* search preferences style */
+  .search-preference-tab {
+    @apply grid place-items-center rounded-lg border border-green-600 bg-white px-4 py-2 font-medium text-black transition-all hover:bg-green-100;
   }
 }
