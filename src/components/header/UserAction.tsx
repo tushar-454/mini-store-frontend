@@ -15,7 +15,7 @@ const UserAction = () => {
               </Link>
             </li>
             <li>
-              <Link to={'/'} className='text-2xl'>
+              <Link to={'/cart'} className='text-2xl'>
                 <CiShoppingCart />
               </Link>
             </li>
