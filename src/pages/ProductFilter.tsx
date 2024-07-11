@@ -47,8 +47,8 @@ const ProductFilter = () => {
             </form>
           </div>
           {/* search preferences  */}
-          <div className='mt-5 flex justify-between gap-4 md:justify-end'>
-            <div className='block md:hidden'>
+          <div className='mt-5 flex justify-between gap-4 xl:justify-end'>
+            <div className='block xl:hidden'>
               {isFilterOpen ? (
                 <RxCross2
                   className='mt-1 text-3xl text-neutral-700'

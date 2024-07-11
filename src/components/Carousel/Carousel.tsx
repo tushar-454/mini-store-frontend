@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 const Carousel = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const sliders = [
@@ -8,18 +8,21 @@ const Carousel = () => {
     'https://images.unsplash.com/photo-1467195468637-72eb862bb14e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     'https://devrix.com/wp-content/uploads/2020/06/How-to-Quickly-Build-an-eCommerce-Website@2x.png',
   ];
+  {
+    /*}
   const nextSlider = () =>
     setCurrentSlider((currentSlider) =>
       currentSlider === sliders.length - 1 ? 0 : currentSlider + 1,
     );
   useEffect(() => {
-    //   const intervalId = setInterval(() => {
-    //   nextSlider();
-    // }, 3000);
-    //   return () => clearInterval(intervalId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const intervalId = setInterval(() => {
+      nextSlider();
+    }, 3000);
+    return () => clearInterval(intervalId);
+    eslint - disable - next - line react - hooks / exhaustive - deps
   }, [currentSlider]);
-
+*/
+  }
   return (
     <div className='mx-auto h-[240px] w-full overflow-hidden md:h-[540px]'>
       <div className='relative overflow-hidden'>
