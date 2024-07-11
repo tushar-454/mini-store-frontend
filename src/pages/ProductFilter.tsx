@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { GoChevronRight, GoSearch } from 'react-icons/go';
+import { GoSearch } from 'react-icons/go';
 import { MdOutlineSensorWindow, MdOutlineWindow } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
 import FeaturedProductCard from '../components/FeaturedProducts/FeaturedProductCard';
 import { Carousel } from '../components/ProductFilter/Carousel';
+import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 
 const ProductFilter = () => {
@@ -17,15 +18,7 @@ const ProductFilter = () => {
       <Container>
         <div className='sticky -top-10 z-50 h-64 overflow-hidden bg-white'>
           {/* breadcrumb  */}
-          <ul className='mt-20 flex gap-2 text-lg font-medium'>
-            <li className='flex items-center gap-3'>
-              Home <GoChevronRight />
-            </li>
-            <li className='flex items-center gap-3'>
-              Products <GoChevronRight />
-            </li>
-            <li className='flex items-center gap-3'>Women</li>
-          </ul>
+          <Breadcrumb breadcrumbArr={['Products ', 'Women', 'Bag']} />
           {/* product catagory informaiton and search */}
           <div className='mt-5 flex items-center justify-between'>
             <div>
