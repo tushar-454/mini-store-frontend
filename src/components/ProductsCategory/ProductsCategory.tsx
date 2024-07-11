@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 import Container from '../shared/Container';
 import Title from '../shared/Title';
@@ -6,12 +6,12 @@ import Title from '../shared/Title';
 const ProductsCategory = () => {
   const productsList = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
   const products = useRef<HTMLDivElement | null>(null);
-  let idx = 0;
+  const [idx, setIdx] = useState<number>(0);
   const rightScroll = () => {
     if (idx * 148 > productsList.length * 148) {
-      idx = 0;
+      setIdx(0);
     } else {
-      idx += 3;
+      setIdx((i) => i + 3);
     }
     products.current?.scrollTo({
       left: idx * 148,
@@ -20,9 +20,9 @@ const ProductsCategory = () => {
   };
   const leftScroll = () => {
     if (idx < 0) {
-      idx = productsList.length - 1;
+      setIdx(productsList.length - 1);
     } else {
-      idx -= 3;
+      setIdx((i) => i - 3);
     }
     products.current?.scrollTo({
       left: idx * 148,
