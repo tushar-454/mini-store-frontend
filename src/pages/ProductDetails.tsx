@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaTwitter,
 } from 'react-icons/fa';
+import FeaturedProductCard from '../components/FeaturedProducts/FeaturedProductCard';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
@@ -173,12 +174,66 @@ const ProductDetails = () => {
 
           {/* product main details everything  */}
           <div className='my-20'>
-            <Title>
-              Product <span className='text-green-600'>Details</span>
-            </Title>
+            <div className='border-b-2 pb-2'>
+              <Title>
+                Product <span className='text-green-600'>Details</span>
+              </Title>
+            </div>
+            {/* product details  */}
+            <div className='grid gap-10 pt-10 sm:grid-cols-2 md:grid-cols-3'>
+              <div>
+                <p className='mb-4 text-lg font-semibold'>About Products</p>
+                <ul className='space-y-2'>
+                  <li>
+                    <b>Product Name</b>: Women Bag
+                  </li>
+                  <li>
+                    <b>Color:</b> Cream
+                  </li>
+                  <li>
+                    <b>Size:</b> XL
+                  </li>
+                  <li>
+                    <b>Authenticity:</b> 100% Authentic
+                  </li>
+                </ul>
+              </div>
+              {/* product material  */}
+              <div>
+                <p className='mb-4 text-lg font-semibold'>Product Warrenty</p>
+                <ul className='space-y-2'>
+                  <li>7 Days Replacement Warrenty</li>
+                  <li>15 Days service Warrenty</li>
+                  <li>3 days money back Warrenty</li>
+                </ul>
+              </div>
+              {/* product warrenty  */}
+              <div>
+                <p className='mb-4 text-lg font-semibold'>Return Policy</p>
+                <ul className='space-y-2'>
+                  <li>Product can't burn</li>
+                  <li>Product can't any intention damage</li>
+                  <li>
+                    Product damage for water, it not applicable for Return
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           {/* related products */}
-          <div></div>
+          <div>
+            <div className='border-b-2 pb-2'>
+              <Title>
+                <span className='text-green-600'>Relative</span> Product
+              </Title>
+            </div>
+            {/* related products  */}
+            <div className='grid grid-cols-1 justify-between gap-5 py-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+              {[{}, {}, {}, {}].map((_, index) => (
+                <FeaturedProductCard key={index} />
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </section>
