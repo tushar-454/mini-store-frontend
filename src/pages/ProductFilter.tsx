@@ -18,13 +18,15 @@ const ProductFilter = () => {
       <Container>
         <div className='sticky -top-10 z-50 h-64 overflow-hidden bg-white'>
           {/* breadcrumb  */}
-          <Breadcrumb
-            breadcrumbArr={[
-              { name: 'Products', link: '/' },
-              { name: 'Women', link: '/' },
-              { name: 'Bag', link: '/' },
-            ]}
-          />
+          <div className='mt-20'>
+            <Breadcrumb
+              breadcrumbArr={[
+                { name: 'Products', link: '/' },
+                { name: 'Women', link: '/' },
+                { name: 'Bag', link: '/' },
+              ]}
+            />
+          </div>
           {/* product catagory informaiton and search */}
           <div className='mt-5 flex items-center justify-between'>
             <div>
