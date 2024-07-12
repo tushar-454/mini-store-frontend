@@ -14,7 +14,7 @@ const OrderSummary = () => {
         <div>
           <Title>Order Summary</Title>
           {/* wrapper  */}
-          <div className='pt-20'>
+          <div className='mx-auto w-full pt-20 lg:w-3/4'>
             {/* order summary top track bar */}
             <div className='relative mb-24'>
               <div className='flex justify-between'>

@@ -92,7 +92,7 @@ const ShippingAddress = () => {
         </div>
         {/* buttons */}
         <div className='flex gap-5'>
-          <button className='secoudaryBtn w-full'>Add Billing Address</button>
+          <button className='secondaryBtn w-full'>Add Billing Address</button>
           <button className='primaryBtn w-full'>Save</button>
         </div>
       </form>

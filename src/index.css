@@ -43,8 +43,8 @@ input[type='number']::-webkit-outer-spin-button {
   .primaryBtn {
     @apply grid place-items-center rounded-lg border border-green-600 bg-green-600 px-4 py-2 font-medium text-white transition-all hover:bg-green-700;
   }
-  /* secoudaryBtn styles */
-  .secoudaryBtn {
+  /* secondaryBtn styles */
+  .secondaryBtn {
     @apply grid place-items-center rounded-lg border border-green-600 bg-white px-4 py-2 font-medium text-green-600 transition-all hover:bg-green-100;
   }
   /* primary input style  */
