@@ -5,7 +5,7 @@ import UserAction from './UserAction';
 
 const Header = () => {
   return (
-    <header>
+    <header className='sticky top-0 z-[99999999] my-4 bg-[#ffffff98] backdrop-blur-2xl'>
       <Container>
         {/* wrapper  */}
         <div className='relative flex items-center justify-between py-4'>
