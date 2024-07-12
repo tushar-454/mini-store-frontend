@@ -33,7 +33,7 @@ const Nav = ({
                   <ul className='absolute left-0 top-10 -mt-4 hidden space-y-2 rounded-lg bg-white py-2 pt-4 shadow-lg group-hover:block'>
                     {// dropdown items
                     nav?.dropdown?.map((dropdown: dropdownType) => (
-                      <li className='drowdown-nav-item'>
+                      <li key={Math.random()} className='drowdown-nav-item'>
                         <Link to={dropdown.link || '/'}>
                           {dropdown.dropdownName}
                         </Link>
@@ -75,7 +75,7 @@ const Nav = ({
                 {nav?.dropdown && (
                   <ul className='absolute left-32 top-0 z-[9999] hidden space-y-2 rounded-lg bg-white py-2 shadow-lg group-hover:block'>
                     {nav?.dropdown?.map((dropdown: dropdownType) => (
-                      <li className='drowdown-nav-item'>
+                      <li key={Math.random()} className='drowdown-nav-item'>
                         <Link to={dropdown.link || '/'}>
                           {dropdown.dropdownName}
                         </Link>
