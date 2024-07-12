@@ -17,15 +17,13 @@ const Cart = () => {
           <div className='w-full overflow-x-auto'>
             <table className='w-full'>
               <tr className='h-16 font-bold'>
-                <td className='min-w-[490px] border p-2 text-lg lg:w-full'>
-                  Product
-                </td>
-                <td className='min-w-32 border p-2 text-lg'>Quantity</td>
-                <td className='min-w-32 border p-2 text-lg'>Price</td>
+                <td className='min-w-[490px] p-2 text-lg lg:w-full'>Product</td>
+                <td className='min-w-32 p-2 text-lg'>Quantity</td>
+                <td className='min-w-32 p-2 text-lg'>Price</td>
               </tr>
               {[{}, {}, {}, {}].map((_, index) => (
                 <tr key={index}>
-                  <td className='border p-2'>
+                  <td className='p-2'>
                     <div className='flex items-center gap-5'>
                       <img
                         src='https://i.pinimg.com/originals/2a/ca/ab/2acaab5c280a40f576533b6f3729b691.jpg'
@@ -49,7 +47,7 @@ const Cart = () => {
                       </div>
                     </div>
                   </td>
-                  <td className='border p-2'>
+                  <td className='p-2'>
                     <p className='text-lg'>
                       <p className='flex w-fit items-center gap-2 rounded-lg border'>
                         <span className='cursor-pointer p-2 transition-all hover:bg-neutral-100'>
@@ -65,7 +63,7 @@ const Cart = () => {
                       Remove
                     </p>
                   </td>
-                  <td className='border p-2 text-xl font-bold'>$500</td>
+                  <td className='p-2 text-xl font-bold'>$500</td>
                 </tr>
               ))}
             </table>
@@ -109,9 +107,9 @@ const Cart = () => {
                   id='coupon'
                   name='coupon'
                   placeholder='Enter Coupon Code'
-                  className='rounded-lg border p-2 text-lg outline-none'
+                  className='rounded-lg border px-4 py-2 font-medium outline-none'
                 />
-                <span>Apply</span>
+                <span className='primaryBtn'>Apply</span>
               </li>
             </ul>
             {/* total  */}
