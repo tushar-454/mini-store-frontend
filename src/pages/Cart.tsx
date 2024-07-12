@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
 
@@ -119,7 +120,9 @@ const Cart = () => {
                 <span>300</span>
               </li>
             </ul>
-            <button className='primaryBtn my-5'>Process to Checkout</button>
+            <Link to={'/order'} className='primaryBtn my-5'>
+              Process to Checkout
+            </Link>
           </div>
         </div>
       </Container>

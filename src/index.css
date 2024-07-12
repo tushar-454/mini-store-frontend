@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+body {
+  font-family: 'Lexend', sans-serif;
+}
+
 /* remove input number spinner */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
@@ -35,6 +41,14 @@ input[type='number']::-webkit-outer-spin-button {
   }
   /* primaryBtn styles */
   .primaryBtn {
-    @apply grid place-items-center rounded-lg bg-green-600 px-4 py-2 font-medium text-white transition-all hover:bg-green-700;
+    @apply grid place-items-center rounded-lg border border-green-600 bg-green-600 px-4 py-2 font-medium text-white transition-all hover:bg-green-700;
+  }
+  /* secoudaryBtn styles */
+  .secoudaryBtn {
+    @apply grid place-items-center rounded-lg border border-green-600 bg-white px-4 py-2 font-medium text-green-600 transition-all hover:bg-green-100;
+  }
+  /* primary input style  */
+  .primaryInput {
+    @apply w-full rounded-lg border p-2 pr-3 font-medium outline-none transition-all focus:border-green-600;
   }
 }

@@ -37,7 +37,7 @@ const ProductFilter = () => {
               <input
                 type='text'
                 placeholder='Search Product'
-                className='rounded-lg border p-2 pr-3 text-lg outline-none transition-all focus:border-green-600'
+                className='primaryInput'
               />
               <button
                 type='submit'
