@@ -2,7 +2,13 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { RxCross1 } from 'react-icons/rx';
 import { Link } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = ({
+  menuOpen,
+  setMenuOpen,
+}: {
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <>
       {/* desktop nav */}
@@ -66,10 +72,15 @@ const Nav = () => {
         </ul>
       </nav>
       {/* mobile view nav */}
-      <nav className='absolute -left-20 top-0 hidden h-screen w-full bg-neutral-100 p-5 sm:w-1/2 lg:hidden'>
+      <nav
+        className={`absolute top-0 block h-screen w-full bg-neutral-100 p-5 transition-all sm:w-1/2 lg:hidden ${menuOpen ? '-left-4' : '-left-[35rem]'}`}
+      >
         {/* cross icon for close  */}
         <div className='grid place-content-end pb-5'>
-          <RxCross1 className='text-3xl' />
+          <RxCross1
+            onClick={() => setMenuOpen(!menuOpen)}
+            className='text-3xl'
+          />
         </div>
         <ul className='flex flex-col gap-5 space-y-4'>
           <li className='relative'>

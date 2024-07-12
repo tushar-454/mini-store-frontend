@@ -1,14 +1,24 @@
 import { CiHeart, CiSearch, CiShoppingCart, CiUser } from 'react-icons/ci';
+import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import LinkBtn from '../shared/LinkBtn';
 
-const UserAction = () => {
+const UserAction = ({
+  menuOpen,
+  setMenuOpen,
+}: {
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const userLoggedIn = true;
   return (
     <>
       {userLoggedIn ? (
         <div>
           <ul className='flex items-center gap-4'>
+            <li className='block lg:hidden'>
+              <FaBars onClick={() => setMenuOpen(!menuOpen)} />
+            </li>
             <li>
               <Link to={'/product/filter'} className='text-2xl'>
                 <CiSearch />
