@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import FeaturedProductsArr from '../../Data/FeaturedProducts';
 import Container from '../shared/Container';
 import Title from '../shared/Title';
@@ -19,9 +20,12 @@ const FeaturedProducts = () => {
           <Title>
             <span className='text-green-600'>Featured</span> Products 💥
           </Title>
-          <button className='text-lg font-bold underline sm:text-xl'>
+          <Link
+            to={'/product/filter'}
+            className='text-lg font-bold underline sm:text-xl'
+          >
             View All Products
-          </button>
+          </Link>
         </div>
         {/* tabs */}
         <div>

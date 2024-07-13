@@ -1,4 +1,5 @@
 import { FaRegArrowAltCircleRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Container from '../shared/Container';
 import Title from '../shared/Title';
 
@@ -10,9 +11,12 @@ const TrendyProducts = () => {
           <Title>
             <span className='text-green-600'>Trendy</span> Products 🛍️
           </Title>
-          <button className='text-lg font-bold underline sm:text-xl'>
+          <Link
+            to={'/product/filter'}
+            className='text-lg font-bold underline sm:text-xl'
+          >
             View All Products
-          </button>
+          </Link>
         </div>
         {/* trandy product layout  */}
         <div className='mb-20 flex h-auto flex-col justify-between gap-5 lg:h-64 lg:flex-row'>

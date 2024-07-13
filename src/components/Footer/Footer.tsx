@@ -1,4 +1,5 @@
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import sslCommerz from '../../assets/ssl_logoss.webp';
 import Logo from '../header/Logo';
 import Container from '../shared/Container';
@@ -13,43 +14,69 @@ const Footer = () => {
           <div className='space-y-4'>
             <Logo />
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-              perferendis, nemo ipsa maxime officiis est temporibus odit
-              mollitia? Architecto, praesentium.
+              Sure! Here's a 20-word paragraph for your footer section:
+              "Discover unbeatable prices and quality products at our Mini
+              Store. Shop with us for great deals and exceptional service.
             </p>
             {/* social Icons */}
             <div className='flex gap-2'>
-              <FaFacebook className='mr-4 text-2xl' />
-              <FaYoutube className='mr-4 text-2xl' />
-              <FaInstagram className='mr-4 text-2xl' />
-              <FaTwitter className='mr-4 text-2xl' />
+              <Link to={'/'}>
+                <FaFacebook className='mr-4 text-2xl' />
+              </Link>
+              <Link to={'/'}>
+                <FaYoutube className='mr-4 text-2xl' />
+              </Link>
+              <Link to={'/'}>
+                <FaInstagram className='mr-4 text-2xl' />
+              </Link>
+              <Link to={'/'}>
+                <FaTwitter className='mr-4 text-2xl' />
+              </Link>
             </div>
           </div>
           {/* Helpful link  */}
           <div className='lg:justify-self-end'>
             <p className='mb-4 text-lg font-semibold'>Helpful Links</p>
             <ul className='space-y-2'>
-              <li>FAQ</li>
-              <li>Common issues</li>
-              <li>Shipping</li>
+              <li>
+                <Link to={'/'}>FAQ</Link>
+              </li>
+              <li>
+                <Link to={'/'}>Common issues</Link>
+              </li>
+              <li>
+                <Link to={'/'}>Shipping</Link>
+              </li>
             </ul>
           </div>
           {/* COmpany link  */}
           <div className='lg:justify-self-end'>
             <p className='mb-4 text-lg font-semibold'>Company Links</p>
             <ul className='space-y-2'>
-              <li>Our Story</li>
-              <li>Corporate Gifting</li>
-              <li>Contact Us</li>
+              <li>
+                <Link to={'/'}>Our Story</Link>
+              </li>
+              <li>
+                <Link to={'/'}>Corporate Gifting</Link>
+              </li>
+              <li>
+                <Link to={'/'}>Contact Us</Link>
+              </li>
             </ul>
           </div>
           {/* Compilance link  */}
           <div className='lg:justify-self-end'>
             <p className='mb-4 text-lg font-semibold'>Compilance Links</p>
             <ul className='space-y-2'>
-              <li>Accessibility Statement</li>
-              <li>Privacy Policy</li>
-              <li>Terms and Condition</li>
+              <li>
+                <Link to={'/'}>Accessibility Statement</Link>
+              </li>
+              <li>
+                <Link to={'/'}>Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to={'/'}>Terms and Condition</Link>
+              </li>
             </ul>
           </div>
         </div>
