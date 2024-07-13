@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { GoSearch } from 'react-icons/go';
 import { MdOutlineSensorWindow, MdOutlineWindow } from 'react-icons/md';
@@ -10,6 +10,10 @@ import Container from '../components/shared/Container';
 
 const ProductFilter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  useEffect(() => {
+    document.title = 'Product Filter | E-commerce';
+    scrollTo(0, 0);
+  }, []);
   return (
     <section>
       {/* product filter slider */}

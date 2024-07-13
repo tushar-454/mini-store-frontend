@@ -41,16 +41,19 @@ const ProductsCategory = () => {
         {/* products wrapper  */}
         <div className='relative'>
           {/* control arrow  */}
-          <div className='absolute left-0 top-0 flex h-full w-full items-center justify-between'>
-            <FaArrowAltCircleLeft
-              onClick={leftScroll}
-              className='cursor-pointer select-none text-4xl text-orange-500'
-            />
-            <FaArrowAltCircleRight
-              onClick={rightScroll}
-              className='cursor-pointer select-none text-4xl text-orange-500'
-            />
-          </div>
+          {ProductsCategoryArr.length > 9 && (
+            <div>
+              <FaArrowAltCircleLeft
+                onClick={leftScroll}
+                className='absolute left-0 top-1/2 z-50 -translate-y-1/2 cursor-pointer select-none text-4xl text-orange-500'
+              />
+              <FaArrowAltCircleRight
+                onClick={rightScroll}
+                className='absolute right-0 top-1/2 z-50 -translate-y-1/2 cursor-pointer select-none text-4xl text-orange-500'
+              />
+            </div>
+          )}
+
           <div
             ref={products}
             className='my-8 flex cursor-all-scroll select-none justify-evenly gap-5 overflow-hidden'
@@ -70,7 +73,7 @@ const ProductsCategory = () => {
                     alt='man'
                     className='h-20 w-20 rounded-full object-cover'
                   />
-                  <b>{category.name}</b>
+                  <b className='text-center'>{category.name}</b>
                 </Link>
               </div>
             ))}
