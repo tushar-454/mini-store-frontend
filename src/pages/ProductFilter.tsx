@@ -7,6 +7,8 @@ import FeaturedProductCard from '../components/FeaturedProducts/FeaturedProductC
 import { Carousel } from '../components/ProductFilter/Carousel';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
+import AllProducts from '../Data/AllProducts';
+import { productType } from '../Data/FeaturedProducts';
 
 const ProductFilter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -25,17 +27,16 @@ const ProductFilter = () => {
           <div className='mt-20'>
             <Breadcrumb
               breadcrumbArr={[
-                { name: 'Products', link: '/' },
-                { name: 'Women', link: '/' },
-                { name: 'Bag', link: '/' },
+                { name: 'Home', link: '/' },
+                { name: 'All Products', link: '/product/filter' },
               ]}
             />
           </div>
           {/* product catagory informaiton and search */}
           <div className='mt-5 flex items-center justify-between'>
             <div>
-              <p className='text-xl font-medium'>Ladies Watches</p>
-              <p>Lorem ipsum dolor sit amet.</p>
+              <p className='text-xl font-medium'>Our All Best Collections</p>
+              <p> Here our all products with reasonable price </p>
             </div>
             <form onSubmit={(e) => e.preventDefault()} className='flex'>
               <input
@@ -317,11 +318,9 @@ const ProductFilter = () => {
           </div>
           {/* all products  */}
           <div className='grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-            {Array(30)
-              .fill({})
-              .map((_, index) => (
-                <FeaturedProductCard key={index} />
-              ))}
+            {AllProducts.map((product: productType) => (
+              <FeaturedProductCard key={Math.random()} product={product} />
+            ))}
           </div>
         </div>
       </Container>
