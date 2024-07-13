@@ -14,9 +14,8 @@ const Footer = () => {
           <div className='space-y-4'>
             <Logo />
             <p>
-              Sure! Here's a 20-word paragraph for your footer section:
-              "Discover unbeatable prices and quality products at our Mini
-              Store. Shop with us for great deals and exceptional service.
+              Discover unbeatable prices and quality products at our Mini Store.
+              Shop with us for great deals and exceptional service.
             </p>
             {/* social Icons */}
             <div className='flex gap-2'>
