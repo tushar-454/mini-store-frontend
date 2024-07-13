@@ -14,7 +14,7 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
         <img
           src={product.img}
           alt={product.title}
-          className='rounded-lg object-cover'
+          className='h-80 w-full rounded-lg object-cover'
         />
         <span className='absolute left-0 top-0 h-full w-full rounded-lg bg-[#00000090] opacity-0 transition-all group-hover:opacity-100'></span>
         <div className='absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-5 opacity-0 transition-all group-hover:opacity-100'>
