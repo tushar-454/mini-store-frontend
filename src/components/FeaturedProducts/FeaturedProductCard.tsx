@@ -1,13 +1,19 @@
+interface FeaturedProductCardProps {
+  product: productType;
+}
 import { CiShoppingCart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
+import { productType } from '../../Data/FeaturedProducts';
 
-const FeaturedProductCard = () => {
+const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
+  product,
+}) => {
   return (
     <div className='w-full space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'>
       <div className='group relative'>
         <img
-          src='https://i.pinimg.com/originals/2a/ca/ab/2acaab5c280a40f576533b6f3729b691.jpg'
-          alt=''
+          src={product.img}
+          alt={product.title}
           className='rounded-lg object-cover'
         />
         <span className='absolute left-0 top-0 h-full w-full rounded-lg bg-[#00000090] opacity-0 transition-all group-hover:opacity-100'></span>
@@ -23,14 +29,11 @@ const FeaturedProductCard = () => {
           <FaHeart className='text-white' />
         </span>
       </div>
-      <p className='font-medium'>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. At quam
-        commodi cumque quaerat sed!
-      </p>
+      <p className='font-medium'>{product.title}</p>
       <p className='flex items-center justify-between'>
         <b>
-          {' '}
-          <small className='font-normal line-through'>120</small> BD - 78
+          <small className='font-normal line-through'>{product.price}</small> BD
+          - {product.salePrice}
         </b>
         <span>
           <CiShoppingCart className='h-8 w-8 cursor-pointer rounded-lg bg-orange-500 p-1 text-white' />

@@ -1,8 +1,17 @@
+import { useState } from 'react';
+import FeaturedProductsArr from '../../Data/FeaturedProducts';
 import Container from '../shared/Container';
 import Title from '../shared/Title';
 import FeaturedProductCard from './FeaturedProductCard';
 
 const FeaturedProducts = () => {
+  const [idx, setIdx] = useState(0);
+
+  // show product based on click idx tab
+  const showProduct = (index: number) => {
+    setIdx(index);
+  };
+
   return (
     <section>
       <Container>
@@ -17,21 +26,21 @@ const FeaturedProducts = () => {
         {/* tabs */}
         <div>
           <ul className='flex flex-wrap gap-5'>
-            <li className='featured-tab bg-orange-500 text-white'>
-              All Arrival
-            </li>
-            <li className='featured-tab'>Men</li>
-            <li className='featured-tab'>Women</li>
-            <li className='featured-tab'>Children</li>
-            <li className='featured-tab'>Sports</li>
-            <li className='featured-tab'>Travel</li>
-            <li className='featured-tab'>Electronics</li>
+            {FeaturedProductsArr.map((item, index) => (
+              <li
+                key={Math.random()}
+                onClick={() => showProduct(index)}
+                className={`featured-tab ${idx === index ? 'bg-orange-500 text-white' : 'hover:bg-orange-100'}`}
+              >
+                {item.category}
+              </li>
+            ))}
           </ul>
         </div>
         {/* show featured products */}
         <div className='my-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {[{}, {}, {}, {}, {}, {}, {}, {}].map((_, index) => (
-            <FeaturedProductCard key={index} />
+          {FeaturedProductsArr[idx].products.map((product) => (
+            <FeaturedProductCard key={Math.random()} product={product} />
           ))}
         </div>
       </Container>

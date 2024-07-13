@@ -29,7 +29,7 @@ input[type='number']::-webkit-outer-spin-button {
   }
   /* featured tab stayle  */
   .featured-tab {
-    @apply grid flex-grow basis-auto cursor-pointer place-items-center rounded-lg border border-orange-500 bg-white px-4 py-2 font-medium text-black transition-all hover:bg-orange-100;
+    @apply grid flex-grow basis-auto cursor-pointer place-items-center rounded-lg border border-orange-500 bg-white px-4 py-2 font-medium text-black transition-all;
   }
   /* search preferences style */
   .search-preference-tab {
