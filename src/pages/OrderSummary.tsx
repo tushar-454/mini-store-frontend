@@ -48,6 +48,14 @@ const OrderSummary = () => {
                   className={`h-2 rounded-full bg-green-600 transition-all ${curSummary === 'shipping' ? 'w-2' : curSummary === 'payment' ? 'w-[35%]' : curSummary === 'summary' ? 'w-[65%]' : curSummary === 'confirm' ? 'w-full' : ''}`}
                 ></div>
               </div>
+              <div>
+                <div className='mt-3 flex justify-between'>
+                  <span>Shipping Address</span>
+                  <span>Payment Method</span>
+                  <span>Order Summary</span>
+                  <span>Order Confirm</span>
+                </div>
+              </div>
             </div>
             {/* order summary based on current track  */}
             {curSummary === 'shipping' && <ShippingAddress />}
