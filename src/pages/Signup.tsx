@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../components/header/Logo';
 import Container from '../components/shared/Container';
 
-const Login = () => {
+const Signup = () => {
   return (
     <section>
       <Container>
@@ -13,10 +13,21 @@ const Login = () => {
           <div className='w-full rounded-lg border p-5 sm:w-[560px]'>
             <div className='mb-8 grid place-items-center space-y-4'>
               <Logo />
-              <h1 className='text-center text-3xl font-bold'>Login</h1>
+              <h1 className='text-center text-3xl font-bold'>Signup</h1>
             </div>
-            {/* login form inputs */}
+            {/* Signup form inputs */}
             <form className='space-y-4'>
+              <div className='grid gap-2'>
+                <label htmlFor='fullName' className='font-bold'>
+                  Full Name
+                </label>
+                <input
+                  type='text'
+                  id='fullName'
+                  className='primaryInput'
+                  placeholder='Jhon Dou'
+                />
+              </div>
               <div className='grid gap-2'>
                 <label htmlFor='email' className='font-bold'>
                   Email
@@ -40,7 +51,7 @@ const Login = () => {
                 />
               </div>
               <button type='submit' className='primaryBtn'>
-                Login
+                Sign up
               </button>
             </form>
             {/* login with social media */}
@@ -59,9 +70,9 @@ const Login = () => {
               </div>
             </div>
             <p className='text-center'>
-              Don't Have account.{' '}
-              <Link to={'/signup'} className='text-orange-600 hover:underline'>
-                Signup
+              You Have an account.{' '}
+              <Link to={'/login'} className='text-orange-600 hover:underline'>
+                Login
               </Link>
             </p>
           </div>
@@ -71,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
