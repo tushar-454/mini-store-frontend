@@ -1,10 +1,42 @@
-import { FaFacebook, FaGithub } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Logo from '../components/header/Logo';
 import Container from '../components/shared/Container';
+import LoginWithSocial from '../components/shared/LoginWithSocial';
+import useAuth from '../Hook/useAuth';
+
+type LoginType = {
+  email: string;
+  password: string;
+};
+
+const initialLogin: LoginType = { email: '', password: '' };
 
 const Login = () => {
+  const [login, setLogin] = useState({ ...initialLogin });
+  const { loginWithGoogle, loginWithEmailPass, loading, setLoading } =
+    useAuth();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { email, password } = login;
+    if (!email || !password) return;
+    try {
+      setLoading(true);
+      const res = await loginWithEmailPass(email, password);
+      if (res && 'user' in res) {
+        toast.success('Login Successfully');
+      } else {
+        toast.error('Login Failed');
+      }
+    } catch (error) {
+      toast.error('Invalid email or password');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section>
       <Container>
@@ -16,7 +48,7 @@ const Login = () => {
               <h1 className='text-center text-3xl font-bold'>Login</h1>
             </div>
             {/* login form inputs */}
-            <form className='space-y-4'>
+            <form className='space-y-4' onSubmit={handleSubmit}>
               <div className='grid gap-2'>
                 <label htmlFor='email' className='font-bold'>
                   Email
@@ -26,6 +58,10 @@ const Login = () => {
                   id='email'
                   className='primaryInput'
                   placeholder='example@yhaoo.com'
+                  value={login.email}
+                  onChange={(e) =>
+                    setLogin({ ...login, email: e.target.value })
+                  }
                 />
               </div>
               <div className='grid gap-2'>
@@ -37,27 +73,18 @@ const Login = () => {
                   id='password'
                   className='primaryInput'
                   placeholder='f9*&%&5'
+                  value={login.password}
+                  onChange={(e) =>
+                    setLogin({ ...login, password: e.target.value })
+                  }
                 />
               </div>
               <button type='submit' className='primaryBtn'>
-                Login
+                {loading ? 'Login...' : 'Login'}
               </button>
             </form>
             {/* login with social media */}
-            <div className='mb-5 mt-10 grid gap-3'>
-              <div className='flex cursor-pointer items-center gap-3 rounded-full border p-3 transition-all hover:bg-neutral-100'>
-                <FcGoogle className='text-2xl' />
-                <p className='text-lg'>Continou with Google</p>
-              </div>
-              <div className='flex cursor-pointer items-center gap-3 rounded-full border p-3 transition-all hover:bg-neutral-100'>
-                <FaFacebook className='text-2xl text-blue-600' />
-                <p className='text-lg'>Continoue with Facebook</p>
-              </div>
-              <div className='flex cursor-pointer items-center gap-3 rounded-full border p-3 transition-all hover:bg-neutral-100'>
-                <FaGithub className='text-2xl' />
-                <p className='text-lg'>Continoue with GitHub</p>
-              </div>
-            </div>
+            <LoginWithSocial loginWithGoogle={loginWithGoogle} />
             <p className='text-center'>
               Don't Have account.{' '}
               <Link to={'/signup'} className='text-orange-600 hover:underline'>

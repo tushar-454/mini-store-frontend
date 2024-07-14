@@ -1,7 +1,9 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import Container from '../components/shared/Container';
+import useAuth from '../Hook/useAuth';
 
 const Profile = () => {
+  const { logout } = useAuth();
   return (
     <section>
       <Container>
@@ -43,6 +45,13 @@ const Profile = () => {
                 className='mb-2 cursor-pointer p-2 px-3 text-lg font-semibold hover:bg-neutral-100'
               >
                 Reviews
+              </NavLink>
+              <NavLink
+                to={'/'}
+                onClick={logout}
+                className='mb-2 cursor-pointer p-2 px-3 text-lg font-semibold hover:bg-neutral-100'
+              >
+                Log out
               </NavLink>
             </div>
           </aside>

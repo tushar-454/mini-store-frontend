@@ -1,6 +1,7 @@
 import { CiHeart, CiSearch, CiShoppingCart, CiUser } from 'react-icons/ci';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import useAuth from '../../Hook/useAuth';
 import LinkBtn from '../shared/LinkBtn';
 
 const UserAction = ({
@@ -10,10 +11,11 @@ const UserAction = ({
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const userLoggedIn = true;
+  const { user } = useAuth();
+
   return (
     <>
-      {userLoggedIn ? (
+      {user ? (
         <div>
           <ul className='flex items-center gap-4'>
             <li className='block lg:hidden'>
