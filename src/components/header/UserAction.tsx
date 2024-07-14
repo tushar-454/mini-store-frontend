@@ -10,7 +10,7 @@ const UserAction = ({
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const userLoggedIn = true;
+  const userLoggedIn = false;
   return (
     <>
       {userLoggedIn ? (
@@ -43,7 +43,7 @@ const UserAction = ({
         </div>
       ) : (
         <div>
-          <LinkBtn>Login / Signup</LinkBtn>
+          <LinkBtn link='/login'>Login / Signup</LinkBtn>
         </div>
       )}
     </>
