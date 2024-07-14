@@ -21,8 +21,13 @@ const initialSignup: SignupType = {
 const Signup = () => {
   const [signup, setSignup] = useState({ ...initialSignup });
   const navigate = useNavigate();
-  const { loginWithGoogle, signupWithEmailPass, loading, setLoading } =
-    useAuth();
+  const {
+    loginWithGoogle,
+    signupWithEmailPass,
+    loading,
+    setLoading,
+    updateUserProfile,
+  } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,6 +40,7 @@ const Signup = () => {
       setLoading(true);
       const res = await signupWithEmailPass(email, password);
       if (res && 'user' in res) {
+        await updateUserProfile(fullName, '');
         toast.success('Signup Successfully');
         navigate('/');
       }

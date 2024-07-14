@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
   User,
   UserCredential,
 } from 'firebase/auth';
@@ -28,6 +29,10 @@ export interface UserInfo {
   loginWithEmailPass: (
     email: string,
     password: string,
+  ) => Promise<UserCredential | void>;
+  updateUserProfile: (
+    displayName: string,
+    image: string,
   ) => Promise<UserCredential | void>;
 }
 
@@ -58,6 +63,17 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return await signInWithEmailAndPassword(Auth, email, password);
   };
 
+  // upadate user info
+  const updateUserProfile = async (displayName: string, image: string) => {
+    const currentUser = Auth.currentUser;
+    if (currentUser) {
+      return await updateProfile(currentUser, {
+        displayName: displayName,
+        photoURL: image,
+      });
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(Auth, (currentUser) => {
       if (currentUser) {
@@ -82,6 +98,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     logout,
     signupWithEmailPass,
     loginWithEmailPass,
+    updateUserProfile,
   };
 
   return (

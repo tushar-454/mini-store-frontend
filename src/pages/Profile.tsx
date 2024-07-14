@@ -4,7 +4,7 @@ import Container from '../components/shared/Container';
 import useAuth from '../Hook/useAuth';
 
 const Profile = () => {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   return (
     <section>
       <Container>
@@ -13,12 +13,17 @@ const Profile = () => {
             {/* user information  */}
             <div className='flex items-center gap-5 p-3'>
               <img
-                src='https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png'
-                alt=''
+                src={
+                  user?.photoURL ??
+                  'https://cdn-icons-png.flaticon.com/512/21/21104.png'
+                }
+                alt={user?.displayName ?? 'user name'}
                 className='h-20 w-20 rounded-full object-cover'
               />
               <p className='grid'>
-                <span className='text-xl font-medium'>John Doe</span>
+                <span className='text-xl font-medium'>
+                  {user?.displayName ?? 'User Name'}
+                </span>
                 <span>User</span>
               </p>
             </div>
