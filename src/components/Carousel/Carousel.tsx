@@ -2,7 +2,7 @@ import { useState } from 'react';
 const Carousel = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const sliders = [
-    'https://cdn.prod.website-files.com/60e3eea63871951801a505d5/63d7ab46aa84b8c8f8c44649_fynd%20thumbnail.webp',
+    'https://i.ibb.co/pxBZfN5/slider-1.jpg',
     'https://devrix.com/wp-content/uploads/2020/06/How-to-Quickly-Build-an-eCommerce-Website@2x.png',
     'https://cdn.prod.website-files.com/60e3eea63871951801a505d5/63d7ab46aa84b8c8f8c44649_fynd%20thumbnail.webp',
     'https://images.unsplash.com/photo-1467195468637-72eb862bb14e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',

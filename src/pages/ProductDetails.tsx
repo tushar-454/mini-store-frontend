@@ -10,6 +10,7 @@ import FeaturedProductCard from '../components/FeaturedProducts/FeaturedProductC
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
+import AllProducts from '../Data/AllProducts';
 
 const gallaryImage = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_NCyKIAYqVqGTsK8evlXNRVTEH66HEGhmfabvhCZ_EgqF56nuh0P1JFZ8B9okMzoJZ9c&usqp=CAU',
@@ -229,8 +230,8 @@ const ProductDetails = () => {
             </div>
             {/* related products  */}
             <div className='grid grid-cols-1 justify-between gap-5 py-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-              {[{}, {}, {}, {}].map((_, index) => (
-                <FeaturedProductCard key={index} />
+              {AllProducts.slice(4).map((product) => (
+                <FeaturedProductCard key={Math.random()} product={product} />
               ))}
             </div>
           </div>
