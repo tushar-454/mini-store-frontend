@@ -10,7 +10,7 @@ const UserAction = ({
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const userLoggedIn = false;
+  const userLoggedIn = true;
   return (
     <>
       {userLoggedIn ? (
@@ -35,7 +35,7 @@ const UserAction = ({
               </Link>
             </li>
             <li>
-              <Link to={'/'} className='text-2xl'>
+              <Link to={'/profile'} className='text-2xl'>
                 <CiUser />
               </Link>
             </li>

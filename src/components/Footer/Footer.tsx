@@ -1,10 +1,12 @@
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import sslCommerz from '../../assets/ssl_logoss.webp';
 import Logo from '../header/Logo';
 import Container from '../shared/Container';
 
 const Footer = () => {
+  const { pathname } = useLocation();
+  if (pathname.includes('profile')) return null;
   return (
     <footer className='bg-green-900 text-white'>
       <Container>
