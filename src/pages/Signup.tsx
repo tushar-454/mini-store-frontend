@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../components/header/Logo';
 import Container from '../components/shared/Container';
 import LoginWithSocial from '../components/shared/LoginWithSocial';
@@ -20,23 +20,26 @@ const initialSignup: SignupType = {
 
 const Signup = () => {
   const [signup, setSignup] = useState({ ...initialSignup });
+  const navigate = useNavigate();
   const { loginWithGoogle, signupWithEmailPass, loading, setLoading } =
     useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, fullName, password } = signup;
-    if (!email || !password || !fullName) return;
+    if (!email || !password || !fullName) {
+      toast.error('All fields are required');
+      return;
+    }
     try {
       setLoading(true);
       const res = await signupWithEmailPass(email, password);
       if (res && 'user' in res) {
         toast.success('Signup Successfully');
-      } else {
-        toast.error('Signup Failed');
+        navigate('/');
       }
-    } catch (error) {
-      toast.error('Something is wrong!');
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Signup Failed');
     } finally {
       setLoading(false);
     }

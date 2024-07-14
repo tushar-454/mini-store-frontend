@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { NavLink, Outlet } from 'react-router-dom';
 import Container from '../components/shared/Container';
 import useAuth from '../Hook/useAuth';
@@ -48,7 +49,10 @@ const Profile = () => {
               </NavLink>
               <NavLink
                 to={'/'}
-                onClick={logout}
+                onClick={() => {
+                  logout();
+                  toast.success('Logout Successfully');
+                }}
                 className='mb-2 cursor-pointer p-2 px-3 text-lg font-semibold hover:bg-neutral-100'
               >
                 Log out

@@ -19,7 +19,7 @@ export interface UserInfo {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  loginWithGoogle: () => Promise<void>;
+  loginWithGoogle: () => Promise<UserCredential | void>;
   logout: () => Promise<void>;
   signupWithEmailPass: (
     email: string,
@@ -39,11 +39,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   // login with google
   const loginWithGoogle = async () => {
-    try {
-      await signInWithPopup(Auth, new GoogleAuthProvider());
-    } catch (error) {
-      console.log(error);
-    }
+    return await signInWithPopup(Auth, new GoogleAuthProvider());
   };
   // logout
   const logout = async () => {
