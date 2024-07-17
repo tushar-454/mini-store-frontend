@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -29,6 +30,7 @@ const Signup = () => {
     updateUserProfile,
   } = useAuth();
 
+  // handle account create with email and password
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, fullName, password } = signup;
@@ -41,6 +43,16 @@ const Signup = () => {
       const res = await signupWithEmailPass(email, password);
       if (res && 'user' in res) {
         await updateUserProfile(fullName, '');
+        const newUser = {
+          name: fullName,
+          email: email,
+          phone: '00000000000',
+          address: 'address',
+          city: 'city',
+          area: 'area',
+        };
+        // craete a new user save it to the database
+        axios.post(`${import.meta.env.VITE_baseurl}/users/one`, newUser);
         toast.success('Signup Successfully');
         navigate('/');
       }

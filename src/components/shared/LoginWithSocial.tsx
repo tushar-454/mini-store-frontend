@@ -2,18 +2,34 @@ interface LoginWithSocialProps {
   loginWithGoogle: () => void;
 }
 
+import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaFacebook, FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
+
 const LoginWithSocial: React.FC<LoginWithSocialProps> = ({
   loginWithGoogle,
 }) => {
   const navigate = useNavigate();
+
+  // Handle login with google
   const handleLoginWithGoogle = async () => {
     try {
-      const res = await loginWithGoogle();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const res: any = await loginWithGoogle();
       if (res !== undefined && 'user' in res) {
+        const newUser = {
+          name: res?.user?.displayName,
+          email: res?.user?.email,
+          phone: '00000000000',
+          address: 'address',
+          city: 'city',
+          area: 'area',
+        };
+        // craete a new user save it to the database
+        axios.post(`${import.meta.env.VITE_baseurl}/users/one`, newUser);
+
         toast.success('Login Successfully');
         navigate('/');
       }
