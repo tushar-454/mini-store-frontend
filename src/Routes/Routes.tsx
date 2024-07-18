@@ -1,4 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Order from '../components/Profile/Order';
+import ProfileSub from '../components/Profile/Profile';
+import Shipping from '../components/Profile/Shipping';
 import Root from '../layout/Root';
 import Cart from '../pages/Cart';
 import Home from '../pages/Home';
@@ -51,15 +54,15 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <p>Profile</p>,
+            element: <ProfileSub />,
           },
           {
             path: 'order',
-            element: <p>Order</p>,
+            element: <Order />,
           },
           {
             path: 'shipping',
-            element: <p>shiping address</p>,
+            element: <Shipping />,
           },
           {
             path: 'review',

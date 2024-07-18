@@ -10,12 +10,14 @@ import useAuth from '../Hook/useAuth';
 type SignupType = {
   fullName: string;
   email: string;
+  phone: string;
   password: string;
 };
 
 const initialSignup: SignupType = {
   fullName: '',
   email: '',
+  phone: '',
   password: '',
 };
 
@@ -33,26 +35,23 @@ const Signup = () => {
   // handle account create with email and password
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { email, fullName, password } = signup;
-    if (!email || !password || !fullName) {
+    const { email, fullName, phone, password } = signup;
+    if (!email || !password || !fullName || !phone) {
       toast.error('All fields are required');
       return;
     }
     try {
       setLoading(true);
+      const newUser = {
+        name: fullName,
+        email,
+        phone,
+      };
+      // craete a new user save it to the database
+      await axios.post(`${import.meta.env.VITE_baseurl}/users/one`, newUser);
       const res = await signupWithEmailPass(email, password);
       if (res && 'user' in res) {
         await updateUserProfile(fullName, '');
-        const newUser = {
-          name: fullName,
-          email: email,
-          phone: '00000000000',
-          address: 'address',
-          city: 'city',
-          area: 'area',
-        };
-        // craete a new user save it to the database
-        axios.post(`${import.meta.env.VITE_baseurl}/users/one`, newUser);
         toast.success('Signup Successfully');
         navigate('/');
       }
@@ -102,6 +101,21 @@ const Signup = () => {
                   value={signup.email}
                   onChange={(e) =>
                     setSignup({ ...signup, email: e.target.value })
+                  }
+                />
+              </div>
+              <div className='grid gap-2'>
+                <label htmlFor='phone' className='font-bold'>
+                  Phone
+                </label>
+                <input
+                  type='tel'
+                  id='phone'
+                  className='primaryInput'
+                  placeholder='+048908409547'
+                  value={signup.phone}
+                  onChange={(e) =>
+                    setSignup({ ...signup, phone: e.target.value })
                   }
                 />
               </div>

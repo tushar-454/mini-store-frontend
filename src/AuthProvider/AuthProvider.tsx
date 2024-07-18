@@ -40,7 +40,7 @@ export const AuthContext = createContext<UserInfo | null>(null);
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   // login with google
   const loginWithGoogle = async () => {

@@ -22,7 +22,7 @@ const LoginWithSocial: React.FC<LoginWithSocialProps> = ({
         const newUser = {
           name: res?.user?.displayName,
           email: res?.user?.email,
-          phone: '00000000000',
+          phone: Math.floor(Math.random() * 100000000000),
           address: 'address',
           city: 'city',
           area: 'area',
