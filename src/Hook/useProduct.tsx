@@ -1,0 +1,25 @@
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+
+const useProduct = (productId: string | undefined) => {
+  const {
+    data: product,
+    isLoading: productLoad,
+    isError: productError,
+  } = useQuery({
+    queryKey: ['product'],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${import.meta.env.VITE_baseurl}/users/product/${productId}`,
+      );
+      return res.data.data;
+    },
+  });
+  return {
+    product,
+    productLoad,
+    productError,
+  };
+};
+
+export default useProduct;

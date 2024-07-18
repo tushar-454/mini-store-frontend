@@ -1,4 +1,5 @@
 export type productType = {
+  _id: number;
   name: string;
   image: {
     main: string;
@@ -20,6 +21,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Men',
     products: [
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/1.jpg',
           gallery: [''],
@@ -29,6 +31,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/1.jpg',
           gallery: [''],
@@ -38,6 +41,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/1.jpg',
           gallery: [''],
@@ -53,6 +57,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Women',
     products: [
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/2.jpg',
           gallery: [''],
@@ -62,6 +67,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/2.jpg',
           gallery: [''],
@@ -71,6 +77,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/2.jpg',
           gallery: [''],
@@ -80,6 +87,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/2.jpg',
           gallery: [''],
@@ -89,6 +97,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/2.jpg',
           gallery: [''],
@@ -104,6 +113,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Children',
     products: [
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/3.jpg',
           gallery: [''],
@@ -113,6 +123,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/3.jpg',
           gallery: [''],
@@ -128,6 +139,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Sports',
     products: [
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/4.jpg',
           gallery: [''],
@@ -137,6 +149,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/4.jpg',
           gallery: [''],
@@ -146,6 +159,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
         discount: 20,
       },
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/4.jpg',
           gallery: [''],
@@ -161,6 +175,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Travel',
     products: [
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/5.jpg',
           gallery: [''],
@@ -176,6 +191,7 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Electronics',
     products: [
       {
+        _id: 1,
         image: {
           main: 'https://i.ibb.co/0s3pdnc/6.jpg',
           gallery: [''],
