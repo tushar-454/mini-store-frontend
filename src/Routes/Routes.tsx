@@ -9,6 +9,7 @@ import ProductFilter from '../pages/ProductFilter';
 import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
 import Wishlists from '../pages/Wishlists';
+import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
 const router = createBrowserRouter([
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />,
+          </PrivateRoute>
+        ),
         children: [
           {
             index: true,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../components/header/Logo';
 import Container from '../components/shared/Container';
 import LoginWithSocial from '../components/shared/LoginWithSocial';
@@ -16,6 +16,7 @@ const initialLogin: LoginType = { email: '', password: '' };
 const Login = () => {
   const [login, setLogin] = useState({ ...initialLogin });
   const navigate = useNavigate();
+  const { state } = useLocation();
   const { loginWithGoogle, loginWithEmailPass, loading, setLoading } =
     useAuth();
 
@@ -31,7 +32,7 @@ const Login = () => {
       const res = await loginWithEmailPass(email, password);
       if (res && 'user' in res) {
         toast.success('Login Successfully');
-        navigate('/');
+        navigate(state || '/');
       }
     } catch (error: unknown) {
       toast.error(error instanceof Error ? error.message : 'Login Failed');
@@ -99,7 +100,7 @@ const Login = () => {
                         cy='12'
                         r='10'
                         stroke='currentColor'
-                        stroke-width='4'
+                        strokeWidth='4'
                       ></circle>
                       <path
                         className='opacity-75'
