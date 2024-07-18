@@ -1,8 +1,11 @@
 export type productType = {
-  img: string;
-  title: string;
+  name: string;
+  image: {
+    main: string;
+    gallery: string[];
+  };
   price: number;
-  salePrice: number;
+  discount: number;
 };
 
 export type FeaturedProductsType = {
@@ -17,22 +20,31 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Men',
     products: [
       {
-        img: 'https://i.ibb.co/0s3pdnc/1.jpg',
-        title: 'Men T-shirt',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/1.jpg',
+          gallery: [''],
+        },
+        name: 'Men T-shirt',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/1.jpg',
-        title: 'Men T-shirt',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/1.jpg',
+          gallery: [''],
+        },
+        name: 'Men T-shirt',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/1.jpg',
-        title: 'Men T-shirt',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/1.jpg',
+          gallery: [''],
+        },
+        name: 'Men T-shirt',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
     ],
   },
@@ -41,34 +53,49 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Women',
     products: [
       {
-        img: 'https://i.ibb.co/0s3pdnc/2.jpg',
-        title: 'Women Pant',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/2.jpg',
+          gallery: [''],
+        },
+        name: 'Women Pant',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/2.jpg',
-        title: 'Women Pant',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/2.jpg',
+          gallery: [''],
+        },
+        name: 'Women Pant',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/2.jpg',
-        title: 'Women Pant',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/2.jpg',
+          gallery: [''],
+        },
+        name: 'Women Pant',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/2.jpg',
-        title: 'Women Pant',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/2.jpg',
+          gallery: [''],
+        },
+        name: 'Women Pant',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/2.jpg',
-        title: 'Women Pant',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/2.jpg',
+          gallery: [''],
+        },
+        name: 'Women Pant',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
     ],
   },
@@ -77,16 +104,22 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Children',
     products: [
       {
-        img: 'https://i.ibb.co/0s3pdnc/3.jpg',
-        title: 'Children Shoes',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/3.jpg',
+          gallery: [''],
+        },
+        name: 'Children Shoes',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/3.jpg',
-        title: 'Children Shoes',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/3.jpg',
+          gallery: [''],
+        },
+        name: 'Children Shoes',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
     ],
   },
@@ -95,22 +128,31 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Sports',
     products: [
       {
-        img: 'https://i.ibb.co/0s3pdnc/4.jpg',
-        title: 'Football',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/4.jpg',
+          gallery: [''],
+        },
+        name: 'Football',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/4.jpg',
-        title: 'Football',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/4.jpg',
+          gallery: [''],
+        },
+        name: 'Football',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
       {
-        img: 'https://i.ibb.co/0s3pdnc/4.jpg',
-        title: 'Football',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/4.jpg',
+          gallery: [''],
+        },
+        name: 'Football',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
     ],
   },
@@ -119,10 +161,13 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Travel',
     products: [
       {
-        img: 'https://i.ibb.co/0s3pdnc/5.jpg',
-        title: 'Camera',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/5.jpg',
+          gallery: [''],
+        },
+        name: 'Camera',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
     ],
   },
@@ -131,10 +176,13 @@ const FeaturedProductsArr: FeaturedProductsType[] = [
     category: 'Electronics',
     products: [
       {
-        img: 'https://i.ibb.co/0s3pdnc/6.jpg',
-        title: 'Calculator',
+        image: {
+          main: 'https://i.ibb.co/0s3pdnc/6.jpg',
+          gallery: [''],
+        },
+        name: 'Calculator',
         price: 25,
-        salePrice: 20,
+        discount: 20,
       },
     ],
   },

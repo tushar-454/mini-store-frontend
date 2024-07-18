@@ -7,11 +7,15 @@ import FeaturedProductCard from '../components/FeaturedProducts/FeaturedProductC
 import { Carousel } from '../components/ProductFilter/Carousel';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
-import AllProducts from '../Data/AllProducts';
+// import AllProducts from '../Data/AllProducts';
 import { productType } from '../Data/FeaturedProducts';
+import useAllProducts from '../Hook/useAllProducts';
 
 const ProductFilter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const { allProducts, allProductsLoad, allProductsError } = useAllProducts(
+    'name,price,discount,image',
+  );
   useEffect(() => {
     document.title = 'Product Filter | E-commerce';
     scrollTo(0, 0);
@@ -317,11 +321,15 @@ const ProductFilter = () => {
             </div>
           </div>
           {/* all products  */}
-          <div className='grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-            {AllProducts.map((product: productType) => (
-              <FeaturedProductCard key={Math.random()} product={product} />
-            ))}
-          </div>
+          {allProductsLoad && <p>Loading... </p>}
+          {allProductsError && <p>Something is wrong </p>}
+          {!allProductsLoad && !allProductsError && (
+            <div className='grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
+              {allProducts.data.map((product: productType) => (
+                <FeaturedProductCard key={Math.random()} product={product} />
+              ))}
+            </div>
+          )}
         </div>
       </Container>
     </section>
