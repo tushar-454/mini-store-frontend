@@ -1,4 +1,16 @@
+export type CartItemType = {
+  _id: number;
+  image: string;
+  name: string;
+  isStock: boolean;
+  price: number;
+  quentity: number;
+  size: string;
+  color: string;
+};
+
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import {
   FaFacebook,
   FaFacebookMessenger,
@@ -15,15 +27,51 @@ import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
 import useAllProducts from '../Hook/useAllProducts';
 import useProduct from '../Hook/useProduct';
+import { setCartLocalStorage } from '../utils/localStorage';
 
 const ProductDetails = () => {
   const [quentity, setQuentity] = useState(0);
+  const [size, setSize] = useState('S');
+  const [color, setColor] = useState('Blue');
   const [selectedImage, setSelectedImage] = useState(0);
   const { id } = useParams();
   const { product, productLoad, productError } = useProduct(id);
   const { allProducts, allProductsLoad, allProductsError } = useAllProducts(
     'name,price,discount,image',
   );
+
+  const selectSize = (idx: number, size: string) => {
+    const sizes = document.querySelectorAll('.product-size');
+    sizes.forEach((size) => size.classList.remove('bg-neutral-300'));
+    sizes[idx].classList.add('bg-neutral-300');
+    setSize(size);
+  };
+  const selectColor = (idx: number, color: string) => {
+    const colors = document.querySelectorAll('.product-color');
+    colors.forEach((size) => size.classList.remove('border-neutral-900'));
+    colors[idx].classList.add('border-neutral-900');
+    setColor(color);
+  };
+
+  // add to cart function
+  const addToCart = () => {
+    if (quentity === 0) {
+      return toast.error('Please set your product quentity');
+    }
+    const cartItem: CartItemType = {
+      _id: product._id,
+      image: product.image.main,
+      name: product.name,
+      isStock: product.isStock,
+      price:
+        Math.floor(product.price - (product.price * product.discount) / 100) *
+        quentity,
+      quentity,
+      size,
+      color,
+    };
+    setCartLocalStorage('carts', cartItem);
+  };
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -115,43 +163,58 @@ const ProductDetails = () => {
                     <span className='text-xl font-medium'>Size</span>
                     <span>|</span>
                     <ul className='ml-5 flex items-center gap-8'>
-                      <li className='product-size bg-neutral-300'>S</li>
-                      <li className='product-size'>M</li>
-                      <li className='product-size'>L</li>
-                      <li className='product-size'>XL</li>
+                      <li
+                        onClick={() => selectSize(0, 'S')}
+                        className='product-size bg-neutral-300'
+                      >
+                        S
+                      </li>
+                      <li
+                        onClick={() => selectSize(1, 'M')}
+                        className='product-size'
+                      >
+                        M
+                      </li>
+                      <li
+                        onClick={() => selectSize(2, 'L')}
+                        className='product-size'
+                      >
+                        L
+                      </li>
+                      <li
+                        onClick={() => selectSize(3, 'XL')}
+                        className='product-size'
+                      >
+                        XL
+                      </li>
                     </ul>
                   </div>
                   <div className='flex items-center gap-3'>
                     <span className='text-xl font-medium'>Color</span>
                     <span>|</span>
                     <ul className='flex items-center gap-4'>
-                      <li className='size-8 cursor-pointer rounded-full border-2 border-transparent bg-blue-700'></li>
-                      <li className='size-8 cursor-pointer rounded-full border-2 border-neutral-900 bg-green-700'></li>
-                      <li className='size-8 cursor-pointer rounded-full border-2 border-transparent bg-pink-700'></li>
-                      <li className='size-8 cursor-pointer rounded-full border-2 border-transparent bg-yellow-600'></li>
+                      <li
+                        onClick={() => selectColor(0, 'Blue')}
+                        className='product-color border-neutral-900 bg-blue-700'
+                      ></li>
+                      <li
+                        onClick={() => selectColor(1, 'Green')}
+                        className='product-color bg-green-700'
+                      ></li>
+                      <li
+                        onClick={() => selectColor(2, 'Pink')}
+                        className='product-color bg-pink-700'
+                      ></li>
+                      <li
+                        onClick={() => selectColor(3, 'Yellow')}
+                        className='product-color bg-yellow-600'
+                      ></li>
                     </ul>
                   </div>
                 </div>
-                {/* EMI or full payment */}
+                {/* discription */}
                 <div className='my-10'>
-                  <div>
-                    <input
-                      type='radio'
-                      name='payment'
-                      id='emi'
-                      className='mr-2 accent-green-700'
-                    />
-                    <label htmlFor='emi'>EMI</label>
-                  </div>
-                  <div>
-                    <input
-                      type='radio'
-                      name='payment'
-                      id='full'
-                      className='mr-2 accent-green-700'
-                    />
-                    <label htmlFor='full'>Full Payment</label>
-                  </div>
+                  <p>{product.description}</p>
                 </div>
                 {/* product quantity &  add to cart with Order now button */}
                 <div className='flex h-full flex-col justify-end space-y-4 pb-4'>
@@ -175,8 +238,11 @@ const ProductDetails = () => {
                       </button>
                     </div>
                     <div className='w-full sm:w-4/5'>
-                      <button className='block h-full w-full rounded-lg bg-green-600 px-4 py-2 font-medium text-white transition-all hover:bg-green-700'>
-                        Pre Order
+                      <button
+                        onClick={addToCart}
+                        className='block h-full w-full rounded-lg bg-green-600 px-4 py-2 font-medium text-white transition-all hover:bg-green-700'
+                      >
+                        Add to Cart
                       </button>
                     </div>
                   </div>

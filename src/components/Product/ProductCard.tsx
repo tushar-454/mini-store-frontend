@@ -29,8 +29,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   useEffect(() => {
-    const wishLists = getLocalStorage('wishLists');
-    wishLists.map((list: ProductCardType) => {
+    const wishLists = getLocalStorage('wishLists') || [];
+    wishLists?.map((list: ProductCardType) => {
       if (list._id === product._id) {
         const productHeart = heart.current;
         if (productHeart !== null) productHeart.classList.add('heartColor');

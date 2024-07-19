@@ -43,6 +43,10 @@ input[type='number']::-webkit-outer-spin-button {
   .product-size {
     @apply grid size-8 cursor-pointer place-items-center rounded-full bg-neutral-100 p-1 transition-all hover:bg-neutral-200;
   }
+  /* product color style   */
+  .product-color {
+    @apply size-8 cursor-pointer rounded-full border-2 border-transparent;
+  }
   /* primaryBtn styles */
   .primaryBtn {
     @apply grid place-items-center rounded-lg border border-green-600 bg-green-600 px-4 py-2 font-medium text-white transition-all hover:bg-green-700;
