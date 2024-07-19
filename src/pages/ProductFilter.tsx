@@ -3,13 +3,14 @@ import { FaBars } from 'react-icons/fa';
 import { GoSearch } from 'react-icons/go';
 import { MdOutlineSensorWindow, MdOutlineWindow } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
-import FeaturedProductCard from '../components/FeaturedProducts/FeaturedProductCard';
-import { Carousel } from '../components/ProductFilter/Carousel';
+// import { Carousel } from '../components/ProductFilter/Carousel';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 // import AllProducts from '../Data/AllProducts';
-import { productType } from '../Data/FeaturedProducts';
 import useAllProducts from '../Hook/useAllProducts';
+import ProductCard, {
+  ProductCardType,
+} from '../components/Product/ProductCard';
 
 const ProductFilter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -23,7 +24,7 @@ const ProductFilter = () => {
   return (
     <section>
       {/* product filter slider */}
-      <Carousel />
+      {/* <Carousel /> */}
       {/* all product lists here with filter functionality  */}
       <Container>
         <div className='sticky -top-10 z-50 h-64 overflow-hidden bg-white'>
@@ -325,8 +326,8 @@ const ProductFilter = () => {
           {allProductsError && <p>Something is wrong </p>}
           {!allProductsLoad && !allProductsError && (
             <div className='grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-              {allProducts.data.map((product: productType) => (
-                <FeaturedProductCard key={Math.random()} product={product} />
+              {allProducts.data.map((product: ProductCardType) => (
+                <ProductCard key={Math.random()} product={product} />
               ))}
             </div>
           )}

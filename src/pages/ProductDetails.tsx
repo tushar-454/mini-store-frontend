@@ -7,11 +7,12 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
-import FeaturedProductCard from '../components/FeaturedProducts/FeaturedProductCard';
+import ProductCard, {
+  ProductCardType,
+} from '../components/Product/ProductCard';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
-import { productType } from '../Data/FeaturedProducts';
 import useAllProducts from '../Hook/useAllProducts';
 import useProduct from '../Hook/useProduct';
 
@@ -248,12 +249,11 @@ const ProductDetails = () => {
               {allProductsError && <p>Something went wrong</p>}
               {!allProductsLoad && !allProductsError && (
                 <div className='grid grid-cols-1 justify-between gap-5 py-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-                  {allProducts.data.slice(0, 4).map((product: productType) => (
-                    <FeaturedProductCard
-                      key={Math.random()}
-                      product={product}
-                    />
-                  ))}
+                  {allProducts.data
+                    .slice(0, 4)
+                    .map((product: ProductCardType) => (
+                      <ProductCard key={Math.random()} product={product} />
+                    ))}
                 </div>
               )}
             </div>

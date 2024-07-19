@@ -1,5 +1,7 @@
 import WishlistsArr from '../Data/WishList';
-import FeaturedProductCard from '../components/FeaturedProducts/FeaturedProductCard';
+import ProductCard, {
+  ProductCardType,
+} from '../components/Product/ProductCard';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 
@@ -18,8 +20,8 @@ const Wishlists = () => {
         </div>
         {/* wishlists products  */}
         <div className='grid grid-cols-1 justify-between gap-5 pb-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {WishlistsArr.map((product) => (
-            <FeaturedProductCard key={Math.random()} product={product} />
+          {WishlistsArr.map((product: ProductCardType) => (
+            <ProductCard key={Math.random()} product={product} />
           ))}
         </div>
       </Container>

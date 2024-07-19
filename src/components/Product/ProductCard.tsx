@@ -1,25 +1,36 @@
-interface FeaturedProductCardProps {
-  product: productType;
-}
 import { CiShoppingCart } from 'react-icons/ci';
+import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { productType } from '../../Data/FeaturedProducts';
 
-const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
-  product,
-}) => {
+export type ProductCardType = {
+  _id: number;
+  name: string;
+  image: {
+    main: string;
+    gallery: string[];
+  };
+  price: number;
+  discount: number;
+};
+
+interface ProductCardProps {
+  product: ProductCardType;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  console.log(product);
   return (
     <div className='w-full space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'>
       <div className='group relative'>
         <img
-          src={product.image}
+          src={product.image.main}
           alt={product.name}
           className='h-80 w-full rounded-lg object-cover'
         />
         <span className='absolute left-0 top-0 h-full w-full rounded-lg bg-[#00000090] opacity-0 transition-all group-hover:opacity-100'></span>
         <div className='absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-5 opacity-0 transition-all group-hover:opacity-100'>
           <Link
-            to={`/product`}
+            to={`/product/${product._id}`}
             className='w-11/12 rounded-lg border-2 border-green-600 bg-white px-4 py-2 text-center font-bold text-green-600'
           >
             View Details
@@ -28,6 +39,9 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
             Order Now
           </button>
         </div>
+        <span className='absolute right-2 top-2'>
+          <FaHeart className='text-white' />
+        </span>
       </div>
       <p className='font-medium'>{product.name}</p>
       <p className='flex items-center justify-between'>
@@ -44,4 +58,4 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
   );
 };
 
-export default FeaturedProductCard;
+export default ProductCard;
