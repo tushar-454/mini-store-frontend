@@ -1,6 +1,8 @@
+import { useEffect, useRef } from 'react';
 import { CiShoppingCart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 
 export type ProductCardType = {
   _id: number;
@@ -18,7 +20,24 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  console.log(product);
+  const heart = useRef(null);
+  // add to wishlist product function
+  const addToWishList = () => {
+    const productHeart = heart.current;
+    if (productHeart !== null) productHeart.classList.toggle('heartColor');
+    setLocalStorage('wishLists', product);
+  };
+
+  useEffect(() => {
+    const wishLists = getLocalStorage('wishLists');
+    wishLists.map((list: ProductCardType) => {
+      if (list._id === product._id) {
+        const productHeart = heart.current;
+        if (productHeart !== null) productHeart.classList.add('heartColor');
+      }
+    });
+  }, []);
+
   return (
     <div className='w-full space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'>
       <div className='group relative'>
@@ -39,8 +58,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             Order Now
           </button>
         </div>
-        <span className='absolute right-2 top-2'>
-          <FaHeart className='text-white' />
+        <span
+          ref={heart}
+          onClick={addToWishList}
+          className='absolute right-2 top-2 cursor-pointer text-white'
+        >
+          <FaHeart />
         </span>
       </div>
       <p className='font-medium'>{product.name}</p>
