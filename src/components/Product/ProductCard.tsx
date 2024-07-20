@@ -2,7 +2,12 @@ import { useEffect, useRef } from 'react';
 import { CiShoppingCart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
+import useAuth from '../../Hook/useAuth';
+import {
+  getLocalStorage,
+  setCartLocalStorage,
+  setLocalStorage,
+} from '../../utils/localStorage';
 
 export type ProductCardType = {
   _id: number;
@@ -21,11 +26,28 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const heart = useRef(null);
+  const { setCarts } = useAuth();
   // add to wishlist product function
   const addToWishList = () => {
     const productHeart = heart.current;
     if (productHeart !== null) productHeart.classList.toggle('heartColor');
     setLocalStorage('wishLists', product);
+  };
+  // add to cart product function
+  const addToCart = (product: ProductCardType) => {
+    const cartItem = {
+      _id: product._id,
+      color: 'Base',
+      image: product.image.main,
+      isStock: true,
+      name: product.name,
+      price: product.price,
+      quentity: 1,
+      randomId: Math.floor(Math.random() * 9999999999),
+      size: 'Base',
+    };
+    setCartLocalStorage('carts', cartItem);
+    setCarts((prev) => [...prev, cartItem]);
   };
 
   useEffect(() => {
@@ -73,7 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           -{' '}
           {Math.floor(product.price - (product.price * product.discount) / 100)}
         </b>
-        <span>
+        <span onClick={() => addToCart(product)}>
           <CiShoppingCart className='h-8 w-8 cursor-pointer rounded-lg bg-orange-500 p-1 text-white' />
         </span>
       </p>
