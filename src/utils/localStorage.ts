@@ -13,7 +13,7 @@ const getLocalStorage = (collection: string) => {
 const setLocalStorage = (collection: string, data: ProductCardType) => {
   const storage = localStorage.getItem(collection);
   if (!storage) {
-    const value = JSON.stringify([data]);
+    const value = JSON.stringify(Array.isArray(data) ? data : [data]);
     localStorage.setItem(collection, value);
   } else {
     const parseStorage = JSON.parse(storage);
@@ -38,7 +38,7 @@ const setLocalStorage = (collection: string, data: ProductCardType) => {
 const setCartLocalStorage = (collection: string, data: CartItemType) => {
   const storage = localStorage.getItem(collection);
   if (!storage) {
-    const value = JSON.stringify([data]);
+    const value = JSON.stringify(Array.isArray(data) ? data : [data]);
     localStorage.setItem(collection, value);
   } else {
     const parseStorage = JSON.parse(storage);

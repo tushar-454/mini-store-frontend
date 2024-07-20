@@ -1,5 +1,6 @@
 export type CartItemType = {
   _id: number;
+  randomId: number;
   image: string;
   name: string;
   isStock: boolean;
@@ -26,8 +27,9 @@ import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
 import useAllProducts from '../Hook/useAllProducts';
+import useAuth from '../Hook/useAuth';
 import useProduct from '../Hook/useProduct';
-import { setCartLocalStorage } from '../utils/localStorage';
+import { getLocalStorage, setCartLocalStorage } from '../utils/localStorage';
 
 const ProductDetails = () => {
   const [quentity, setQuentity] = useState(0);
@@ -39,6 +41,7 @@ const ProductDetails = () => {
   const { allProducts, allProductsLoad, allProductsError } = useAllProducts(
     'name,price,discount,image',
   );
+  const { setCarts } = useAuth();
 
   const selectSize = (idx: number, size: string) => {
     const sizes = document.querySelectorAll('.product-size');
@@ -60,6 +63,7 @@ const ProductDetails = () => {
     }
     const cartItem: CartItemType = {
       _id: product._id,
+      randomId: Math.floor(Math.random() * 9999999999),
       image: product.image.main,
       name: product.name,
       isStock: product.isStock,
@@ -71,6 +75,8 @@ const ProductDetails = () => {
       color,
     };
     setCartLocalStorage('carts', cartItem);
+    const storeCart = getLocalStorage('carts');
+    setCarts(storeCart);
   };
 
   useEffect(() => {

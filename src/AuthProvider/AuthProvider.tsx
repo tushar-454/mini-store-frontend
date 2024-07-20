@@ -34,6 +34,8 @@ export interface UserInfo {
     displayName: string,
     image: string,
   ) => Promise<UserCredential | void>;
+  // carts: ProductCardType[];
+  // setCarts: React.Dispatch<React.SetStateAction<ProductCardType[] | null>>;
 }
 
 export const AuthContext = createContext<UserInfo | null>(null);
@@ -41,6 +43,7 @@ export const AuthContext = createContext<UserInfo | null>(null);
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [carts, setCarts] = useState([]);
 
   // login with google
   const loginWithGoogle = async () => {
@@ -99,6 +102,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     signupWithEmailPass,
     loginWithEmailPass,
     updateUserProfile,
+    carts,
+    setCarts,
   };
 
   return (
