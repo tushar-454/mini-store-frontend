@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
 import useAuth from '../Hook/useAuth';
@@ -7,6 +7,7 @@ import { CartItemType } from './ProductDetails';
 
 const Cart = () => {
   const { carts, setCarts } = useAuth();
+  const navigate = useNavigate();
 
   const removeCartItem = (id: number) => {
     const cartsArr = getLocalStorage('carts') || [];
@@ -28,8 +29,8 @@ const Cart = () => {
           </Title>
         </div>
         {/* cart table and details  */}
-        {carts.length === 0 && <p>No cart item yet</p>}
-        {carts.length > 0 && (
+        {carts?.length === 0 && <p>No cart item yet</p>}
+        {carts?.length > 0 && (
           <div className='flex flex-col gap-5 py-10 lg:flex-row'>
             {/* cart table */}
             <div className='w-full overflow-x-auto'>
@@ -44,7 +45,10 @@ const Cart = () => {
                 {carts?.map((cart: CartItemType) => (
                   <tr key={Math.random()}>
                     <td className='p-2'>
-                      <div className='flex items-center gap-5'>
+                      <div
+                        className='flex cursor-pointer items-center gap-5'
+                        onClick={() => navigate(`/product/${cart._id}`)}
+                      >
                         <img
                           src={cart.image}
                           alt={cart.name}
@@ -67,17 +71,7 @@ const Cart = () => {
                       </div>
                     </td>
                     <td className='p-2'>
-                      <p className='text-lg'>
-                        <p className='flex w-fit items-center gap-2 rounded-lg border'>
-                          <span className='cursor-pointer p-2 transition-all hover:bg-neutral-100'>
-                            -
-                          </span>
-                          <span>{cart.quentity}</span>
-                          <span className='cursor-pointer p-2 transition-all hover:bg-neutral-100'>
-                            +
-                          </span>
-                        </p>
-                      </p>
+                      <p className='text-2xl'>{cart.quentity}</p>
                       <p
                         onClick={() => removeCartItem(cart.randomId)}
                         className='cursor-pointer text-green-600 transition-all hover:text-red-600'
@@ -98,7 +92,7 @@ const Cart = () => {
                   <b>Product</b>
                   <b>Price</b>
                 </p>
-                {carts.map((cart: CartItemType, index: number) => (
+                {carts?.map((cart: CartItemType, index: number) => (
                   <li
                     key={Math.random()}
                     className='flex items-center justify-between'
@@ -116,7 +110,7 @@ const Cart = () => {
                 <li className='flex items-center justify-between'>
                   <span>Sub Total</span>
                   <span>
-                    {carts.reduce(
+                    {carts?.reduce(
                       (acc: number, cur: CartItemType) => acc + cur.price,
                       0,
                     )}
@@ -148,7 +142,7 @@ const Cart = () => {
                 <li className='flex items-center justify-between'>
                   <span>Total</span>
                   <span>
-                    {carts.reduce(
+                    {carts?.reduce(
                       (acc: number, cur: CartItemType) => acc + cur.price,
                       0,
                     ) - 100}

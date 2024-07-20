@@ -10,6 +10,7 @@ import {
 } from 'firebase/auth';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import Auth from '../Config/firebase-config.tsx';
+import { getLocalStorage } from '../utils/localStorage.ts';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -88,7 +89,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setLoading(false);
       }
     });
-
+    setCarts(getLocalStorage('carts'));
     return () => unsubscribe();
   }, []);
 
