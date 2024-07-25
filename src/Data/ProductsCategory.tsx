@@ -6,6 +6,19 @@ export type ProductType = {
 
 const ProductsCategoryArr: ProductType[] = [
   {
+    name: 'Jewelry',
+    image:
+      'https://cbu01.alicdn.com/img/ibank/O1CN01ZX2Wzp1kGUleVZzJ1_!!3014884656-0-cib.310x310.jpg',
+    link: '/product/filter',
+  },
+  {
+    name: 'Watches',
+    image:
+      'https://cbu01.alicdn.com/img/ibank/17399422521_1930838555.310x310.jpg',
+    link: '/product/filter',
+  },
+
+  {
     name: 'Men',
     image:
       'https://t3.ftcdn.net/jpg/03/28/19/46/360_F_328194664_RKSHvMLgHphnD1nwQYb4QKcNeEApJmqa.jpg',
@@ -18,21 +31,15 @@ const ProductsCategoryArr: ProductType[] = [
     link: '/product/filter',
   },
   {
-    name: 'Children',
+    name: 'Backpack',
     image:
-      'https://childcare.gov/sites/default/files/inline-images/Picture11.jpg',
+      'https://cbu01.alicdn.com/img/ibank/21618048601_1404253929.310x310.jpg',
     link: '/product/filter',
   },
   {
-    name: 'Fairy Lights',
+    name: 'Sports Shoes',
     image:
-      'https://static-01.daraz.com.bd/p/192e92513c8f6b00c5ef45b5eaf1f1f9.jpg',
-    link: '/product/filter',
-  },
-  {
-    name: 'Cloth & Towel',
-    image:
-      'https://static-01.daraz.com.bd/p/7b2b1e15f434fb48e0bb32557908cf11.jpg',
+      'https://cbu01.alicdn.com/img/ibank/16646725265_1920519508.310x310.jpg',
     link: '/product/filter',
   },
 ];
