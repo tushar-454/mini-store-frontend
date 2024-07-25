@@ -54,7 +54,7 @@ const Nav = ({
         <div className='grid place-content-end pb-5'>
           <RxCross1
             onClick={() => setMenuOpen(!menuOpen)}
-            className='text-3xl'
+            className='cursor-pointer text-3xl'
           />
         </div>
         <ul className='flex flex-col gap-5 space-y-4'>

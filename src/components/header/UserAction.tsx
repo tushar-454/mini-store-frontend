@@ -19,7 +19,10 @@ const UserAction = ({
         <div>
           <ul className='flex items-center gap-4'>
             <li className='block lg:hidden'>
-              <FaBars onClick={() => setMenuOpen(!menuOpen)} />
+              <FaBars
+                onClick={() => setMenuOpen(!menuOpen)}
+                className='cursor-pointer'
+              />
             </li>
             <li>
               <Link to={'/product/filter'} className='text-2xl'>
