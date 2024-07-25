@@ -9,7 +9,11 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
   product,
 }) => {
   return (
-    <div className='w-full space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'>
+    <div
+      data-aos='fade-up'
+      data-aos-duration='800'
+      className='w-full space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'
+    >
       <div className='group relative'>
         <img
           src={product.image}

@@ -13,31 +13,43 @@ const BrandSponsor = () => {
         {/* wrapper  */}
         <div className='mb-20 flex flex-wrap items-center justify-evenly gap-5 py-12'>
           <img
+            data-aos='fade-up'
+            data-aos-duration='500'
             src={amazon}
             alt='amazon icons'
             className='w-34 transition-all hover:scale-110'
           />
           <img
+            data-aos='fade-up'
+            data-aos-duration='600'
             src={aliexpress}
             alt='aliexpress icons'
             className='w-34 transition-all hover:scale-110'
           />
           <img
+            data-aos='fade-up'
+            data-aos-duration='700'
             src={bestbuy}
             alt='bestbuy icons'
             className='w-34 transition-all hover:scale-110'
           />
           <img
+            data-aos='fade-up'
+            data-aos-duration='800'
             src={bigcommerce}
             alt='bigcommerce icons'
             className='w-34 transition-all hover:scale-110'
           />
           <img
+            data-aos='fade-up'
+            data-aos-duration='900'
             src={ebay}
             alt='ebay icons'
             className='w-34 transition-all hover:scale-110'
           />
           <img
+            data-aos='fade-up'
+            data-aos-duration='1000'
             src={walmart}
             alt='walmart icons'
             className='w-34 transition-all hover:scale-110'

@@ -22,7 +22,10 @@ const Carousel = () => {
     }, [currentSlider]);
   }
   return (
-    <div className='mx-auto h-[240px] w-full overflow-hidden md:h-[540px]'>
+    <div
+      data-aos='fade-down'
+      className='mx-auto h-[240px] w-full overflow-hidden md:h-[540px]'
+    >
       <div className='relative overflow-hidden'>
         {/* dots */}
         <div className='absolute bottom-1/2 right-0 z-50 flex h-fit w-fit rotate-90 gap-1 rounded-full'>

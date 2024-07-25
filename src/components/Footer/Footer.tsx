@@ -8,7 +8,11 @@ const Footer = () => {
   const { pathname } = useLocation();
   if (pathname.includes('profile')) return null;
   return (
-    <footer className='bg-green-900 text-white'>
+    <footer
+      data-aos='fade-up'
+      data-aos-duration='500'
+      className='bg-green-900 text-white'
+    >
       <Container>
         {/* wrapper  */}
         <div className='grid gap-10 pt-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>

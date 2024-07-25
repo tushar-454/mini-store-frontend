@@ -21,7 +21,11 @@ const TrendyProducts = () => {
         {/* trandy product layout  */}
         <div className='mb-20 flex h-auto flex-col justify-between gap-5 lg:h-64 lg:flex-row'>
           {/* 1st column  */}
-          <div className='group relative h-full w-full overflow-hidden rounded-lg border bg-white text-black transition-all hover:bg-green-600 hover:text-white lg:w-1/4'>
+          <div
+            data-aos='fade-right'
+            data-aos-duration='600'
+            className='group relative h-full w-full overflow-hidden rounded-lg border bg-white text-black transition-all hover:bg-green-600 hover:text-white lg:w-1/4'
+          >
             <p className='p-4 text-2xl font-bold'>Western Blazer</p>
             <img
               src='https://i.ibb.co/2Mxkfpx/RRWT92-R0-D2-A.webp'
@@ -33,7 +37,11 @@ const TrendyProducts = () => {
             </span>
           </div>
           {/* 2nd column  */}
-          <div className='white grid w-full grid-cols-1 gap-5 text-white sm:grid-cols-2 lg:w-2/4'>
+          <div
+            data-aos='fade-up'
+            data-aos-duration='600'
+            className='white grid w-full grid-cols-1 gap-5 text-white sm:grid-cols-2 lg:w-2/4'
+          >
             <div className='col-span-1 rounded-lg border bg-green-50 p-5 text-white'>
               <p className='text-2xl font-bold text-black'>Louis Will Bag</p>
               <span className='font-semibold text-black underline'>
@@ -60,7 +68,11 @@ const TrendyProducts = () => {
             </div>
           </div>
           {/* 3rd column  */}
-          <div className='group relative h-full w-full overflow-hidden rounded-lg border bg-white text-black transition-all hover:bg-green-600 hover:text-white lg:w-1/4'>
+          <div
+            data-aos='fade-left'
+            data-aos-duration='600'
+            className='group relative h-full w-full overflow-hidden rounded-lg border bg-white text-black transition-all hover:bg-green-600 hover:text-white lg:w-1/4'
+          >
             <p className='p-4 text-2xl font-bold'>Special Offer</p>
             <img
               src='https://www.designerglasses.co.uk/media/uploads/product/HD%20Images/Police/police_spl_834_spl834_sunglasses_494257-51.png'

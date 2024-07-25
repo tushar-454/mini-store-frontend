@@ -5,7 +5,7 @@ import Container from '../shared/Container';
 
 const DealandOffer = () => {
   return (
-    <section>
+    <section data-aos='fade-up'>
       <Container>
         {/* wrapper  */}
         <div className='flex flex-col items-center justify-between gap-5 py-20 lg:items-start xl:flex-row'>

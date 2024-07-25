@@ -32,6 +32,8 @@ const FeaturedProducts = () => {
           <ul className='flex flex-wrap gap-5'>
             {FeaturedProductsArr.map((item, index) => (
               <li
+                data-aos='fade-up'
+                data-aos-duration={300 * ++index}
                 key={Math.random()}
                 onClick={() => showProduct(index)}
                 className={`featured-tab ${idx === index ? 'bg-orange-500 text-white' : 'hover:bg-orange-100'}`}

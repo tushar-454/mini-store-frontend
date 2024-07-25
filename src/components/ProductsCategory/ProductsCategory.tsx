@@ -58,8 +58,10 @@ const ProductsCategory = () => {
             ref={products}
             className='my-8 flex cursor-all-scroll select-none justify-evenly gap-5 overflow-hidden'
           >
-            {ProductsCategoryArr.map((category: ProductType) => (
+            {ProductsCategoryArr.map((category: ProductType, index: number) => (
               <div
+                data-aos='fade-down'
+                data-aos-duration={300 * ++index}
                 key={Math.random()}
                 id='product-item'
                 className='relative -left-0 min-w-32 rounded-lg bg-neutral-100 p-4 transition-all'

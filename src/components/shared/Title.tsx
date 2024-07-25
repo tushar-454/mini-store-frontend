@@ -3,7 +3,11 @@ interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = ({ children }) => {
-  return <div className='text-3xl font-bold'>{children}</div>;
+  return (
+    <div data-aos='zoom-out' className='text-3xl font-bold'>
+      {children}
+    </div>
+  );
 };
 
 export default Title;
