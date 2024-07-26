@@ -12,7 +12,7 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
     <div
       data-aos='fade-up'
       data-aos-duration='800'
-      className='w-full space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'
+      className='flex h-full w-full flex-col space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'
     >
       <div className='group relative'>
         <img
@@ -33,7 +33,11 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
           </button>
         </div>
       </div>
-      <p className='font-medium'>{product.name}</p>
+      <p className='grow font-medium'>
+        {product.name.length > 80
+          ? `${product.name.slice(0, 80)} . . .`
+          : product.name}
+      </p>
       <p className='flex items-center justify-between'>
         <b>
           <small className='font-normal line-through'>{product.price}</small> BD
