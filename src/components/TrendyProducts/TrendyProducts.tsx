@@ -9,7 +9,10 @@ const TrendyProducts = () => {
       <Container>
         <div className='mb-10 mt-20 flex items-center justify-between border-b-2 pb-3'>
           <Title>
-            <span className='text-green-600'>Trendy</span> Products 🛍️
+            <Link to={'/product/filter'} className='text-green-600'>
+              Trendy
+            </Link>{' '}
+            Products 🛍️
           </Title>
           <Link
             to={'/product/filter'}
@@ -32,9 +35,9 @@ const TrendyProducts = () => {
               alt=''
               className=''
             />
-            <span>
+            <Link to={'/product/filter'}>
               <FaRegArrowAltCircleRight className='absolute right-10 top-16 -rotate-45 cursor-pointer text-3xl text-green-600 transition-all hover:-rotate-[405deg] hover:text-orange-500 group-hover:text-orange-500' />
-            </span>
+            </Link>
           </div>
           {/* 2nd column  */}
           <div
@@ -43,28 +46,42 @@ const TrendyProducts = () => {
             className='white grid w-full grid-cols-1 gap-5 text-white sm:grid-cols-2 lg:w-2/4'
           >
             <div className='col-span-1 rounded-lg border bg-green-50 p-5 text-white'>
-              <p className='text-2xl font-bold text-black'>Louis Will Bag</p>
-              <span className='font-semibold text-black underline'>
+              <p className='text-2xl font-bold text-black'>Phone Accessories</p>
+              <Link
+                to={'/product/filter'}
+                className='font-semibold text-black underline'
+              >
                 Collection
-              </span>
+              </Link>
             </div>
             <div className='col-span-1 rounded-lg border bg-green-50 p-5 text-white'>
-              <p className='text-2xl font-bold text-black'>For Her</p>
-              <span className='font-semibold text-black underline'>
+              <p className='text-2xl font-bold text-black'>Pports & Fitness</p>
+              <Link
+                to={'/product/filter'}
+                className='font-semibold text-black underline'
+              >
                 Collection
-              </span>
+              </Link>
             </div>
             <div className='col-span-1 rounded-lg border bg-green-50 p-5 text-white'>
-              <p className='text-2xl font-bold text-black'>Louis Will Bag</p>
-              <span className='font-semibold text-black underline'>
+              <p className='text-2xl font-bold text-black'>
+                Outdoor & Travelling
+              </p>
+              <Link
+                to={'/product/filter'}
+                className='font-semibold text-black underline'
+              >
                 Collection
-              </span>
+              </Link>
             </div>
             <div className='col-span-1 rounded-lg border bg-green-50 p-5 text-white'>
-              <p className='text-2xl font-bold text-black'>For Him</p>
-              <span className='font-semibold text-black underline'>
+              <p className='text-2xl font-bold text-black'>Gadgets</p>
+              <Link
+                to={'/product/filter'}
+                className='font-semibold text-black underline'
+              >
                 Collection
-              </span>
+              </Link>
             </div>
           </div>
           {/* 3rd column  */}
@@ -79,9 +96,9 @@ const TrendyProducts = () => {
               alt=''
               className=''
             />
-            <span>
+            <Link to={'/product/filter'}>
               <FaRegArrowAltCircleRight className='absolute right-10 top-16 -rotate-45 cursor-pointer text-3xl text-green-600 transition-all hover:-rotate-[405deg] hover:text-orange-500 group-hover:text-orange-500' />
-            </span>
+            </Link>
           </div>
         </div>
       </Container>
