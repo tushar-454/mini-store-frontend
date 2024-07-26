@@ -140,8 +140,11 @@ const Cart = () => {
                     name='coupon'
                     placeholder='Enter Coupon Code'
                     className='rounded-lg border px-4 py-2 font-medium outline-none'
+                    disabled
                   />
-                  <span className='primaryBtn'>Apply</span>
+                  <button className='primaryBtn' disabled>
+                    Apply
+                  </button>
                 </li>
               </ul>
               {/* total  */}
@@ -152,7 +155,7 @@ const Cart = () => {
                     {carts?.reduce(
                       (acc: number, cur: CartItemType) => acc + cur.price,
                       0,
-                    ) - 100}
+                    ) + 100}
                   </span>
                 </li>
               </ul>

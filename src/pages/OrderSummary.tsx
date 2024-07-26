@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import OrderConfirm from '../components/OrderSummary/OrderConfirm';
 import PaymentMethod from '../components/OrderSummary/PaymentMethod';
 import ShippingAddress from '../components/OrderSummary/ShippingAddress';
@@ -8,6 +9,7 @@ import Title from '../components/shared/Title';
 
 const OrderSummary = () => {
   const [curSummary, setCurSummary] = useState<string>('shipping');
+  const [isEdit, setIsEdit] = useState(false);
   return (
     <section>
       <Container>
@@ -19,25 +21,45 @@ const OrderSummary = () => {
             <div className='relative mb-24'>
               <div className='flex justify-between'>
                 <span
-                  onClick={() => setCurSummary('shipping')}
+                  onClick={() => {
+                    setCurSummary('shipping');
+                  }}
                   className={`primaryBtn cursor-pointer rounded-full border border-green-600 ${curSummary !== 'shipping' ? 'bg-white text-green-600' : ''}`}
                 >
                   1
                 </span>
                 <span
-                  onClick={() => setCurSummary('payment')}
+                  onClick={() => {
+                    if (isEdit) {
+                      toast.error('Save your address');
+                      return;
+                    }
+                    setCurSummary('payment');
+                  }}
                   className={`primaryBtn cursor-pointer rounded-full border border-green-600 ${curSummary !== 'payment' ? 'bg-white text-green-600' : ''}`}
                 >
                   2
                 </span>
                 <span
-                  onClick={() => setCurSummary('summary')}
+                  onClick={() => {
+                    if (isEdit) {
+                      toast.error('Save your address');
+                      return;
+                    }
+                    setCurSummary('summary');
+                  }}
                   className={`primaryBtn cursor-pointer rounded-full border border-green-600 ${curSummary !== 'summary' ? 'bg-white text-green-600' : ''}`}
                 >
                   3
                 </span>
                 <span
-                  onClick={() => setCurSummary('confirm')}
+                  onClick={() => {
+                    if (isEdit) {
+                      toast.error('Save your address');
+                      return;
+                    }
+                    setCurSummary('confirm');
+                  }}
                   className={`primaryBtn cursor-pointer rounded-full border border-green-600 ${curSummary !== 'confirm' ? 'bg-white text-green-600' : ''}`}
                 >
                   4
@@ -58,7 +80,9 @@ const OrderSummary = () => {
               </div>
             </div>
             {/* order summary based on current track  */}
-            {curSummary === 'shipping' && <ShippingAddress />}
+            {curSummary === 'shipping' && (
+              <ShippingAddress isEdit={isEdit} setIsEdit={setIsEdit} />
+            )}
             {curSummary === 'payment' && <PaymentMethod />}
             {curSummary === 'summary' && <TotalSummary />}
             {curSummary === 'confirm' && <OrderConfirm />}
