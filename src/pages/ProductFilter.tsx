@@ -27,9 +27,9 @@ const ProductFilter = () => {
       {/* <Carousel /> */}
       {/* all product lists here with filter functionality  */}
       <Container>
-        <div className='sticky -top-10 z-50 h-64 overflow-hidden bg-white'>
+        <div className='sticky top-[4rem] z-50 h-48 overflow-hidden bg-white py-4'>
           {/* breadcrumb  */}
-          <div className='mt-20'>
+          <div className=''>
             <Breadcrumb
               breadcrumbArr={[
                 { name: 'Home', link: '/' },
@@ -94,10 +94,32 @@ const ProductFilter = () => {
         <div className='relative my-5 flex justify-between gap-5'>
           {/* filter options  */}
           <div
-            className={`absolute top-0 z-40 h-screen rounded-lg bg-neutral-100 p-4 px-6 transition-all xl:sticky xl:top-56 xl:h-fit ${isFilterOpen ? 'left-0' : '-left-72'}`}
+            className={`absolute top-0 z-40 h-screen rounded-lg bg-neutral-100 p-4 px-6 transition-all xl:sticky xl:top-64 xl:h-fit ${isFilterOpen ? 'left-0' : '-left-72'}`}
           >
             <ul className='category-filter'>
               <p className='mb-2 text-lg font-medium'>Category</p>
+              <li>
+                <input
+                  type='checkbox'
+                  className='mr-2 accent-green-600'
+                  name='shoes'
+                  id='shoes'
+                />
+                <label className='font-medium' htmlFor='shoes'>
+                  Shoes
+                </label>
+              </li>
+              <li>
+                <input
+                  type='checkbox'
+                  className='mr-2 accent-green-600'
+                  name='bags'
+                  id='bags'
+                />
+                <label className='font-medium' htmlFor='bags'>
+                  Bags
+                </label>
+              </li>
               <li>
                 <input
                   type='checkbox'
@@ -106,7 +128,7 @@ const ProductFilter = () => {
                   id='men'
                 />
                 <label className='font-medium' htmlFor='men'>
-                  Men
+                  Men's
                 </label>
               </li>
               <li>
@@ -117,40 +139,29 @@ const ProductFilter = () => {
                   id='women'
                 />
                 <label className='font-medium' htmlFor='women'>
-                  Women
+                  Women's
                 </label>
               </li>
               <li>
                 <input
                   type='checkbox'
                   className='mr-2 accent-green-600'
-                  name='children'
-                  id='children'
+                  name='watch'
+                  id='watch'
                 />
-                <label className='font-medium' htmlFor='children'>
-                  Children
+                <label className='font-medium' htmlFor='watch'>
+                  Watches
                 </label>
               </li>
               <li>
                 <input
                   type='checkbox'
                   className='mr-2 accent-green-600'
-                  name='travel'
-                  id='travel'
+                  name='jewelry'
+                  id='jewelry'
                 />
-                <label className='font-medium' htmlFor='travel'>
-                  Travel
-                </label>
-              </li>
-              <li>
-                <input
-                  type='checkbox'
-                  className='mr-2 accent-green-600'
-                  name='electronic'
-                  id='electronic'
-                />
-                <label className='font-medium' htmlFor='electronic'>
-                  Electornics
+                <label className='font-medium' htmlFor='jewelry'>
+                  Jewelry
                 </label>
               </li>
             </ul>
@@ -212,75 +223,6 @@ const ProductFilter = () => {
                 </label>
               </li>
             </ul>
-            <ul className='size-filter mt-10'>
-              <p className='mb-2 text-lg font-medium'>Color</p>
-              <li>
-                <input
-                  type='checkbox'
-                  className='mr-2 accent-green-600'
-                  name='XS'
-                  id='XS'
-                />
-                <label className='font-medium' htmlFor='XS'>
-                  XS
-                </label>
-              </li>
-              <li>
-                <input
-                  type='checkbox'
-                  className='mr-2 accent-green-600'
-                  name='S'
-                  id='S'
-                />
-                <label className='font-medium' htmlFor='S'>
-                  S
-                </label>
-              </li>
-              <li>
-                <input
-                  type='checkbox'
-                  className='mr-2 accent-green-600'
-                  name='M'
-                  id='M'
-                />
-                <label className='font-medium' htmlFor='M'>
-                  M
-                </label>
-              </li>
-              <li>
-                <input
-                  type='checkbox'
-                  className='mr-2 accent-green-600'
-                  name='L'
-                  id='L'
-                />
-                <label className='font-medium' htmlFor='L'>
-                  L
-                </label>
-              </li>
-              <li>
-                <input
-                  type='checkbox'
-                  className='mr-2 accent-green-600'
-                  name='XL'
-                  id='XL'
-                />
-                <label className='font-medium' htmlFor='XL'>
-                  XL
-                </label>
-              </li>
-              <li>
-                <input
-                  type='checkbox'
-                  className='mr-2 accent-green-600'
-                  name='XXL'
-                  id='XXL'
-                />
-                <label className='font-medium' htmlFor='XXL'>
-                  XXL
-                </label>
-              </li>
-            </ul>
             {/* price range  */}
             <div className='my-10'>
               <p className='mb-2 text-lg font-medium'>Price Range</p>
@@ -322,11 +264,34 @@ const ProductFilter = () => {
             </div>
           </div>
           {/* all products  */}
-          {allProductsLoad && <p>Loading... </p>}
+          {allProductsLoad && (
+            <p className='flex items-center justify-center'>
+              <svg
+                className='-ml-1 mr-3 h-16 w-16 animate-spin text-green-600'
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+              >
+                <circle
+                  className='opacity-25'
+                  cx='12'
+                  cy='12'
+                  r='10'
+                  stroke='currentColor'
+                  strokeWidth='4'
+                ></circle>
+                <path
+                  className='opacity-75'
+                  fill='currentColor'
+                  d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                ></path>
+              </svg>
+            </p>
+          )}
           {allProductsError && <p>Something is wrong </p>}
           {!allProductsLoad && !allProductsError && (
             <div className='grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-              {allProducts.data.map((product: ProductCardType) => (
+              {allProducts?.data?.map((product: ProductCardType) => (
                 <ProductCard key={Math.random()} product={product} />
               ))}
             </div>
