@@ -29,7 +29,14 @@ const Cart = () => {
           </Title>
         </div>
         {/* cart table and details  */}
-        {carts?.length === 0 && <p>No cart item yet</p>}
+        {carts?.length === 0 && (
+          <div data-aos='fade-up' className='grid w-full place-content-center'>
+            <img
+              src='https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-7359557-6024626.png'
+              alt='no cart item'
+            />
+          </div>
+        )}
         {carts?.length > 0 && (
           <div className='flex flex-col gap-5 py-10 lg:flex-row'>
             {/* cart table */}
