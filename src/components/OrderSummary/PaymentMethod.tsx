@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import paymentway from '../../assets/payment-way.webp';
 const PaymentMethod = () => {
+  const [method, setMethod] = useState('');
+
   return (
     <>
       <div>
@@ -16,6 +19,11 @@ const PaymentMethod = () => {
             name='payType'
             id='payOnline'
             className='accent-green-600'
+            onChange={() => {
+              localStorage.setItem('paymentMethod', 'Pay Online');
+              setMethod('Pay Online');
+            }}
+            checked={localStorage.getItem('paymentMethod') === 'Pay Online'}
           />
           <label htmlFor='payOnline'> Pay Online</label>
         </div>
@@ -26,12 +34,25 @@ const PaymentMethod = () => {
             name='payType'
             id='cod'
             className='accent-green-600'
+            onChange={() => {
+              localStorage.setItem('paymentMethod', 'Cash On Delivery');
+              setMethod('Cash On Delivery');
+            }}
+            checked={
+              localStorage.getItem('paymentMethod') === 'Cash On Delivery'
+            }
           />
           <label htmlFor='cod'> Cash On Delivery</label>
         </div>
       </div>
-      <div>
-        <img src={paymentway} alt='' className='w-96 cursor-pointer' />
+      <div
+        className={`transition-all ${method === 'Pay Online' ? 'opacity-100' : 'opacity-0'}`}
+      >
+        <img
+          src={paymentway}
+          alt=''
+          className={`w-96 cursor-pointer ${method === 'Pay Online' && 'cursor-not-allowed'}`}
+        />
       </div>
     </>
   );

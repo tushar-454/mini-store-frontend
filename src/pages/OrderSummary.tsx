@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import OrderConfirm from '../components/OrderSummary/OrderConfirm';
 import PaymentMethod from '../components/OrderSummary/PaymentMethod';
 import ShippingAddress from '../components/OrderSummary/ShippingAddress';
@@ -10,6 +11,17 @@ import Title from '../components/shared/Title';
 const OrderSummary = () => {
   const [curSummary, setCurSummary] = useState<string>('shipping');
   const [isEdit, setIsEdit] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const carts = localStorage.getItem('carts');
+    if (!carts) {
+      navigate('/cart');
+      toast.error('Cart is empty');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section>
       <Container>
@@ -53,13 +65,6 @@ const OrderSummary = () => {
                   3
                 </span>
                 <span
-                  onClick={() => {
-                    if (isEdit) {
-                      toast.error('Save your address');
-                      return;
-                    }
-                    setCurSummary('confirm');
-                  }}
                   className={`primaryBtn cursor-pointer rounded-full border border-green-600 ${curSummary !== 'confirm' ? 'bg-white text-green-600' : ''}`}
                 >
                   4
@@ -84,7 +89,9 @@ const OrderSummary = () => {
               <ShippingAddress isEdit={isEdit} setIsEdit={setIsEdit} />
             )}
             {curSummary === 'payment' && <PaymentMethod />}
-            {curSummary === 'summary' && <TotalSummary />}
+            {curSummary === 'summary' && (
+              <TotalSummary setCurSummary={setCurSummary} />
+            )}
             {curSummary === 'confirm' && <OrderConfirm />}
           </div>
         </div>

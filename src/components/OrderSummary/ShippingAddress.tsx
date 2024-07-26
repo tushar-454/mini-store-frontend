@@ -68,6 +68,7 @@ const ShippingAddress: React.FC<shippingAddressProps> = ({
           Please enter your shipping address
         </p>
       </div>
+      {isUserLoad && <p className='py-10 text-lg'>Loading . . .</p>}
       {isUserError && <p className='py-10 text-lg'>There was an error.</p>}
       {!isUserLoad && !isUserError && userInfo && (
         <form

@@ -1,12 +1,12 @@
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
-import useAuth from '../Hook/useAuth';
 import { getLocalStorage, setCartLocalStorage } from '../utils/localStorage';
 import { CartItemType } from './ProductDetails';
 
 const Cart = () => {
-  const { carts, setCarts } = useAuth();
+  const [carts, setCarts] = useState([]);
   const navigate = useNavigate();
 
   const removeCartItem = (id: number) => {
@@ -18,7 +18,9 @@ const Cart = () => {
     setCartLocalStorage('carts', removedCartArr);
     setCarts(removedCartArr);
   };
-
+  useEffect(() => {
+    setCarts(getLocalStorage('carts'));
+  }, []);
   return (
     <section>
       <Container>
@@ -29,14 +31,18 @@ const Cart = () => {
           </Title>
         </div>
         {/* cart table and details  */}
-        {carts?.length === 0 && (
-          <div data-aos='fade-up' className='grid w-full place-content-center'>
-            <img
-              src='https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-7359557-6024626.png'
-              alt='no cart item'
-            />
-          </div>
-        )}
+        {carts?.length === 0 ||
+          (!carts && (
+            <div
+              data-aos='fade-up'
+              className='grid w-full place-content-center'
+            >
+              <img
+                src='https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-7359557-6024626.png'
+                alt='no cart item'
+              />
+            </div>
+          ))}
         {carts?.length > 0 && (
           <div className='flex flex-col gap-5 py-10 lg:flex-row'>
             {/* cart table */}
