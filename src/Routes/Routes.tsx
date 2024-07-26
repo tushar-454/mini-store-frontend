@@ -34,15 +34,27 @@ const router = createBrowserRouter([
       },
       {
         path: 'wishlist',
-        element: <Wishlists />,
+        element: (
+          <PrivateRoute>
+            <Wishlists />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'cart',
-        element: <Cart />,
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'order',
-        element: <OrderSummary />,
+        element: (
+          <PrivateRoute>
+            <OrderSummary />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'profile',
