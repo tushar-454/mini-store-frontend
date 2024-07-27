@@ -27,7 +27,7 @@ const Profile = () => {
         <ProfileInfoCard
           title='Total Cancellation'
           value={userStatistics?.data.totalCancellation || 0}
-          theme='green'
+          theme='red'
         />
       </div>
 

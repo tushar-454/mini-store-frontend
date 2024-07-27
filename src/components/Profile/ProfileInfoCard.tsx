@@ -14,7 +14,9 @@ const ProfileInfoCard: React.FC<ProfileInfoCardProps> = ({
       className={`grid w-full gap-4 border p-4 ${
         theme === 'green'
           ? 'border-green-500 bg-green-50'
-          : 'border-orange-500 bg-orange-50'
+          : theme === 'red'
+            ? 'border-red-500 bg-red-50'
+            : 'border-orange-500 bg-orange-50'
       }`}
     >
       <p
