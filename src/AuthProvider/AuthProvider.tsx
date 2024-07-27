@@ -10,6 +10,7 @@ import {
 } from 'firebase/auth';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import Auth from '../Config/firebase-config.tsx';
+import { CartItemType } from '../pages/ProductDetails.tsx';
 import { getLocalStorage } from '../utils/localStorage.ts';
 
 interface AuthProviderProps {
@@ -35,8 +36,8 @@ export interface UserInfo {
     displayName: string,
     image: string,
   ) => Promise<UserCredential | void>;
-  // carts: ProductCardType[];
-  // setCarts: React.Dispatch<React.SetStateAction<ProductCardType[] | null>>;
+  carts: CartItemType[] | null;
+  setCarts: React.Dispatch<React.SetStateAction<CartItemType[] | null>>;
 }
 
 export const AuthContext = createContext<UserInfo | null>(null);
@@ -44,7 +45,7 @@ export const AuthContext = createContext<UserInfo | null>(null);
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [carts, setCarts] = useState([]);
+  const [carts, setCarts] = useState<CartItemType[] | null>(null);
 
   // login with google
   const loginWithGoogle = async () => {

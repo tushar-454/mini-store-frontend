@@ -3,6 +3,7 @@ import { CiShoppingCart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
+import { CartItemType } from '../../pages/ProductDetails';
 import {
   getLocalStorage,
   setCartLocalStorage,
@@ -30,7 +31,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   // add to wishlist product function
   const addToWishList = () => {
     const productHeart = heart.current;
-    if (productHeart !== null) productHeart.classList.toggle('heartColor');
+    if (productHeart !== null)
+      (productHeart as HTMLElement).classList.toggle('heartColor');
     setLocalStorage('wishLists', product);
   };
   // add to cart product function
@@ -47,7 +49,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       size: 'Base',
     };
     setCartLocalStorage('carts', cartItem);
-    setCarts((prev) => [...prev, cartItem]);
+    setCarts((prev: CartItemType[] | null) => {
+      if (prev === null) {
+        return [cartItem];
+      } else {
+        return [...prev, cartItem];
+      }
+    });
   };
 
   useEffect(() => {
@@ -55,9 +63,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     wishLists?.map((list: ProductCardType) => {
       if (list._id === product._id) {
         const productHeart = heart.current;
-        if (productHeart !== null) productHeart.classList.add('heartColor');
+        if (productHeart !== null) {
+          (productHeart as HTMLElement).classList.add('heartColor');
+        }
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
