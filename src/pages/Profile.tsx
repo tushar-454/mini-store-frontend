@@ -78,7 +78,7 @@ const Profile = () => {
               </NavLink>
             </div>
           </aside>
-          <div className='flex-grow p-4'>
+          <div className='w-full flex-grow overflow-x-hidden p-4'>
             <Outlet />
           </div>
         </div>

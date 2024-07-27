@@ -15,7 +15,6 @@ const TotalSummary: React.FC<TotalSummaryProps> = ({ setCurSummary }) => {
   const [loading, setLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
-
   // handle place order
   const handlePlaceOrder = async () => {
     try {
