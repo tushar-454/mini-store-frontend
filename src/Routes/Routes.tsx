@@ -1,9 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Dashboard from '../components/Dashboard/Dashboard';
+import UsersDashboard from '../components/Dashboard/UsersDashboard';
 import Order from '../components/Profile/Order';
 import ProfileSub from '../components/Profile/Profile';
 import Shipping from '../components/Profile/Shipping';
 import Root from '../layout/Root';
 import Cart from '../pages/Cart';
+import DashboardLayout from '../pages/Dashboard';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import OrderSummary from '../pages/OrderSummary';
@@ -12,6 +15,7 @@ import ProductFilter from '../pages/ProductFilter';
 import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
 import Wishlists from '../pages/Wishlists';
+import AdminRoutes from './AdminRoutes';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -79,6 +83,26 @@ const router = createBrowserRouter([
           {
             path: 'review',
             element: <p>reviews</p>,
+          },
+        ],
+      },
+      {
+        path: 'dashboard',
+        element: (
+          <PrivateRoute>
+            <AdminRoutes>
+              <DashboardLayout />,
+            </AdminRoutes>
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            index: true,
+            element: <Dashboard />,
+          },
+          {
+            path: 'users',
+            element: <UsersDashboard />,
           },
         ],
       },

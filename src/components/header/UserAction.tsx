@@ -2,6 +2,7 @@ import { CiHeart, CiSearch, CiShoppingCart, CiUser } from 'react-icons/ci';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
+import useUserInfo from '../../Hook/useUserInfo';
 import LinkBtn from '../shared/LinkBtn';
 
 const UserAction = ({
@@ -12,6 +13,7 @@ const UserAction = ({
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { user } = useAuth();
+  const { userInfo } = useUserInfo();
 
   return (
     <>
@@ -40,7 +42,16 @@ const UserAction = ({
               </Link>
             </li>
             <li>
-              <Link to={'/profile'} className='text-2xl'>
+              <Link
+                to={
+                  userInfo?.data.role === 'user'
+                    ? '/profile'
+                    : userInfo?.data.role === 'admin'
+                      ? '/dashboard'
+                      : ''
+                }
+                className='text-2xl'
+              >
                 <CiUser />
               </Link>
             </li>
