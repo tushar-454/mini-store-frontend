@@ -11,7 +11,7 @@ const ProfileInfoCard: React.FC<ProfileInfoCardProps> = ({
 }) => {
   return (
     <div
-      className={`grid w-full gap-4 border p-4 ${
+      className={`grid w-full flex-grow basis-[300px] gap-4 border p-4 ${
         theme === 'green'
           ? 'border-green-500 bg-green-50'
           : theme === 'red'

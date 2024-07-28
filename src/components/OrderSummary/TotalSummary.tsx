@@ -21,7 +21,7 @@ const TotalSummary: React.FC<TotalSummaryProps> = ({ setCurSummary }) => {
       setLoading(true);
       const newOrder = {
         userId: userInfo?.data._id,
-        price: totalPrice + 100,
+        price: parseFloat((totalPrice + 100).toFixed(2)),
         orderItem: carts,
       };
       const res = await axios.post(

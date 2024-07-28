@@ -13,7 +13,7 @@ const Profile = () => {
       {isUserStatisticsLoad && <Loading />}
       {isUserStatisticsError && toast.error('User no statistics')}
       {/* show some profile statistics */}
-      <div className='mb-10 flex justify-between gap-5'>
+      <div className='mb-10 flex flex-wrap justify-between gap-5'>
         <ProfileInfoCard
           title='Total Costs'
           value={userStatistics?.data.totalCost || 0}
