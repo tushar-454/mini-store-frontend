@@ -12,7 +12,7 @@ const useUserInfo = () => {
     queryKey: ['userInfo'],
     queryFn: async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/users/one/${user?.email}`,
+        `${import.meta.env.VITE_baseurl}/users/one/${user?.email || ''}`,
       );
       return res.data;
     },
