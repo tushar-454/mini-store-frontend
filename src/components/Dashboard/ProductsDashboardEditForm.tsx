@@ -1,9 +1,10 @@
 interface ProductsDashboardEditFormProp {
-  setShowUpdateForm: React.Dispatch<React.SetStateAction<boolean>>;
-  product: ProductItemType | null;
-  setProduct: React.Dispatch<React.SetStateAction<ProductItemType>>;
-  refetch: () => void;
+  setShowUpdateForm?: React.Dispatch<React.SetStateAction<boolean>>;
+  product?: ProductItemType;
+  setProduct?: React.Dispatch<React.SetStateAction<ProductItemType>>;
+  refetch?: () => Promise<QueryObserverResult<ProductItemType>>;
 }
+import { QueryObserverResult } from '@tanstack/react-query';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { RxCross2 } from 'react-icons/rx';
@@ -19,23 +20,23 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
-    if (product) setProduct({ ...product, [name]: value });
-    if (type === 'checkbox' && product) {
+    if (product && setProduct) setProduct({ ...product, [name]: value });
+    if (type === 'checkbox' && product && setProduct) {
       setProduct({ ...product, isStock: checked });
       return;
     }
-    if (name === 'type' && product) {
+    if (name === 'type' && product && setProduct) {
       setProduct({ ...product, type: value.split(',') });
       return;
     }
-    if (name === 'brand' && product) {
+    if (name === 'brand' && product && setProduct) {
       setProduct({
         ...product,
         productDetails: { ...product?.productDetails, brand: value },
       });
       return;
     }
-    if (name === 'name' && product) {
+    if (name === 'name' && product && setProduct) {
       setProduct({
         ...product,
         name: value,
@@ -43,11 +44,11 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
       });
       return;
     }
-    if (name === 'image' && product) {
+    if (name === 'image' && product && setProduct) {
       setProduct({ ...product, image: value.split(',') });
       return;
     }
-    if (name === 'color' && product) {
+    if (name === 'color' && product && setProduct) {
       setProduct({
         ...product,
         productDetails: {
@@ -57,7 +58,7 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
       });
       return;
     }
-    if (name === 'size' && product) {
+    if (name === 'size' && product && setProduct) {
       setProduct({
         ...product,
         productDetails: {
@@ -77,9 +78,9 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
         product,
       );
       if (res.status === 200) {
-        setShowUpdateForm(false);
+        if (setShowUpdateForm) setShowUpdateForm(false);
         toast.success('Product updated successfully');
-        refetch();
+        if (refetch) refetch();
       }
     } catch (error) {
       console.log(error);
@@ -96,7 +97,9 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
           <div className='flex items-center justify-between'>
             <h1 className='my-5 text-3xl font-bold'>Update your product</h1>
             <RxCross2
-              onClick={() => setShowUpdateForm(false)}
+              onClick={() => {
+                if (setShowUpdateForm) setShowUpdateForm(false);
+              }}
               className='cursor-pointer rounded-full bg-green-500 p-1 text-3xl text-white'
             />
           </div>
