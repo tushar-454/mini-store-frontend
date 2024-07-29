@@ -1,3 +1,5 @@
+import axios from 'axios';
+import toast from 'react-hot-toast';
 import { CiEdit } from 'react-icons/ci';
 import { FcDeleteDatabase } from 'react-icons/fc';
 import useAdminAllProducts, {
@@ -6,8 +8,31 @@ import useAdminAllProducts, {
 import Loading from '../shared/Loading';
 
 const ProductsDashboard = () => {
-  const { adminAllProducts, adminAllProductsError, adminAllProductsLoad } =
-    useAdminAllProducts();
+  const {
+    adminAllProducts,
+    adminAllProductsError,
+    adminAllProductsLoad,
+    refetch,
+  } = useAdminAllProducts();
+
+  // product delete function
+  const handleProductDelete = async (id: string) => {
+    try {
+      const rusure = window.confirm('Are you sure to delete the product.');
+      if (!rusure) return;
+      const res = await axios.delete(
+        `${import.meta.env.VITE_baseurl}/admin/product/${id}`,
+      );
+      if (res.data.status === 200) {
+        toast.success('Product delete successfully');
+        refetch();
+      }
+    } catch (error) {
+      toast.error('There was an error while deleting.');
+      console.log(error);
+    }
+  };
+
   return (
     <div className='w-full overflow-x-auto'>
       <div className='mb-5 flex items-center justify-between'>
@@ -80,7 +105,10 @@ const ProductsDashboard = () => {
                   </td>
                   <td className='whitespace-nowrap border border-gray-300 p-2'>
                     <span className='flex gap-5'>
-                      <FcDeleteDatabase className='cursor-pointer text-3xl' />
+                      <FcDeleteDatabase
+                        onClick={() => handleProductDelete(product._id)}
+                        className='cursor-pointer text-3xl'
+                      />
                       <CiEdit className='cursor-pointer text-3xl' />
                     </span>
                   </td>
