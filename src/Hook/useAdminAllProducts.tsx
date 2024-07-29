@@ -6,23 +6,14 @@ export type ProductItemType = {
   price: number;
   discount: number;
   description: string;
-  image: {
-    main: string;
-    gallery: string[];
-    _id: string;
-  };
-  type: string[];
+  image: string[]; // Ensure this matches the type in productInit
+  type: string[]; // Ensure this matches the type in productInit
   productDetails: {
     productName: string;
     color: string[];
     size: string[];
     brand: string;
-    _id: string;
   };
-  rating: number;
-  numReviews: number;
-  createdAt: string;
-  updatedAt: string;
 };
 
 import { useQuery } from '@tanstack/react-query';
