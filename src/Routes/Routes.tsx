@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Dashboard from '../components/Dashboard/Dashboard';
 import OrdersDashboard from '../components/Dashboard/OrdersDashboard';
+import ProductsDashboard from '../components/Dashboard/ProductsDashboard';
 import UsersDashboard from '../components/Dashboard/UsersDashboard';
 import Order from '../components/Profile/Order';
 import ProfileSub from '../components/Profile/Profile';
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
           {
             path: 'users',
             element: <UsersDashboard />,
+          },
+          {
+            path: 'products',
+            element: <ProductsDashboard />,
           },
           {
             path: 'orders',

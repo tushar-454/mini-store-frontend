@@ -29,6 +29,9 @@ const OrdersDashboard = () => {
 
   return (
     <div className='w-full overflow-x-auto'>
+      <div className='mb-5'>
+        <p className='text-3xl font-bold'>Orders</p>
+      </div>
       <table className='w-full overflow-x-auto'>
         <thead>
           <tr className='bg-neutral-100'>

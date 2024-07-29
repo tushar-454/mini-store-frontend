@@ -37,9 +37,15 @@ const UsersDashboard = () => {
 
   return (
     <div className='w-full overflow-x-auto'>
+      <div className='mb-5'>
+        <p className='text-3xl font-bold'>Users</p>
+      </div>
       <table className='w-full overflow-x-auto'>
         <thead>
           <tr className='bg-neutral-100'>
+            <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
+              No
+            </th>
             <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
               ID
             </th>
@@ -72,6 +78,9 @@ const UsersDashboard = () => {
                 key={Math.random()}
                 className={index % 2 === 0 ? '' : 'bg-neutral-50'}
               >
+                <td className='whitespace-nowrap border border-gray-300 p-2'>
+                  {++index}
+                </td>
                 <td className='whitespace-nowrap border border-gray-300 p-2'>
                   {user._id}
                 </td>
