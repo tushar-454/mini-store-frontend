@@ -64,7 +64,7 @@ const ProductDetails = () => {
     const cartItem: CartItemType = {
       _id: product._id,
       randomId: Math.floor(Math.random() * 9999999999),
-      image: product.image.main,
+      image: product.image[0],
       name: product.name,
       isStock: product.isStock,
       price:
@@ -107,9 +107,7 @@ const ProductDetails = () => {
               <div className='w-full lg:w-1/2'>
                 <div>
                   <img
-                    src={
-                      product.image.gallery[selectedImage] ?? product.image.main
-                    }
+                    src={product.image[selectedImage] ?? product.image[0]}
                     alt={product.name}
                     className='h-[500px] w-full rounded-lg object-cover'
                   />
@@ -117,7 +115,7 @@ const ProductDetails = () => {
                 {/* product image conrols  */}
                 <div className='my-5 flex flex-wrap justify-evenly gap-5'>
                   {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                  {product.image.gallery.map((link: any, index: number) => (
+                  {product.image.map((link: any, index: number) => (
                     <img
                       src={link}
                       key={index}

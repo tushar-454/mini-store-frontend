@@ -1,8 +1,8 @@
 interface ProductsDashboardEditFormProp {
-  setShowUpdateForm?: React.Dispatch<React.SetStateAction<boolean>>;
-  product?: ProductItemType;
-  setProduct?: React.Dispatch<React.SetStateAction<ProductItemType>>;
-  refetch?: () => Promise<QueryObserverResult<ProductItemType>>;
+  setShowUpdateForm: React.Dispatch<React.SetStateAction<boolean>>;
+  product: ProductItemType;
+  setProduct: React.Dispatch<React.SetStateAction<ProductItemType>>;
+  refetch: () => Promise<QueryObserverResult<ProductItemType>>;
 }
 import { QueryObserverResult } from '@tanstack/react-query';
 import axios from 'axios';
@@ -20,23 +20,23 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
-    if (product && setProduct) setProduct({ ...product, [name]: value });
-    if (type === 'checkbox' && product && setProduct) {
+    setProduct({ ...product, [name]: value });
+    if (type === 'checkbox') {
       setProduct({ ...product, isStock: checked });
       return;
     }
-    if (name === 'type' && product && setProduct) {
+    if (name === 'type') {
       setProduct({ ...product, type: value.split(',') });
       return;
     }
-    if (name === 'brand' && product && setProduct) {
+    if (name === 'brand') {
       setProduct({
         ...product,
         productDetails: { ...product?.productDetails, brand: value },
       });
       return;
     }
-    if (name === 'name' && product && setProduct) {
+    if (name === 'name') {
       setProduct({
         ...product,
         name: value,
@@ -44,11 +44,11 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
       });
       return;
     }
-    if (name === 'image' && product && setProduct) {
+    if (name === 'image') {
       setProduct({ ...product, image: value.split(',') });
       return;
     }
-    if (name === 'color' && product && setProduct) {
+    if (name === 'color') {
       setProduct({
         ...product,
         productDetails: {
@@ -58,7 +58,7 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
       });
       return;
     }
-    if (name === 'size' && product && setProduct) {
+    if (name === 'size') {
       setProduct({
         ...product,
         productDetails: {

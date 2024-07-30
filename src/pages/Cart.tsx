@@ -32,7 +32,7 @@ const Cart = () => {
         </div>
         {/* cart table and details  */}
         {carts?.length === 0 ||
-          (!carts && (
+          (carts === null && (
             <div
               data-aos='fade-up'
               className='grid w-full place-content-center'

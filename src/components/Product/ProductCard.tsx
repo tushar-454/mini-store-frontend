@@ -13,10 +13,7 @@ import {
 export type ProductCardType = {
   _id: number;
   name: string;
-  image: {
-    main: string;
-    gallery: string[];
-  };
+  image: string[];
   price: number;
   discount: number;
 };
@@ -40,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const cartItem = {
       _id: product._id,
       color: 'Base',
-      image: product.image.main,
+      image: product.image[0],
       isStock: true,
       name: product.name,
       price: product.price,
@@ -75,7 +72,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className='w-full space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'>
       <div className='group relative'>
         <img
-          src={product.image.main}
+          src={product.image[0]}
           alt={product.name}
           className='h-80 w-full rounded-lg object-cover'
         />
