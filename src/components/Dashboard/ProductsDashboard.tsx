@@ -7,6 +7,7 @@ import useAdminAllProducts, {
   ProductItemType,
 } from '../../Hook/useAdminAllProducts';
 import Loading from '../shared/Loading';
+import ProductsDashboardAddForm from './ProductsDashboardAddForm';
 import ProductsDashboardEditForm from './ProductsDashboardEditForm';
 
 const productInit = {
@@ -35,6 +36,7 @@ const ProductsDashboard = () => {
     refetch,
   } = useAdminAllProducts();
   const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
   const [product, setProduct] = useState<ProductItemType>(productInit);
   // product delete function
   const handleProductDelete = async (id: string) => {
@@ -74,7 +76,9 @@ const ProductsDashboard = () => {
       <div className='w-full overflow-x-auto'>
         <div className='mb-5 flex items-center justify-between'>
           <p className='text-3xl font-bold'>Products</p>
-          <button className='primaryBtn'>Add Product</button>
+          <button onClick={() => setShowAddForm(true)} className='primaryBtn'>
+            Add Product
+          </button>
         </div>
         <table className='w-full overflow-x-auto'>
           <thead>
@@ -162,6 +166,14 @@ const ProductsDashboard = () => {
       {showUpdateForm && (
         <ProductsDashboardEditForm
           setShowUpdateForm={setShowUpdateForm}
+          product={product}
+          setProduct={setProduct}
+          refetch={refetch}
+        />
+      )}
+      {showAddForm && (
+        <ProductsDashboardAddForm
+          setShowAddForm={setShowAddForm}
           product={product}
           setProduct={setProduct}
           refetch={refetch}
