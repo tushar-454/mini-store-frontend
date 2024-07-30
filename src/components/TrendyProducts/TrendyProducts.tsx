@@ -7,7 +7,7 @@ const TrendyProducts = () => {
   return (
     <section>
       <Container>
-        <div className='mb-10 mt-20 flex items-center justify-between border-b-2 pb-3'>
+        <div className='mb-10 mt-20 flex items-center justify-between overflow-x-hidden border-b-2 pb-3'>
           <Title>
             <Link to={'/product/filter'} className='text-green-600'>
               Trendy
@@ -22,7 +22,7 @@ const TrendyProducts = () => {
           </Link>
         </div>
         {/* trandy product layout  */}
-        <div className='mb-20 flex h-auto flex-col justify-between gap-5 lg:h-64 lg:flex-row'>
+        <div className='mb-20 flex h-auto flex-col justify-between gap-5 overflow-x-hidden lg:h-64 lg:flex-row'>
           {/* 1st column  */}
           <div
             data-aos='fade-right'
