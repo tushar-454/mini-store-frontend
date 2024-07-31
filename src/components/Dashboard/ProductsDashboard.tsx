@@ -96,6 +96,9 @@ const ProductsDashboard = () => {
                 Category
               </th>
               <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
+                Type
+              </th>
+              <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
                 Stock
               </th>
               <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
@@ -133,6 +136,9 @@ const ProductsDashboard = () => {
                     </td>
                     <td className='whitespace-nowrap border border-gray-300 p-2'>
                       {product.category}
+                    </td>
+                    <td className='whitespace-nowrap border border-gray-300 p-2'>
+                      {product.type}
                     </td>
                     <td className='whitespace-nowrap border border-gray-300 p-2'>
                       {product.isStock ? (

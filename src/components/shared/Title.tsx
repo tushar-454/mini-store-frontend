@@ -4,8 +4,8 @@ interface TitleProps {
 
 const Title: React.FC<TitleProps> = ({ children }) => {
   return (
-    <div data-aos='zoom-out' className='text-3xl font-bold'>
-      {children}
+    <div className='overflow-x-hidden text-3xl font-bold'>
+      <h1 data-aos='zoom-out'>{children}</h1>
     </div>
   );
 };

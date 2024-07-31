@@ -76,7 +76,7 @@ const OrdersDashboard = () => {
           {adminAllOrdersLoad && <Loading />}
           {!adminAllOrdersError &&
             !adminAllOrdersLoad &&
-            adminAllOrders?.data.length > 0 &&
+            adminAllOrders?.data?.length > 0 &&
             adminAllOrders?.data.map((order: OrderType, index: number) => (
               <tr
                 key={Math.random()}

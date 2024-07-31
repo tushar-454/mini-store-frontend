@@ -69,7 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   }, []);
 
   return (
-    <div className='w-full space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'>
+    <div className='flex h-full w-full flex-col space-y-2 place-self-center rounded-lg bg-neutral-100 p-3 shadow-lg sm:w-80'>
       <div className='group relative'>
         <img
           src={product.image[0]}
@@ -96,7 +96,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <FaHeart />
         </span>
       </div>
-      <p className='font-medium'>{product.name}</p>
+      <p className='flex-grow font-medium'>
+        {product.name.length > 60
+          ? `${product.name.slice(0, 60)} . . .`
+          : product.name}
+      </p>
       <p className='flex items-center justify-between'>
         <b>
           <small className='font-normal line-through'>{product.price}</small> BD
