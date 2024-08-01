@@ -15,8 +15,20 @@ import ProductCard, {
 const ProductFilter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [category, setCategory] = useState<string[]>([]);
+  const [priceRange, setPriceRange] = useState<{
+    minPrice: number;
+    maxPrice: number;
+  }>({
+    minPrice: 0,
+    maxPrice: 9999999999,
+  });
   const { allProducts, allProductsLoad, allProductsError, refetch } =
-    useAllProducts('name,category,price,discount,image', category.join(','));
+    useAllProducts(
+      'name,category,price,discount,image',
+      category.join(','),
+      priceRange.minPrice,
+      priceRange.maxPrice,
+    );
 
   const handleFilterCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (category.includes(e.target.name)) {
@@ -28,9 +40,16 @@ const ProductFilter = () => {
     }
   };
 
+  const handlePriceRange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setPriceRange((prev) => ({ ...prev, [name]: parseFloat(value) }));
+  };
+
   useEffect(() => {
-    refetch();
-  }, [category, refetch]);
+    setTimeout(() => {
+      refetch();
+    }, 200);
+  }, [category, refetch, priceRange]);
 
   useEffect(() => {
     document.title = 'Product Filter | E-commerce';
@@ -262,6 +281,8 @@ const ProductFilter = () => {
                     min={0}
                     placeholder='0'
                     className='grid w-20 place-items-center rounded-lg border border-green-600 bg-white px-2 py-1 text-lg font-medium text-green-600 outline-none'
+                    value={priceRange.minPrice}
+                    onChange={handlePriceRange}
                   />
                 </div>
                 <div className='mb-2 flex items-end'>--</div>
@@ -279,6 +300,8 @@ const ProductFilter = () => {
                     max={20000}
                     placeholder='20000'
                     className='grid w-20 place-items-center rounded-lg border border-green-600 bg-white px-2 py-1 text-lg font-medium text-green-600 outline-none'
+                    value={priceRange.maxPrice}
+                    onChange={handlePriceRange}
                   />
                 </div>
               </div>
