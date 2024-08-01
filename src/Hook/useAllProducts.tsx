@@ -1,16 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-const useAllProducts = (fields: string) => {
+const useAllProducts = (fields: string, category: string) => {
   const {
     data: allProducts,
     isLoading: allProductsLoad,
     isError: allProductsError,
+    refetch,
   } = useQuery({
     queryKey: ['all-products'],
     queryFn: async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/users/products/field${fields && `?key=${fields}`}`,
+        `${import.meta.env.VITE_baseurl}/users/products/field${fields && `?key=${fields}`}${category && `&category=${category}`}`,
       );
       return res.data;
     },
@@ -19,6 +20,7 @@ const useAllProducts = (fields: string) => {
     allProducts,
     allProductsLoad,
     allProductsError,
+    refetch,
   };
 };
 

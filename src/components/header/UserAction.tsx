@@ -13,7 +13,7 @@ const UserAction = ({
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { user } = useAuth();
-  const { userInfo } = useUserInfo();
+  const { userInfo, isUserLoad } = useUserInfo();
 
   return (
     <>
@@ -44,11 +44,13 @@ const UserAction = ({
             <li>
               <Link
                 to={
-                  userInfo?.data.role === 'user'
-                    ? '/profile'
-                    : userInfo?.data.role === 'admin'
-                      ? '/dashboard'
-                      : ''
+                  isUserLoad
+                    ? '/'
+                    : userInfo?.data.role === 'user'
+                      ? '/profile'
+                      : userInfo?.data.role === 'admin'
+                        ? '/dashboard'
+                        : ''
                 }
                 className='text-2xl'
               >

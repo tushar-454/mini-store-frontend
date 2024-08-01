@@ -14,9 +14,24 @@ import ProductCard, {
 
 const ProductFilter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const { allProducts, allProductsLoad, allProductsError } = useAllProducts(
-    'name,price,discount,image',
-  );
+  const [category, setCategory] = useState<string[]>([]);
+  const { allProducts, allProductsLoad, allProductsError, refetch } =
+    useAllProducts('name,category,price,discount,image', category.join(','));
+
+  const handleFilterCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (category.includes(e.target.name)) {
+      const newCategory = category.filter((cat) => cat !== e.target.name);
+      setCategory(newCategory);
+    } else {
+      const newCategory = [...category, e.target.name];
+      setCategory(newCategory);
+    }
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [category, refetch]);
+
   useEffect(() => {
     document.title = 'Product Filter | E-commerce';
     scrollTo(0, 0);
@@ -102,10 +117,11 @@ const ProductFilter = () => {
                 <input
                   type='checkbox'
                   className='mr-2 accent-green-600'
-                  name='shoes'
-                  id='shoes'
+                  name='shoe'
+                  id='shoe'
+                  onChange={handleFilterCategory}
                 />
-                <label className='font-medium' htmlFor='shoes'>
+                <label className='font-medium' htmlFor='shoe'>
                   Shoes
                 </label>
               </li>
@@ -113,10 +129,11 @@ const ProductFilter = () => {
                 <input
                   type='checkbox'
                   className='mr-2 accent-green-600'
-                  name='bags'
-                  id='bags'
+                  name='bag'
+                  id='bag'
+                  onChange={handleFilterCategory}
                 />
-                <label className='font-medium' htmlFor='bags'>
+                <label className='font-medium' htmlFor='bag'>
                   Bags
                 </label>
               </li>
@@ -126,6 +143,7 @@ const ProductFilter = () => {
                   className='mr-2 accent-green-600'
                   name='men'
                   id='men'
+                  onChange={handleFilterCategory}
                 />
                 <label className='font-medium' htmlFor='men'>
                   Men's
@@ -137,6 +155,7 @@ const ProductFilter = () => {
                   className='mr-2 accent-green-600'
                   name='women'
                   id='women'
+                  onChange={handleFilterCategory}
                 />
                 <label className='font-medium' htmlFor='women'>
                   Women's
@@ -148,6 +167,7 @@ const ProductFilter = () => {
                   className='mr-2 accent-green-600'
                   name='watch'
                   id='watch'
+                  onChange={handleFilterCategory}
                 />
                 <label className='font-medium' htmlFor='watch'>
                   Watches
@@ -159,6 +179,7 @@ const ProductFilter = () => {
                   className='mr-2 accent-green-600'
                   name='jewelry'
                   id='jewelry'
+                  onChange={handleFilterCategory}
                 />
                 <label className='font-medium' htmlFor='jewelry'>
                   Jewelry
