@@ -49,15 +49,15 @@ const Order = () => {
           : 'Are you sure to retrived this order?',
       );
       if (!rusure) return;
-      const res = await axios.patch(
+      await axios.patch(
         `${import.meta.env.VITE_baseurl}/users/order/cancel/${order._id}`,
         { status: e.target.value },
       );
-      if (res?.data.status === 204) {
+      if (e.target.value === 'cancelled') {
         toast.success('Order Cancelled');
         refetchUserOrders();
       }
-      if (res?.data.status === 200) {
+      if (e.target.value === 'pending') {
         toast.success('Order Retrived');
         refetchUserOrders();
       }
@@ -68,92 +68,105 @@ const Order = () => {
 
   return (
     <div className='w-full overflow-x-auto'>
-      {loadUserOrders && <Loading />}
-      {errorUserOrders && <div>There was an Error</div>}
-      {!loadUserOrders && !errorUserOrders && userOrders && (
-        <div className='grid w-full gap-5'>
-          {userOrders?.data.map((order: Order) => {
-            return (
-              <div
-                key={Math.random()}
-                className={`w-full border p-4 ${order.status === 'cancelled' && 'border-red-500 bg-red-50'} ${order.status === 'confirm' && 'border-yellow-500 bg-yellow-50'} ${order.status === 'completed' && 'border-green-500 bg-green-50'}`}
-              >
-                {order?.orderItem.map((item: OrderItem) => (
-                  <div
-                    key={Math.random()}
-                    className='mb-2 flex items-center justify-between gap-5'
-                  >
-                    <img
-                      src={item.image}
-                      alt=''
-                      className='h-20 w-20 whitespace-nowrap rounded-lg object-cover'
-                    />
-                    <div className='flex flex-col whitespace-nowrap'>
-                      <span>
-                        <b>Name:</b> {item.name}
-                      </span>
-                      <span>
-                        <b>Random Id:</b> {item.randomId}
-                      </span>
-                      <span>
-                        <b>Order Id:</b> {item._id}
-                      </span>
-                    </div>
-                    <div className='flex flex-col whitespace-nowrap'>
-                      <span>
-                        <b>Color:</b> {item.color}
-                      </span>
-                      <span>
-                        <b>Price:</b> {item.price}
-                      </span>
-                      <span>
-                        <b>Quentity:</b> {item.quentity}
-                      </span>
-                    </div>
-                    <div className='flex flex-col whitespace-nowrap'>
-                      <span>
-                        <b>Size:</b> {item.size}
-                      </span>
-                      <span>
-                        <b>Stock:</b> {item.isStock ? 'Stock' : 'Out of Stock'}
-                      </span>
-                      <span>
-                        <b>Status:</b> {order.status}
-                      </span>
-                    </div>
-                    <div className='min-w-fit whitespace-nowrap'>
+      <table className='w-full overflow-x-auto'>
+        <thead>
+          <tr className='bg-neutral-100'>
+            <th className='border border-gray-300 p-2 text-left'>
+              Product Info
+            </th>
+            <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
+              Order ID
+            </th>
+            <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
+              Price
+            </th>
+            <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {errorUserOrders && (
+            <tr>
+              <td colSpan={4}>There was an error</td>
+            </tr>
+          )}
+          {loadUserOrders && <Loading />}
+          {!loadUserOrders && !errorUserOrders && userOrders && (
+            <>
+              {userOrders?.data?.map((order: Order) => (
+                <tr
+                  className={`${order.status === 'pending' ? '' : order.status === 'cancelled' ? 'bg-red-50' : order.status === 'confirm' ? 'bg-orage-50' : order.status === 'completed' ? 'bg-green-50' : ''}`}
+                >
+                  <td className='min-w-[40rem] border border-gray-300 p-2 text-left'>
+                    <span>
+                      {order.orderItem.map((item: OrderItem) => (
+                        <span
+                          key={Math.random()}
+                          className='mb-1 flex items-center gap-4'
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className='h-20 w-20 object-cover'
+                          />
+                          <span className='grid'>
+                            <span>
+                              <b>Name: </b>
+                              {item.name}
+                            </span>
+                            <span>
+                              <b>Quentity: </b> {item.quentity}
+                            </span>
+                            <span>
+                              <b>Color: </b> {item.color}
+                            </span>
+                            <span>
+                              <b>size: </b> {item.size}
+                            </span>
+                          </span>
+                        </span>
+                      ))}
+                    </span>
+                  </td>
+                  <td className='whitespace-nowrap border border-gray-300 p-2 text-left'>
+                    <span> {order._id}</span>
+                  </td>
+                  <td className='whitespace-nowrap border border-gray-300 p-2 text-left'>
+                    {order.price}
+                  </td>
+                  <td className='whitespace-nowrap border border-gray-300 p-2 text-left'>
+                    {order.status === 'completed' ||
+                    order.status === 'confirm' ? (
                       <select
                         name='status'
                         id='status'
                         defaultValue={order.status}
-                        className='primaryInput whitespace-nowrap'
-                        onChange={(e) => handleStatusChange(e, order)}
-                        disabled={
-                          order.status === 'confirm' ||
-                          order.status === 'completed'
-                        }
+                        className='primaryInput min-w-[8rem]'
+                        disabled
                       >
-                        {order.status === 'pending' ||
-                        order.status === 'cancelled' ? (
-                          <>
-                            <option value='pending'>Pending</option>
-                            <option value='cancelled'>Cancelled</option>
-                          </>
-                        ) : (
-                          <option value={order.status}>
-                            {order.status.charAt(0).toUpperCase() +
-                              order.status.slice(1)}
-                          </option>
-                        )}
+                        <option value='confirm'>Confirm</option>
+                        <option value='completed'>Completed</option>
                       </select>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            );
-          })}
-        </div>
-      )}
+                    ) : (
+                      <select
+                        name='status'
+                        id='status'
+                        defaultValue={order.status}
+                        className='primaryInput min-w-[8rem]'
+                        onChange={(e) => handleStatusChange(e, order)}
+                      >
+                        <option value='pending'>Pending</option>
+                        <option value='cancelled'>Cancelled</option>
+                      </select>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
