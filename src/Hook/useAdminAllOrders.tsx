@@ -7,7 +7,7 @@ export type OrderItemType = {
 
 export type UserType = {
   name: string;
-  email: string;
+  phone: string;
   city: string;
   area: string;
   address: string;

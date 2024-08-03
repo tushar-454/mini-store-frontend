@@ -45,7 +45,7 @@ const OrdersDashboard = () => {
               Name
             </th>
             <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
-              Email
+              Phone
             </th>
             <th className='whitespace-nowrap border border-gray-300 p-2 text-left'>
               City
@@ -92,7 +92,9 @@ const OrdersDashboard = () => {
                   {order?.userId.name}
                 </td>
                 <td className='whitespace-nowrap border border-gray-300 p-2'>
-                  {order?.userId.email}
+                  <a href={`tel:${order?.userId.phone}`}>
+                    {order?.userId.phone}
+                  </a>
                 </td>
                 <td className='whitespace-nowrap border border-gray-300 p-2'>
                   {order?.userId.city}
