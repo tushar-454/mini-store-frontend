@@ -96,13 +96,14 @@ const Order = () => {
             <>
               {userOrders?.data?.map((order: Order) => (
                 <tr
+                  key={order._id}
                   className={`${order.status === 'pending' ? '' : order.status === 'cancelled' ? 'bg-red-50' : order.status === 'confirm' ? 'bg-orage-50' : order.status === 'completed' ? 'bg-green-50' : ''}`}
                 >
                   <td className='min-w-[40rem] border border-gray-300 p-2 text-left'>
                     <span>
                       {order.orderItem.map((item: OrderItem) => (
                         <span
-                          key={Math.random()}
+                          key={item._id}
                           className='mb-1 flex items-center gap-4'
                         >
                           <img
