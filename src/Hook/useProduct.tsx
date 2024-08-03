@@ -6,6 +6,7 @@ const useProduct = (productId: string | undefined) => {
     data: product,
     isLoading: productLoad,
     isError: productError,
+    refetch,
   } = useQuery({
     queryKey: ['product'],
     queryFn: async () => {
@@ -19,6 +20,7 @@ const useProduct = (productId: string | undefined) => {
     product,
     productLoad,
     productError,
+    refetch,
   };
 };
 

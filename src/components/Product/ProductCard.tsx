@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { CiShoppingCart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
 import { CartItemType } from '../../pages/ProductDetails';
 import {
@@ -25,6 +25,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const heart = useRef(null);
   const { setCarts } = useAuth();
+  const navigate = useNavigate();
   // add to wishlist product function
   const addToWishList = () => {
     const productHeart = heart.current;
@@ -55,6 +56,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     });
   };
 
+  // handle view details
+  const handleViewDetails = () => {
+    navigate(`/product/${product._id}`);
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     const wishLists = getLocalStorage('wishLists') || [];
     wishLists?.map((list: ProductCardType) => {
@@ -80,6 +87,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className='absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-5 opacity-0 transition-all group-hover:opacity-100'>
           <Link
             to={`/product/${product._id}`}
+            onClick={handleViewDetails}
             className='w-11/12 rounded-lg border-2 border-green-600 bg-white px-4 py-2 text-center font-bold text-green-600'
           >
             View Details

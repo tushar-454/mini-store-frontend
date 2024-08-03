@@ -26,9 +26,9 @@ import ProductCard, {
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
-import useAllProducts from '../Hook/useAllProducts';
 import useAuth from '../Hook/useAuth';
 import useProduct from '../Hook/useProduct';
+import useRelatedProduct from '../Hook/useRelatedProduct';
 import { getLocalStorage, setCartLocalStorage } from '../utils/localStorage';
 
 const ProductDetails = () => {
@@ -37,10 +37,9 @@ const ProductDetails = () => {
   const [color, setColor] = useState('Blue');
   const [selectedImage, setSelectedImage] = useState(0);
   const { id } = useParams();
-  const { product, productLoad, productError } = useProduct(id);
-  const { allProducts, allProductsLoad, allProductsError } = useAllProducts(
-    'name,price,discount,image',
-  );
+  const { product, productLoad, productError, refetch } = useProduct(id);
+  const { relatedProducts, relatedProductLoad, relatedProductError } =
+    useRelatedProduct(id);
   const { setCarts } = useAuth();
 
   const selectSize = (idx: number, size: string) => {
@@ -80,8 +79,9 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
+    refetch();
     scrollTo(0, 0);
-  }, []);
+  }, [id, refetch]);
   return (
     <section>
       <Container>
@@ -315,17 +315,22 @@ const ProductDetails = () => {
                 </Title>
               </div>
               {/* related products  */}
-              {allProductsLoad && <p>Loading...</p>}
-              {allProductsError && <p>Something went wrong</p>}
-              {!allProductsLoad && !allProductsError && (
-                <div className='grid grid-cols-1 justify-between gap-5 py-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-                  {allProducts.data
-                    .slice(0, 4)
-                    .map((product: ProductCardType) => (
+              {relatedProductLoad && <p>Loading...</p>}
+              {relatedProductError && <p>Something went wrong</p>}
+              {!relatedProductLoad &&
+                relatedProductError &&
+                relatedProducts.length === 0 && (
+                  <p className='my-5'>No related Product found</p>
+                )}
+              {!relatedProductLoad &&
+                !relatedProductError &&
+                relatedProducts.length > 0 && (
+                  <div className='grid grid-cols-1 justify-between gap-5 py-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+                    {relatedProducts.map((product: ProductCardType) => (
                       <ProductCard key={Math.random()} product={product} />
                     ))}
-                </div>
-              )}
+                  </div>
+                )}
             </div>
           </div>
         )}
