@@ -111,8 +111,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </p>
       <p className='flex items-center justify-between'>
         <b>
-          <small className='font-normal line-through'>{product.price}</small> BD
-          -{' '}
+          <small className='font-normal line-through'>{product.price}</small>{' '}
+          BDT -{' '}
           {Math.floor(product.price - (product.price * product.discount) / 100)}
         </b>
         <span onClick={() => addToCart(product)}>

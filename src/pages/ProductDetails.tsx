@@ -51,7 +51,7 @@ const ProductDetails = () => {
   const selectColor = (idx: number, color: string) => {
     const colors = document.querySelectorAll('.product-color');
     colors.forEach((size) => size.classList.remove('border-neutral-900'));
-    colors[idx].classList.add('border-neutral-900');
+    colors[idx].classList.add('border-orange-900');
     setColor(color);
   };
 
@@ -163,58 +163,43 @@ const ProductDetails = () => {
                 </div>
                 {/* size and color  */}
                 <div className='my-5 flex flex-col justify-between gap-5 xl:flex-row'>
-                  <div className='flex items-center gap-3'>
-                    <span className='text-xl font-medium'>Size</span>
-                    <span>|</span>
-                    <ul className='ml-5 flex items-center gap-8'>
-                      <li
-                        onClick={() => selectSize(0, 'S')}
-                        className='product-size bg-neutral-300'
-                      >
-                        S
-                      </li>
-                      <li
-                        onClick={() => selectSize(1, 'M')}
-                        className='product-size'
-                      >
-                        M
-                      </li>
-                      <li
-                        onClick={() => selectSize(2, 'L')}
-                        className='product-size'
-                      >
-                        L
-                      </li>
-                      <li
-                        onClick={() => selectSize(3, 'XL')}
-                        className='product-size'
-                      >
-                        XL
-                      </li>
-                    </ul>
-                  </div>
-                  <div className='flex items-center gap-3'>
-                    <span className='text-xl font-medium'>Color</span>
-                    <span>|</span>
-                    <ul className='flex items-center gap-4'>
-                      <li
-                        onClick={() => selectColor(0, 'Blue')}
-                        className='product-color border-neutral-900 bg-blue-700'
-                      ></li>
-                      <li
-                        onClick={() => selectColor(1, 'Green')}
-                        className='product-color bg-green-700'
-                      ></li>
-                      <li
-                        onClick={() => selectColor(2, 'Pink')}
-                        className='product-color bg-pink-700'
-                      ></li>
-                      <li
-                        onClick={() => selectColor(3, 'Yellow')}
-                        className='product-color bg-yellow-600'
-                      ></li>
-                    </ul>
-                  </div>
+                  {product?.productDetails?.size.length > 0 && (
+                    <div className='flex items-center gap-3'>
+                      <span className='text-xl font-medium'>Size</span>
+                      <span>|</span>
+                      <ul className='ml-5 flex items-center gap-8'>
+                        {product?.productDetails?.size.map(
+                          (size: string, idx: number) => (
+                            <li
+                              key={Math.random()}
+                              onClick={() => selectSize(idx, size)}
+                              className='product-size user-select-none'
+                            >
+                              {size}
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                  )}
+                  {product?.productDetails?.color.length > 0 && (
+                    <div className='flex items-center gap-3'>
+                      <span className='text-xl font-medium'>Color</span>
+                      <span>|</span>
+                      <ul className='flex items-center gap-4'>
+                        {product.productDetails.color.map(
+                          (color: string, idx: number) => (
+                            <li
+                              key={Math.random()}
+                              onClick={() => selectColor(idx, color)}
+                              className={`product-color user-select-none size-8`}
+                              style={{ backgroundColor: color }}
+                            ></li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                  )}
                 </div>
                 {/* discription */}
                 <div className='my-10'>

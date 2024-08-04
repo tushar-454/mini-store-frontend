@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { TbCurrencyTaka } from 'react-icons/tb';
 import { Link, useNavigate } from 'react-router-dom';
 import Container from '../components/shared/Container';
 import Title from '../components/shared/Title';
@@ -17,6 +18,7 @@ const Cart = () => {
     localStorage.removeItem('carts');
     setCartLocalStorage('carts', removedCartArr);
     setCarts(removedCartArr);
+    console.log(carts);
   };
   useEffect(() => {
     setCarts(getLocalStorage('carts'));
@@ -31,18 +33,22 @@ const Cart = () => {
           </Title>
         </div>
         {/* cart table and details  */}
-        {carts?.length === 0 ||
-          (carts === null && (
-            <div
-              data-aos='fade-up'
-              className='grid w-full place-content-center'
-            >
-              <img
-                src='https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-7359557-6024626.png'
-                alt='no cart item'
-              />
-            </div>
-          ))}
+        {carts?.length === 0 && (
+          <div data-aos='fade-up' className='grid w-full place-content-center'>
+            <img
+              src='https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-7359557-6024626.png'
+              alt='no cart item'
+            />
+          </div>
+        )}
+        {carts === null && (
+          <div data-aos='fade-up' className='grid w-full place-content-center'>
+            <img
+              src='https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-7359557-6024626.png'
+              alt='no cart item'
+            />
+          </div>
+        )}
         {carts?.length > 0 && (
           <div className='flex flex-col gap-5 py-10 lg:flex-row'>
             {/* cart table */}
@@ -92,7 +98,12 @@ const Cart = () => {
                         Remove
                       </p>
                     </td>
-                    <td className='p-2 text-xl font-bold'>${cart.price}</td>
+                    <td className='p-2 text-xl font-bold'>
+                      <span className='flex items-center gap-1'>
+                        <TbCurrencyTaka className='text-2xl' />
+                        {cart.price}
+                      </span>
+                    </td>
                   </tr>
                 ))}
               </table>

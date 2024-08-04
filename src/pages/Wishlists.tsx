@@ -21,16 +21,24 @@ const Wishlists = () => {
           />
         </div>
         {/* wishlists products  */}
-        {WishlistsArr?.length === 0 ||
-          (!WishlistsArr && (
-            <div data-aos='fade-up' className='grid place-content-center py-20'>
-              <img
-                src='https://i.ibb.co/S0gdhdY/shopping-cart.png'
-                alt='wish list none image'
-                className='w-80 opacity-80'
-              />
-            </div>
-          ))}
+        {WishlistsArr?.length === 0 && (
+          <div data-aos='fade-up' className='grid place-content-center py-20'>
+            <img
+              src='https://i.ibb.co/S0gdhdY/shopping-cart.png'
+              alt='wish list none image'
+              className='w-80 opacity-80'
+            />
+          </div>
+        )}
+        {WishlistsArr === null && (
+          <div data-aos='fade-up' className='grid place-content-center py-20'>
+            <img
+              src='https://i.ibb.co/S0gdhdY/shopping-cart.png'
+              alt='wish list none image'
+              className='w-80 opacity-80'
+            />
+          </div>
+        )}
         {WishlistsArr?.length > 0 && (
           <div className='grid grid-cols-1 justify-between gap-5 pb-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
             {WishlistsArr?.map((product: ProductCardType) => (
