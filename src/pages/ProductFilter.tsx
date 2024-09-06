@@ -92,35 +92,50 @@ const ProductFilter = () => {
             </form>
           </div>
           {/* search preferences  */}
-          <div className='mt-5 flex justify-between gap-4 xl:justify-end'>
-            <div className='block xl:hidden'>
-              {isFilterOpen ? (
-                <RxCross2
-                  className='mt-1 text-3xl text-neutral-700'
-                  onClick={() => setIsFilterOpen(!isFilterOpen)}
-                />
-              ) : (
-                <FaBars
-                  className='mt-1 text-3xl text-neutral-700'
-                  onClick={() => setIsFilterOpen(!isFilterOpen)}
-                />
-              )}
-            </div>
-            <div className='flex justify-between gap-4 md:justify-end'>
-              <button className='text-whiter grid place-items-center rounded-lg border border-green-600 bg-green-600 px-4 py-2 font-medium text-white'>
-                Best matches
-              </button>
-              <button className='search-preference-tab'>All</button>
-              <button className='search-preference-tab'>Free Delivery</button>
-              <button className='search-preference-tab flex items-center gap-2'>
-                <span>View</span>
-                <span>
-                  <MdOutlineWindow />
-                </span>
-                <span>
-                  <MdOutlineSensorWindow />
-                </span>
-              </button>
+          <div className='block sm:hidden'>
+            {isFilterOpen ? (
+              <RxCross2
+                className='mt-1 text-3xl text-neutral-700'
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+              />
+            ) : (
+              <FaBars
+                className='mt-1 text-3xl text-neutral-700'
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+              />
+            )}
+          </div>
+          <div className='hidden sm:block'>
+            <div className='mt-5 flex justify-between gap-4 xl:justify-end'>
+              <div className='block xl:hidden'>
+                {isFilterOpen ? (
+                  <RxCross2
+                    className='mt-1 text-3xl text-neutral-700'
+                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                  />
+                ) : (
+                  <FaBars
+                    className='mt-1 text-3xl text-neutral-700'
+                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                  />
+                )}
+              </div>
+              <div className='flex justify-between gap-4 md:justify-end'>
+                <button className='text-whiter grid place-items-center rounded-lg border border-green-600 bg-green-600 px-4 py-2 font-medium text-white'>
+                  Best matches
+                </button>
+                <button className='search-preference-tab'>All</button>
+                <button className='search-preference-tab'>Free Delivery</button>
+                <button className='search-preference-tab flex items-center gap-2'>
+                  <span>View</span>
+                  <span>
+                    <MdOutlineWindow />
+                  </span>
+                  <span>
+                    <MdOutlineSensorWindow />
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
