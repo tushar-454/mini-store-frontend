@@ -1,7 +1,6 @@
 import toast from 'react-hot-toast';
 import useAuth from '../../Hook/useAuth';
 import useUserStatistics from '../../Hook/useUserStatistics';
-import Loading from '../shared/Loading';
 import ProfileInfoCard from './ProfileInfoCard';
 
 const Profile = () => {
@@ -10,25 +9,31 @@ const Profile = () => {
     useUserStatistics();
   return (
     <section>
-      {isUserStatisticsLoad && <Loading />}
-      {isUserStatisticsError && toast.error('User no statistics')}
+      {/* {isUserStatisticsLoad && <Loading />}
+      {isUserStatisticsError && toast.error('User no statistics')} */}
       {/* show some profile statistics */}
-      <div className='mb-10 flex flex-wrap justify-between gap-5'>
-        <ProfileInfoCard
-          title='Total Costs'
-          value={userStatistics?.data.totalCost || 0}
-          theme='green'
-        />
-        <ProfileInfoCard
-          title='Total Orders'
-          value={userStatistics?.data.totalOrder || 0}
-          theme='orange'
-        />
-        <ProfileInfoCard
-          title='Total Cancellation'
-          value={userStatistics?.data.totalCancellation || 0}
-          theme='red'
-        />
+      <div>
+        {isUserStatisticsLoad && 'Loading...'}
+        {isUserStatisticsError && toast.error('User no statistics')}
+        {!isUserStatisticsLoad && (
+          <div className='mb-10 flex flex-wrap justify-between gap-5'>
+            <ProfileInfoCard
+              title='Total Costs'
+              value={userStatistics?.data.totalCost || 0}
+              theme='green'
+            />
+            <ProfileInfoCard
+              title='Total Orders'
+              value={userStatistics?.data.totalOrder || 0}
+              theme='orange'
+            />
+            <ProfileInfoCard
+              title='Total Cancellation'
+              value={userStatistics?.data.totalCancellation || 0}
+              theme='red'
+            />
+          </div>
+        )}
       </div>
 
       {/* user details  */}
@@ -44,7 +49,7 @@ const Profile = () => {
                 <img
                   src={
                     user?.photoURL ||
-                    'https://cdn-icons-png.flaticon.com/512/21/21104.png'
+                    'https://media.istockphoto.com/id/610003972/vector/vector-businessman-black-silhouette-isolated.jpg?s=612x612&w=0&k=20&c=Iu6j0zFZBkswfq8VLVW8XmTLLxTLM63bfvI6uXdkacM='
                   }
                   alt='user photo'
                   className='h-32 w-32 rounded-full border-4 border-white object-cover'

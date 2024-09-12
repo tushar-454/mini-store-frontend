@@ -24,7 +24,7 @@ const Profile = () => {
               <img
                 src={
                   user?.photoURL ??
-                  'https://cdn-icons-png.flaticon.com/512/21/21104.png'
+                  'https://media.istockphoto.com/id/610003972/vector/vector-businessman-black-silhouette-isolated.jpg?s=612x612&w=0&k=20&c=Iu6j0zFZBkswfq8VLVW8XmTLLxTLM63bfvI6uXdkacM='
                 }
                 alt={user?.displayName ?? 'user name'}
                 className='h-20 w-20 rounded-full object-cover'
