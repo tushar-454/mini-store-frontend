@@ -4,8 +4,6 @@ interface TotalSummaryProps {
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 import useUserInfo from '../../Hook/useUserInfo';
 import { CartItemType } from '../../pages/ProductDetails';
 
@@ -14,27 +12,30 @@ const TotalSummary: React.FC<TotalSummaryProps> = ({ setCurSummary }) => {
   const [carts, setCarts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
-  const navigate = useNavigate();
+  const { _id, address, email, name, phone, city } =
+    !isUserError && !isUserLoad && userInfo.data;
   // handle place order
   const handlePlaceOrder = async () => {
     try {
       setLoading(true);
       const newOrder = {
-        userId: userInfo?.data._id,
+        user: {
+          _id,
+          place: address,
+          name,
+          email,
+          city,
+          phone,
+        },
         price: parseFloat((totalPrice + 100).toFixed(2)),
         orderItem: carts,
       };
       const res = await axios.post(
-        `${import.meta.env.VITE_baseurl}/users/order`,
+        `${import.meta.env.VITE_baseurl}/payment/create-payment`,
         newOrder,
       );
-      if (res.data.status === 201) {
-        localStorage.removeItem('carts');
-        setCurSummary('confirm');
-        toast.success('Order Successfully.');
-        setTimeout(() => {
-          navigate('/');
-        }, 1500);
+      if (res) {
+        window.location.href = res.data.paymentUrl;
       }
     } catch (error) {
       console.log(error);

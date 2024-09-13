@@ -1,4 +1,4 @@
-import orderCompleted from '../../assets/order-completed.webp';
+import orderCompleted from '../../assets/success.webp';
 
 const OrderConfirm = () => {
   return (

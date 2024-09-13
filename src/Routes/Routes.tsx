@@ -7,8 +7,10 @@ import Order from '../components/Profile/Order';
 import ProfileSub from '../components/Profile/Profile';
 import Shipping from '../components/Profile/Shipping';
 import Root from '../layout/Root';
+import Cancel from '../pages/Cancel';
 import Cart from '../pages/Cart';
 import DashboardLayout from '../pages/Dashboard';
+import Fail from '../pages/Fail';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import OrderSummary from '../pages/OrderSummary';
@@ -16,6 +18,7 @@ import ProductDetails from '../pages/ProductDetails';
 import ProductFilter from '../pages/ProductFilter';
 import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
+import Success from '../pages/Success';
 import Wishlists from '../pages/Wishlists';
 import AdminRoutes from './AdminRoutes';
 import PrivateRoute from './PrivateRoute';
@@ -59,6 +62,30 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <OrderSummary />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'success',
+        element: (
+          <PrivateRoute>
+            <Success />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'fail',
+        element: (
+          <PrivateRoute>
+            <Fail />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'cancel',
+        element: (
+          <PrivateRoute>
+            <Cancel />
           </PrivateRoute>
         ),
       },
