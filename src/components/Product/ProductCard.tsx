@@ -92,9 +92,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           >
             View Details
           </Link>
-          <button className='w-11/12 rounded-lg border-2 border-green-600 bg-green-600 px-4 py-2 text-center font-bold text-neutral-200'>
+          {/* <button className='w-11/12 rounded-lg border-2 border-green-600 bg-green-600 px-4 py-2 text-center font-bold text-neutral-200'>
             Order Now
-          </button>
+          </button> */}
         </div>
         <span
           ref={heart}

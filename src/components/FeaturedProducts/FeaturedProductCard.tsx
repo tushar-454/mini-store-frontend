@@ -1,7 +1,7 @@
 interface FeaturedProductCardProps {
   product: productType;
 }
-import { CiShoppingCart } from 'react-icons/ci';
+// import { CiShoppingCart } from 'react-icons/ci';
 // import { Link } from 'react-router-dom';
 import { productType } from '../../Data/FeaturedProducts';
 
@@ -44,9 +44,9 @@ const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({
           BDT -{' '}
           {Math.floor(product.price - (product.price * product.discount) / 100)}
         </b>
-        <span>
+        {/* <span>
           <CiShoppingCart className='h-8 w-8 cursor-pointer rounded-lg bg-orange-500 p-1 text-white' />
-        </span>
+        </span> */}
       </p>
     </div>
   );

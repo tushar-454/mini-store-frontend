@@ -164,10 +164,10 @@ const ProductDetails = () => {
                 {/* size and color  */}
                 <div className='my-5 flex flex-col justify-between gap-5 xl:flex-row'>
                   {product?.productDetails?.size.length > 0 && (
-                    <div className='flex items-center gap-3'>
+                    <div className='flex items-start gap-3'>
                       <span className='text-xl font-medium'>Size</span>
                       <span>|</span>
-                      <ul className='ml-5 flex items-center gap-8'>
+                      <ul className='ml-5 flex flex-wrap items-center gap-8'>
                         {product?.productDetails?.size.map(
                           (size: string, idx: number) => (
                             <li
