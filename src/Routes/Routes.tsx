@@ -66,7 +66,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'success',
+        path: 'success/:transactionId',
         element: (
           <PrivateRoute>
             <Success />
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'fail',
+        path: 'fail/:transactionId',
         element: (
           <PrivateRoute>
             <Fail />
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'cancel',
+        path: 'cancel/:transactionId',
         element: (
           <PrivateRoute>
             <Cancel />
