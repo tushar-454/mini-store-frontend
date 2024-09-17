@@ -10,6 +10,7 @@ import Title from '../components/shared/Title';
 
 const OrderSummary = () => {
   const [curSummary, setCurSummary] = useState<string>('shipping');
+  const [method, setMethod] = useState<string>('payOnline');
   const [isEdit, setIsEdit] = useState(false);
   const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const OrderSummary = () => {
         <div>
           <Title>Order Summary</Title>
           {/* wrapper  */}
-          <div className='mx-auto w-full pt-20 lg:w-3/4'>
+          <div className='mx-auto w-full py-20 lg:w-3/4'>
             {/* order summary top track bar */}
             <div className='relative mb-24'>
               <div className='flex justify-between'>
@@ -88,9 +89,11 @@ const OrderSummary = () => {
             {curSummary === 'shipping' && (
               <ShippingAddress isEdit={isEdit} setIsEdit={setIsEdit} />
             )}
-            {curSummary === 'payment' && <PaymentMethod />}
+            {curSummary === 'payment' && (
+              <PaymentMethod setMethod={setMethod} />
+            )}
             {curSummary === 'summary' && (
-              <TotalSummary setCurSummary={setCurSummary} />
+              <TotalSummary setCurSummary={setCurSummary} method={method} />
             )}
             {curSummary === 'confirm' && <OrderConfirm />}
           </div>

@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import paymentway from '../../assets/payment-way.webp';
-const PaymentMethod = () => {
-  const [method, setMethod] = useState('');
+interface PaymentMethodProps {
+  setMethod: React.Dispatch<React.SetStateAction<string>>;
+}
 
+import React from 'react';
+
+const PaymentMethod: React.FC<PaymentMethodProps> = ({ setMethod }) => {
   return (
     <>
       <div>
@@ -21,9 +23,9 @@ const PaymentMethod = () => {
             className='accent-green-600'
             onChange={() => {
               localStorage.setItem('paymentMethod', 'Pay Online');
-              setMethod('Pay Online');
+              setMethod('payOnline');
             }}
-            checked={localStorage.getItem('paymentMethod') === 'Pay Online'}
+            checked={true}
           />
           <label htmlFor='payOnline'> Pay Online</label>
         </div>
@@ -35,24 +37,11 @@ const PaymentMethod = () => {
             id='cod'
             className='accent-green-600'
             onChange={() => {
-              localStorage.setItem('paymentMethod', 'Cash On Delivery');
-              setMethod('Cash On Delivery');
+              setMethod('CashOnDelivery');
             }}
-            checked={
-              localStorage.getItem('paymentMethod') === 'Cash On Delivery'
-            }
           />
           <label htmlFor='cod'> Cash On Delivery</label>
         </div>
-      </div>
-      <div
-        className={`transition-all ${method === 'Pay Online' ? 'opacity-100' : 'opacity-0'}`}
-      >
-        <img
-          src={paymentway}
-          alt=''
-          className={`w-96 cursor-pointer ${method === 'Pay Online' && 'cursor-not-allowed'}`}
-        />
       </div>
     </>
   );

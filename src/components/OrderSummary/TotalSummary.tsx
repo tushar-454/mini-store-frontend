@@ -1,5 +1,6 @@
 interface TotalSummaryProps {
   setCurSummary: React.Dispatch<React.SetStateAction<string>>;
+  method: string;
 }
 
 import axios from 'axios';
@@ -7,7 +8,10 @@ import { useEffect, useState } from 'react';
 import useUserInfo from '../../Hook/useUserInfo';
 import { CartItemType } from '../../pages/ProductDetails';
 
-const TotalSummary: React.FC<TotalSummaryProps> = ({ setCurSummary }) => {
+const TotalSummary: React.FC<TotalSummaryProps> = ({
+  setCurSummary,
+  method,
+}) => {
   const { userInfo, isUserLoad, isUserError } = useUserInfo();
   const [carts, setCarts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -30,12 +34,24 @@ const TotalSummary: React.FC<TotalSummaryProps> = ({ setCurSummary }) => {
         price: parseFloat((totalPrice + 100).toFixed(2)),
         orderItem: carts,
       };
-      const res = await axios.post(
-        `${import.meta.env.VITE_baseurl}/payment/create-payment`,
-        newOrder,
-      );
-      if (res) {
-        window.location.href = res.data.paymentUrl;
+      if (method === 'payOnline') {
+        const res = await axios.post(
+          `${import.meta.env.VITE_baseurl}/payment/create-payment`,
+          { ...newOrder, method: 'payOnline' },
+        );
+        if (res) {
+          window.location.href = res.data.paymentUrl;
+        }
+      }
+      if (method === 'CashOnDelivery') {
+        const res = await axios.post(
+          `${import.meta.env.VITE_baseurl}/users/order`,
+          { ...newOrder, method: 'cod' },
+        );
+        if (res.data.status === 201) {
+          localStorage.removeItem('carts');
+          setCurSummary('confirm');
+        }
       }
     } catch (error) {
       console.log(error);
@@ -102,7 +118,7 @@ const TotalSummary: React.FC<TotalSummaryProps> = ({ setCurSummary }) => {
             </button>
           </div>
           <span className='block py-5'>
-            {localStorage.getItem('paymentMethod')}
+            {method === 'CashOnDelivery' ? 'Cash On Delivery' : 'Pay Online'}
           </span>
         </div>
       </div>
