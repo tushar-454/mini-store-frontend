@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 const useProduct = (productId: string | undefined) => {
   const {
@@ -10,9 +10,7 @@ const useProduct = (productId: string | undefined) => {
   } = useQuery({
     queryKey: ['product'],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/users/product/${productId}`,
-      );
+      const res = await axios.get(`/users/product/${productId}`);
       return res.data.data;
     },
   });

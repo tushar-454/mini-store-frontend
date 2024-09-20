@@ -2,11 +2,11 @@ interface LoginWithSocialProps {
   loginWithGoogle: () => void;
 }
 
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaFacebook, FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../utils/axios';
 
 const LoginWithSocial: React.FC<LoginWithSocialProps> = ({
   loginWithGoogle,
@@ -28,8 +28,8 @@ const LoginWithSocial: React.FC<LoginWithSocialProps> = ({
           area: 'area',
         };
         // craete a new user save it to the database
-        axios.post(`${import.meta.env.VITE_baseurl}/users/one`, newUser);
-
+        axios.post(`/users/one`, newUser);
+        await axios.post(`/token/create`, { email: res?.user?.email });
         toast.success('Login Successfully');
         navigate('/');
       }

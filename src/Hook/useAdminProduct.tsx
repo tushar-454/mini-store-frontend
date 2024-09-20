@@ -1,13 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 const useAdminProduct = (id: string) => {
   const { data, isError, isLoading, refetch } = useQuery({
     queryKey: ['adminAllProducts'],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/admin/product/${id}`,
-      );
+      const res = await axios.get(`/admin/product/${id}`);
       return res.data;
     },
   });

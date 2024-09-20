@@ -4,6 +4,7 @@ import { MdArrowForwardIos } from 'react-icons/md';
 import { NavLink, Outlet } from 'react-router-dom';
 import Container from '../components/shared/Container';
 import useAuth from '../Hook/useAuth';
+import axios from '../utils/axios';
 
 const Profile = () => {
   const { logout, user } = useAuth();
@@ -67,9 +68,10 @@ const Profile = () => {
               </NavLink>
               <NavLink
                 to={'/'}
-                onClick={() => {
+                onClick={async () => {
                   logout();
                   toast.success('Logout Successfully');
+                  await axios.post(`/token/delete`);
                   setIsAsideOpen(false);
                 }}
                 className='mb-2 cursor-pointer p-2 px-3 text-lg font-semibold hover:bg-neutral-100'

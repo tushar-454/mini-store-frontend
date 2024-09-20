@@ -3,10 +3,10 @@ interface TotalSummaryProps {
   method: string;
 }
 
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import useUserInfo from '../../Hook/useUserInfo';
 import { CartItemType } from '../../pages/ProductDetails';
+import axios from '../../utils/axios';
 
 const TotalSummary: React.FC<TotalSummaryProps> = ({
   setCurSummary,
@@ -35,19 +35,19 @@ const TotalSummary: React.FC<TotalSummaryProps> = ({
         orderItem: carts,
       };
       if (method === 'payOnline') {
-        const res = await axios.post(
-          `${import.meta.env.VITE_baseurl}/payment/create-payment`,
-          { ...newOrder, method: 'payOnline' },
-        );
+        const res = await axios.post(`/payment/create-payment`, {
+          ...newOrder,
+          method: 'payOnline',
+        });
         if (res) {
           window.location.href = res.data.paymentUrl;
         }
       }
       if (method === 'CashOnDelivery') {
-        const res = await axios.post(
-          `${import.meta.env.VITE_baseurl}/users/order`,
-          { ...newOrder, method: 'cod' },
-        );
+        const res = await axios.post(`/users/order`, {
+          ...newOrder,
+          method: 'cod',
+        });
         if (res.data.status === 201) {
           localStorage.removeItem('carts');
           setCurSummary('confirm');

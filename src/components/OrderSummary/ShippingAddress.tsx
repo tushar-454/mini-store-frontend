@@ -3,10 +3,10 @@ interface shippingAddressProps {
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import useUserInfo from '../../Hook/useUserInfo';
+import axios from '../../utils/axios';
 
 const ShippingAddress: React.FC<shippingAddressProps> = ({
   isEdit,
@@ -36,10 +36,12 @@ const ShippingAddress: React.FC<shippingAddressProps> = ({
     if (!isEdit) return toast.error('All ready Save your address');
     try {
       const { address, area, city, phone } = editUserInfo;
-      const res = await axios.put(
-        `${import.meta.env.VITE_baseurl}/users/one/${userInfo?.data._id}`,
-        { phone, address, city, area },
-      );
+      const res = await axios.put(`/users/one/${userInfo?.data._id}`, {
+        phone,
+        address,
+        city,
+        area,
+      });
       if (res.status === 200) {
         toast.success('Shipping address updated successfully');
         setIsEdit(false);

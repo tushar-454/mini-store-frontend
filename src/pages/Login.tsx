@@ -5,6 +5,7 @@ import Logo from '../components/header/Logo';
 import Container from '../components/shared/Container';
 import LoginWithSocial from '../components/shared/LoginWithSocial';
 import useAuth from '../Hook/useAuth';
+import axios from '../utils/axios';
 
 type LoginType = {
   email: string;
@@ -31,6 +32,7 @@ const Login = () => {
       setLoading(true);
       const res = await loginWithEmailPass(email, password);
       if (res && 'user' in res) {
+        await axios.post(`/token/create`, { email });
         toast.success('Login Successfully');
         navigate(state || '/');
       }

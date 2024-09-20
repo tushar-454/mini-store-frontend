@@ -1,13 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 const useAdminAllUsers = () => {
   const { data, isError, isLoading, refetch } = useQuery({
     queryKey: ['adminAllUsers'],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/admin/users`,
-      );
+      const res = await axios.get(`/admin/users`);
       return res.data;
     },
   });

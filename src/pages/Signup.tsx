@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,6 +5,7 @@ import Logo from '../components/header/Logo';
 import Container from '../components/shared/Container';
 import LoginWithSocial from '../components/shared/LoginWithSocial';
 import useAuth from '../Hook/useAuth';
+import axios from '../utils/axios';
 
 type SignupType = {
   fullName: string;
@@ -48,9 +48,10 @@ const Signup = () => {
         phone,
       };
       // craete a new user save it to the database
-      await axios.post(`${import.meta.env.VITE_baseurl}/users/one`, newUser);
+      await axios.post(`/users/one`, newUser);
       const res = await signupWithEmailPass(email, password);
       if (res && 'user' in res) {
+        await axios.post(`/token/create`, { email });
         await updateUserProfile(fullName, '');
         toast.success('Signup Successfully');
         navigate('/');

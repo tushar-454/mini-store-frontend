@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import useUserInfo from '../../Hook/useUserInfo';
+import axios from '../../utils/axios';
 
 const Shipping = () => {
   const { userInfo, isUserLoad, isUserError } = useUserInfo();
@@ -20,10 +20,12 @@ const Shipping = () => {
       toast.error('All fields are required');
       return;
     }
-    const res = await axios.put(
-      `${import.meta.env.VITE_baseurl}/users/one/${userInfo?.data._id}`,
-      { phone, address, city, area },
-    );
+    const res = await axios.put(`/users/one/${userInfo?.data._id}`, {
+      phone,
+      address,
+      city,
+      area,
+    });
     if (res.status === 200) {
       toast.success('Shipping address updated successfully');
       setEditable(false);

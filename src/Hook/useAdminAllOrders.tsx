@@ -23,15 +23,13 @@ export type OrderType = {
 };
 
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 const useAdminAllOrders = () => {
   const { data, isError, isLoading, refetch } = useQuery({
     queryKey: ['adminAllOrders'],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/admin/orders`,
-      );
+      const res = await axios.get(`/admin/orders`);
       return res.data;
     },
   });

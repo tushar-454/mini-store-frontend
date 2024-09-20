@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { CiEdit } from 'react-icons/ci';
@@ -6,6 +5,7 @@ import { FcDeleteDatabase } from 'react-icons/fc';
 import useAdminAllProducts, {
   ProductItemType,
 } from '../../Hook/useAdminAllProducts';
+import axios from '../../utils/axios';
 import Loading from '../shared/Loading';
 import ProductsDashboardAddForm from './ProductsDashboardAddForm';
 import ProductsDashboardEditForm from './ProductsDashboardEditForm';
@@ -43,9 +43,7 @@ const ProductsDashboard = () => {
     try {
       const rusure = window.confirm('Are you sure to delete the product.');
       if (!rusure) return;
-      const res = await axios.delete(
-        `${import.meta.env.VITE_baseurl}/admin/product/${id}`,
-      );
+      const res = await axios.delete(`/admin/product/${id}`);
       if (res.data.status === 200) {
         toast.success('Product delete successfully');
         refetch();
@@ -59,9 +57,7 @@ const ProductsDashboard = () => {
   // handle to go to the product update from
   const updateProductForm = async (id: string) => {
     try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/admin/product/${id}`,
-      );
+      const res = await axios.get(`/admin/product/${id}`);
       if (res.data.status === 200) {
         setProduct(res.data.data);
         setShowUpdateForm(true);

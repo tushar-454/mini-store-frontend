@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import axios from '../utils/axios';
 import useUserInfo from './useUserInfo';
 
 const useOrdersUsers = () => {
@@ -14,9 +14,7 @@ const useOrdersUsers = () => {
   } = useQuery({
     queryKey: ['userOrders'],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/users/orders?userId=${userId}`,
-      );
+      const res = await axios.get(`/users/orders?userId=${userId}`);
       return res.data;
     },
   });

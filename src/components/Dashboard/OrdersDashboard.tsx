@@ -1,9 +1,9 @@
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import useAdminAllOrders, {
   OrderItemType,
   OrderType,
 } from '../../Hook/useAdminAllOrders';
+import axios from '../../utils/axios';
 import Loading from '../shared/Loading';
 
 const OrdersDashboard = () => {
@@ -12,10 +12,9 @@ const OrdersDashboard = () => {
   // handle user delete
   const handleOrderUpdate = async (id: string, status: string) => {
     try {
-      const res = await axios.patch(
-        `${import.meta.env.VITE_baseurl}/admin/order/${id}`,
-        { status: status.toLowerCase() },
-      );
+      const res = await axios.patch(`/admin/order/${id}`, {
+        status: status.toLowerCase(),
+      });
       if (res.status === 200) {
         toast.success('Status update successfully');
         refetch();

@@ -21,9 +21,9 @@ type Order = {
   updatedAt: Date;
 };
 
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import useOrdersUsers from '../../Hook/useOrdersUsers';
+import axios from '../../utils/axios';
 import Loading from '../shared/Loading';
 
 const Order = () => {
@@ -49,10 +49,9 @@ const Order = () => {
           : 'Are you sure to retrived this order?',
       );
       if (!rusure) return;
-      await axios.patch(
-        `${import.meta.env.VITE_baseurl}/users/order/cancel/${order._id}`,
-        { status: e.target.value },
-      );
+      await axios.patch(`/users/order/cancel/${order._id}`, {
+        status: e.target.value,
+      });
       if (e.target.value === 'cancelled') {
         toast.success('Order Cancelled');
         refetchUserOrders();

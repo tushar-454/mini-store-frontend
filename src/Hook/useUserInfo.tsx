@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from '../utils/axios';
 import useAuth from './useAuth';
 
 const useUserInfo = () => {
@@ -11,9 +11,7 @@ const useUserInfo = () => {
   } = useQuery({
     queryKey: ['userInfo'],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/users/one/${user?.email || ''}`,
-      );
+      const res = await axios.get(`/users/one/${user?.email || ''}`);
       return res.data;
     },
   });

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 const useAllProducts = (
   fields: string,
@@ -16,7 +16,7 @@ const useAllProducts = (
     queryKey: ['all-products'],
     queryFn: async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/users/products/field${fields && `?key=${fields}`}${category && `&category=${category}`}${minPrice ? `&minPrice=${minPrice}` : `&minPrice=0`}${maxPrice && `&maxPrice=${maxPrice}`}`,
+        `/users/products/field${fields && `?key=${fields}`}${category && `&category=${category}`}${minPrice ? `&minPrice=${minPrice}` : `&minPrice=0`}${maxPrice && `&maxPrice=${maxPrice}`}`,
       );
       return res.data;
     },

@@ -17,15 +17,13 @@ export type ProductItemType = {
 };
 
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 const useAdminAllProducts = () => {
   const { data, isError, isLoading, refetch } = useQuery({
     queryKey: ['adminAllProducts'],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/admin/products`,
-      );
+      const res = await axios.get(`/admin/products`);
       return res.data;
     },
   });

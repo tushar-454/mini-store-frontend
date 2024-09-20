@@ -6,13 +6,13 @@ const Success = () => {
   const params = useParams();
   useEffect(() => {
     const { transactionId } = params;
-    fetch(
-      `${import.meta.env.VITE_baseurl}/payment/check-payment/${transactionId}`,
-    ).then((res) => {
+    fetch(`/payment/check-payment/${transactionId}`).then((res) => {
       if (res.status === 200) {
         localStorage.removeItem('carts');
       }
-      window.location.href = '/';
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 2000);
     });
   }, [params]);
   return (

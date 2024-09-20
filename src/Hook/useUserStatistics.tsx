@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from '../utils/axios';
 import useUserInfo from './useUserInfo';
 
 const useUserStatistics = () => {
@@ -7,9 +7,7 @@ const useUserStatistics = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['userStatistics', userInfo?.id],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_baseurl}/users/statistic/${userInfo?.data._id}`,
-      );
+      const res = await axios.get(`/users/statistic/${userInfo?.data._id}`);
       return res.data;
     },
   });

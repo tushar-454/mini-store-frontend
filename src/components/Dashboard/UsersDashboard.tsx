@@ -6,10 +6,10 @@ export type userType = {
   role: string;
 };
 
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FcDeleteDatabase } from 'react-icons/fc';
 import useAdminAllUsers from '../../Hook/useAdminAllUsers';
+import axios from '../../utils/axios';
 import Loading from '../shared/Loading';
 
 const UsersDashboard = () => {
@@ -21,9 +21,7 @@ const UsersDashboard = () => {
     try {
       const rusure = window.confirm('Are you sure you want to delete?');
       if (!rusure) return;
-      const res = await axios.delete(
-        `${import.meta.env.VITE_baseurl}/admin/user/${email}`,
-      );
+      const res = await axios.delete(`/admin/user/${email}`);
       if (res.status === 200) {
         toast.success('User deleted successfully');
         refetch();

@@ -5,10 +5,10 @@ interface ProductsDashboardEditFormProp {
   refetch: () => Promise<QueryObserverResult<ProductItemType>>;
 }
 import { QueryObserverResult } from '@tanstack/react-query';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { RxCross2 } from 'react-icons/rx';
 import { ProductItemType } from '../../Hook/useAdminAllProducts';
+import axios from '../../utils/axios';
 
 const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
   setShowAddForm,
@@ -96,10 +96,7 @@ const ProductsDashboardEditForm: React.FC<ProductsDashboardEditFormProp> = ({
         productDetails,
         type,
       };
-      const res = await axios.post(
-        `${import.meta.env.VITE_baseurl}/admin/products`,
-        newProduct,
-      );
+      const res = await axios.post(`/admin/products`, newProduct);
       if (res.data.status === 201) {
         toast.success('Product added successfully');
         setShowAddForm(false);
