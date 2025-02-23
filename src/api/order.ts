@@ -34,6 +34,7 @@ export type OrderData = {
   coupon_discount: number;
   tracking_id: number;
   instruction: null | string;
+  transactionId: string;
   isReviewed: boolean;
   createdAt: string;
   updatedAt: string;
@@ -67,6 +68,7 @@ type CreateOrder = {
   discount: number;
   type: string;
   instruction: string;
+  transactionId: string;
 };
 
 const order = createApi({

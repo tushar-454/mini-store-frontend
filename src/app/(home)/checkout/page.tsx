@@ -5,6 +5,7 @@ import { CustomInstruction } from '@/components/checkout/custom_instruction';
 import { PaymentInformation } from '@/components/checkout/payment_information';
 import { ProductsTable } from '@/components/checkout/products_table';
 import { ShippingAddress } from '@/components/checkout/shipping_address';
+import { TransactionId } from '@/components/checkout/transaction_id';
 import { Container } from '@/components/shared/container';
 import { Button } from '@/components/ui/button';
 import {
@@ -44,11 +45,28 @@ const Checkout = () => {
   const [loading, setLoading] = useState(false);
 
   const handleOrder = async () => {
-    const { address, district, division, email, line_items, name, phone, sub_district } = order;
+    const {
+      address,
+      district,
+      division,
+      email,
+      line_items,
+      name,
+      phone,
+      sub_district,
+      transactionId,
+    } = order;
     if (!name || !email || !phone || !division || !district || !sub_district || !address) {
       toast({
         title: 'Error',
         description: 'Please fill all the fields & save the address',
+      });
+      return;
+    }
+    if (!transactionId) {
+      toast({
+        title: 'Error',
+        description: 'Please fill the transaction ID',
       });
       return;
     }
@@ -112,6 +130,7 @@ const Checkout = () => {
               <CustomInstruction />
               <CouponCode />
               <ShippingAddress />
+              <TransactionId />
               <PaymentInformation />
               <Button
                 variant={'default'}

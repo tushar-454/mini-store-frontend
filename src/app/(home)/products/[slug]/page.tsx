@@ -28,7 +28,7 @@ const CakeDetails = () => {
   }, [cake]);
 
   return (
-    <main>
+    <main className='min-h-screen'>
       <Container>
         {isLoading && <CakeDetailsSkeleton />}
         {isError && <CakeError />}

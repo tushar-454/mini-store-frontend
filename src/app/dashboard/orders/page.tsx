@@ -26,7 +26,7 @@ import { useEffect } from 'react';
 
 const tableHeadData = [
   'No',
-  'Tracking ID',
+  'Transaction ID',
   'Customer Name',
   'Phone',
   'Email',
@@ -103,7 +103,7 @@ const Orders = () => {
                   className={`hover:bg-gray-200 ${index % 2 === 0 ? 'bg-gray-100' : ''}`}
                 >
                   <TableCell className='whitespace-nowrap p-4'>{++index}</TableCell>
-                  <TableCell className='whitespace-nowrap p-4'>{order.tracking_id}</TableCell>
+                  <TableCell className='whitespace-nowrap p-4'>{order.transactionId}</TableCell>
                   <TableCell className='whitespace-nowrap p-4'>{order.name}</TableCell>
                   <TableCell className='whitespace-nowrap p-4'>
                     <a href={`tel:${order.phone}`}>{order.phone}</a>
@@ -131,7 +131,6 @@ const Orders = () => {
                         <SelectItem value='cancelled'>Cancelled</SelectItem>
                         <SelectItem value='pending'>Pending</SelectItem>
                         <SelectItem value='confirm'>Confirm</SelectItem>
-                        <SelectItem value='cooking'>Cooking</SelectItem>
                         <SelectItem value='shipped'>Shipped</SelectItem>
                         <SelectItem value='delivered'>Delivered</SelectItem>
                       </SelectContent>

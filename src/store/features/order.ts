@@ -19,6 +19,7 @@ type TInitialState = {
   discount: number;
   type: 'flat' | 'percentage';
   instruction: string;
+  transactionId: string;
 };
 
 const initialState: TInitialState = {
@@ -34,6 +35,7 @@ const initialState: TInitialState = {
   discount: 0,
   type: 'flat',
   instruction: '',
+  transactionId: '',
 };
 
 const orderReducer = createSlice({
@@ -79,6 +81,9 @@ const orderReducer = createSlice({
     updateOrderInstruction: (state, action) => {
       state.instruction = action.payload;
     },
+    updateOrderTransactionId: (state, action) => {
+      state.transactionId = action.payload;
+    },
   },
 });
 
@@ -90,5 +95,6 @@ export const {
   clearOrder,
   clearAddress,
   updateOrderInstruction,
+  updateOrderTransactionId,
 } = orderReducer.actions;
 export default orderReducer.reducer;

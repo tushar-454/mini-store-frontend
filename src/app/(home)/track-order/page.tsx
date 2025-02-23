@@ -17,6 +17,7 @@ import {
 import { TRACKING_STATUS } from '@/constant';
 import { capitalizeFirstLetter, formatDate } from '@/lib/utils';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { z } from 'zod';
 
@@ -114,7 +115,9 @@ const TrackOrder = () => {
                     <a href={`tel:${order.phone}`}>{order.phone}</a>
                   </TypographyP>
 
-                  <div className='mt-4 flex flex-wrap justify-between gap-5 rounded-lg border-l-4 border-primary bg-green-50 p-4'>
+                  <div
+                    className={`mt-4 flex flex-wrap justify-between gap-5 rounded-lg border-l-4 ${order.status === 'cancelled' ? 'border-red-500' : 'border-primary'} ${order.status === 'cancelled' ? 'bg-red-50' : 'bg-green-50'} p-4`}
+                  >
                     <div>
                       <TypographyH4 className='text-md font-semibold text-gray-700'>
                         Current Status:
@@ -133,18 +136,20 @@ const TrackOrder = () => {
 
                   <div className='mt-6'>
                     <TypographyH4 className='text-gray-700'>Tracking Progress:</TypographyH4>
-                    <div className='relative mt-2 h-3 w-full rounded-full bg-gray-300 shadow-inner'>
+                    <div
+                      className={`relative mt-2 h-3 w-full rounded-full ${order.status === 'cancelled' ? 'bg-red-500' : 'bg-gray-300'} shadow-inner`}
+                    >
                       <div
                         className={`absolute h-3 rounded-full bg-primary ${
-                          order.status === 'pending'
-                            ? 'w-[calc(20%-3rem)]'
-                            : order.status === 'confirm'
-                              ? 'w-[calc(40%-3rem)]'
-                              : order.status === 'cooking'
-                                ? 'w-[calc(60%-3rem)]'
+                          order.status === 'cancelled'
+                            ? 'w-[0%]'
+                            : order.status === 'pending'
+                              ? 'w-[2%]'
+                              : order.status === 'confirm'
+                                ? 'w-[calc(25%+3rem)]'
                                 : order.status === 'shipped'
-                                  ? 'w-[calc(80%-3rem)]'
-                                  : 'w-[calc(100%)]'
+                                  ? 'w-[calc(50%+3rem)]'
+                                  : 'w-[100%]'
                         }`}
                       ></div>
                     </div>
@@ -165,9 +170,10 @@ const TrackOrder = () => {
                       </TypographyH4>
                       <div>
                         {order?.line_items?.map((item) => (
-                          <div
+                          <Link
+                            href={`/products/${item.name.split(' ').join('-')}`}
                             key={item._id}
-                            className='mt-4 rounded-lg border bg-white p-4 shadow'
+                            className='mt-4 block rounded-lg border bg-white p-4 shadow'
                           >
                             <div className='flex items-center gap-4'>
                               <Image
@@ -183,7 +189,7 @@ const TrackOrder = () => {
                                   Quantity: <span className='font-semibold'>{item.quantity}</span>
                                 </TypographyP>
                                 <TypographyP className='text-sm text-gray-600'>
-                                  Quantity: <span className='font-semibold'>{item.variant}</span>
+                                  Variant: <span className='font-semibold'>{item.variant}</span>
                                 </TypographyP>
                                 <TypographySmall className='text-gray-600'>
                                   Total Price:{' '}
@@ -193,7 +199,7 @@ const TrackOrder = () => {
                                 </TypographySmall>
                               </div>
                             </div>
-                          </div>
+                          </Link>
                         ))}
                       </div>
                     </div>

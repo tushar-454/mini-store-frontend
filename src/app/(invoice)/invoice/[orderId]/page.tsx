@@ -131,11 +131,11 @@ const Invoice = () => {
                       <p className='italic'>{item.variant}</p>
                       <p className='text-sm'>Quantity: {item.quantity}</p>
                     </td>
-                    <td className='border p-2'>
+                    <td className='whitespace-nowrap border p-2'>
                       <Taka size={16} />
                       {(item.price - item.price * (item.discount / 100)).toFixed(2)}
                     </td>
-                    <td className='border p-2'>
+                    <td className='whitespace-nowrap border p-2'>
                       <Taka size={16} />
                       {(item.quantity * (item.price - item.price * (item.discount / 100))).toFixed(
                         2,
@@ -151,7 +151,12 @@ const Invoice = () => {
               <TypographyP>
                 Sub Total:{' '}
                 {order.line_items
-                  .reduce((acc, cur) => acc + cur.quantity * cur.price, 0)
+                  .reduce((acc, cur) => {
+                    const curDiscount = cur.price * cur.quantity * (cur.discount / 100);
+                    const curPrice = cur.price * cur.quantity;
+
+                    return acc + curPrice - curDiscount;
+                  }, 0)
                   .toFixed(2)}
               </TypographyP>
               <TypographyP>Shipping: {order.shipping}</TypographyP>
