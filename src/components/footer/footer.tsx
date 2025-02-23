@@ -31,28 +31,25 @@ const Footer = () => {
                 className='size-16 rounded-full'
               />
               <TypographyH4 className='flex flex-col'>
-                <span className='text-white'>Adnan Homemade </span>
-                <span className='text-white'>Cake Shop</span>
+                <span className='text-white'>Mini Store </span>
               </TypographyH4>
             </Link>
             <p className='mt-[18px] text-[15px] font-normal text-white/[80%]'>
-              At Adnan Homemade Cake Shop, we are dedicated to delivering healthy and delicious
-              cakes right to your doorstep. Our focus is on using the finest ingredients to ensure
-              the best quality and taste. We believe in making our clients happy with every bite,
-              providing a delightful experience with our homemade cakes.
+              Mini Store is a platform where you can buy and sell products. We provide a wide range
+              of products to our customers.
             </p>
             <div className='mt-[18px] flex gap-4'>
               <a
                 className='transition-all hover:scale-110'
                 target='_blank'
-                href='https://www.facebook.com/profile.php?id=61568352154994'
+                href='https://www.facebook.com/share/1BHqf5SGju'
               >
                 <Facebook size={25} className='text-white' />
               </a>
               <a
                 className='transition-all hover:scale-110'
                 target='_blank'
-                href='https://wa.me/+8801817967410'
+                href='https://wa.me/+8801617711588'
               >
                 <Phone size={25} className='text-white' />
               </a>
@@ -73,10 +70,10 @@ const Footer = () => {
               </div>
               <div className='ml-[18px]'>
                 <a
-                  href='tel:+8801817967410'
+                  href='tel:+8801617711588'
                   className='font-Inter text-[14px] font-medium text-white'
                 >
-                  +8801817-967410
+                  +8801617-711588
                 </a>
                 <p className='font-Inter text-[12px] font-medium text-white'>Support Number</p>
               </div>
@@ -87,10 +84,10 @@ const Footer = () => {
               </div>
               <div className='ml-[18px]'>
                 <a
-                  href='mailto:mohammad1112024adnan@gmail.com'
+                  href='mailto:ministore@gmail.com'
                   className='font-Inter text-[14px] font-medium text-[#fff]'
                 >
-                  mohammad1112024adnan@gmail.com
+                  ministore@gmail.com
                 </a>
                 <p className='font-Inter text-[12px] font-medium text-[#fff]'>Support Email</p>
               </div>
@@ -104,7 +101,7 @@ const Footer = () => {
                   href='mailto:help@lorem.com'
                   className='font-Inter text-[14px] font-medium text-[#fff]'
                 >
-                  3515 - Meghna, Comilla, Bangladesh
+                  Mohammadpur Dhaka Bangladesh
                 </a>
                 <p className='font-Inter text-[12px] font-medium text-white'>Address</p>
               </div>
@@ -116,7 +113,7 @@ const Footer = () => {
               <div id='fb-root'></div>
               <div
                 className='fb-page'
-                data-href='https://www.facebook.com/profile.php?id=61568352154994'
+                data-href='https://www.facebook.com/profile.php?id=100085669006970'
                 data-tabs=''
                 data-width=''
                 data-height=''
@@ -126,12 +123,10 @@ const Footer = () => {
                 data-show-facepile='false'
               >
                 <blockquote
-                  cite='https://www.facebook.com/profile.php?id=61568352154994'
+                  cite='https://www.facebook.com/profile.php'
                   className='fb-xfbml-parse-ignore'
                 >
-                  <a href='https://www.facebook.com/profile.php?id=61568352154994'>
-                    Adnan Homemade Cake-আদনান হোমমেড কেক{' '}
-                  </a>
+                  <a href='https://www.facebook.com/profile.php'>Mini Store </a>
                 </blockquote>
               </div>
             </div>
@@ -141,12 +136,12 @@ const Footer = () => {
       <hr className='mt-[30px] text-white' />
       <div className='flex items-center justify-center py-6'>
         <TypographyMuted className='text-center'>
-          © Copyright 2024 , All Rights Reserved by Adnan Homemade Cake Shop
+          © Copyright 2024 , All Rights Reserved by Mini Store
         </TypographyMuted>
       </div>
       {/* float whatsapp icon */}
       <a
-        href='https://wa.me/+8801817967410'
+        href='https://wa.me/+8801617711588'
         className='fixed bottom-5 right-5 z-50 animate-bounce cursor-pointer rounded-full shadow-2xl'
         target='_blank'
       >

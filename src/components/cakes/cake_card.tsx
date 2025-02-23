@@ -14,7 +14,7 @@ const CakeCard = ({ product }: { product: TProduct }) => {
       key={product._id}
       className='flex h-full flex-col rounded-2xl border bg-white p-2 shadow-md'
     >
-      <Link href={`/cakes/${product.slug}`}>
+      <Link href={`/products/${product.slug}`}>
         <Image
           src={product.images[0]}
           alt={product.name}
@@ -62,7 +62,7 @@ const CakeCard = ({ product }: { product: TProduct }) => {
               {product.discount}% Off
             </Badge>
           </span>
-          <Link href={`/cakes/${product.slug}`}>
+          <Link href={`/products/${product.slug}`}>
             <Button variant={'secondary'}>View Details</Button>
           </Link>
         </div>

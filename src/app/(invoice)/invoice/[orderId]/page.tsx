@@ -26,7 +26,7 @@ const Invoice = () => {
     const pathParts = path.split('/');
     const invoiceId = pathParts.pop();
     if (Number(invoiceId)) {
-      document.title = `Invoice - ${invoiceId} - Adnan Homemade Cake`;
+      document.title = `Invoice - ${invoiceId} - Mini Store`;
       setInvoiceId(Number(invoiceId));
     }
   }, []);
@@ -64,8 +64,8 @@ const Invoice = () => {
                 <Image src={assets.logo} alt='Logo' width={60} height={60} className='rounded-md' />
               </div>
               <div>
-                <TypographyH4>Adnan Homemade Cake</TypographyH4>
-                <TypographyP>Meghna Comilla Bangladesh</TypographyP>
+                <TypographyH4>Mini Store</TypographyH4>
+                <TypographyP>Mohammadpur Dhaka Bangladesh</TypographyP>
               </div>
             </div>
             <span className='mb-6 block w-full border-b' />

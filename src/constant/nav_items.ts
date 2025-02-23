@@ -22,8 +22,8 @@ export type TNavItem = {
 
 const nav_items: TNavItem[] = [
   {
-    name: 'Cakes',
-    link: '/cakes',
+    name: 'Products',
+    link: '/products',
     icon: CakeIcon,
   },
   {
