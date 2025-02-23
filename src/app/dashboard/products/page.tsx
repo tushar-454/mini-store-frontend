@@ -139,7 +139,7 @@ const Products = () => {
                   <TableRow key={index}>
                     <TableCell className='whitespace-nowrap p-4'>{index + 1}</TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
-                      <Link href={`/cakes/${cake.slug}`} className='hover:underline'>
+                      <Link href={`/products/${cake.slug}`} className='hover:underline'>
                         {cake.name}
                       </Link>
                     </TableCell>

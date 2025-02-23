@@ -102,7 +102,7 @@ const ProductCreate = () => {
           setLoading(false);
           setImages([]);
           revalidateCakes();
-          router.push('/cakes/' + data.data.slug);
+          router.push('/products/' + data.data.slug);
         }
       }
     } catch (error) {
@@ -166,7 +166,12 @@ const ProductCreate = () => {
             )}
           </FieldArray>
           <div className='flex items-center gap-2 pt-5'>
-            <SubmitButton width='auto' label='Create Cake' loading={loading} disabled={loading} />
+            <SubmitButton
+              width='auto'
+              label='Create Product'
+              loading={loading}
+              disabled={loading}
+            />
             <ResetButton
               cFunc={() => {
                 setImageObjUrls([]);

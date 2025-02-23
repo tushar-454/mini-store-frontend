@@ -14,13 +14,15 @@ const FeaturedCard = ({ product }: { product: TProduct }) => {
       key={product._id}
       className='flex h-full flex-col rounded-2xl border bg-white p-2 shadow-md'
     >
-      <Image
-        src={product.images[0] || 'https://via.placeholder.com/100'}
-        alt={product.name}
-        width={250}
-        height={250}
-        className='h-[320px] w-full rounded-lg sm:h-[350px] md:h-[280px] lg:h-[350px]'
-      />
+      <Link href={`/products/${product.slug}`}>
+        <Image
+          src={product.images[0] || 'https://via.placeholder.com/100'}
+          alt={product.name}
+          width={250}
+          height={250}
+          className='h-[320px] w-full rounded-lg sm:h-[350px] md:h-[280px] lg:h-[350px]'
+        />
+      </Link>
       <div className='flex flex-grow flex-col space-y-2 bg-white pt-2'>
         <div className='flex-grow'>
           <TypographyH4>{product.name}</TypographyH4>
@@ -60,7 +62,7 @@ const FeaturedCard = ({ product }: { product: TProduct }) => {
               {product.discount}% Off
             </Badge>
           </span>
-          <Link href={`/cakes/${product.slug}`}>
+          <Link href={`/products/${product.slug}`}>
             <Button variant={'secondary'}>View Details</Button>
           </Link>
         </div>
