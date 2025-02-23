@@ -41,11 +41,14 @@ const reviews = createApi({
     allReviews: builder.query<TReviewResponse, void>({
       query: () => '/review/?is_deleted=all',
     }),
-    createReview: builder.mutation<TReviewResponse, { orderId: string; comment: string }>({
-      query: ({ orderId, comment }) => ({
+    createReview: builder.mutation<
+      TReviewResponse,
+      { orderId: string; comment: string; rating: number }
+    >({
+      query: ({ orderId, comment, rating }) => ({
         url: '/review/' + orderId,
         method: 'POST',
-        body: { comment },
+        body: { comment, rating },
       }),
     }),
     updateReview: builder.mutation<TReviewResponse, Partial<TReview>>({

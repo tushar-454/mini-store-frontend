@@ -14,6 +14,7 @@ import React, { useRef, useState } from 'react';
 import { ResetButton } from '../generic_form/fields/ResetButton';
 import { SubmitButton } from '../generic_form/fields/SubmitButton';
 import { TextAreaField } from '../generic_form/fields/TextAreaField';
+import { TextField } from '../generic_form/fields/TextField';
 import { GenericForm, GenericFormRef } from '../generic_form/generic_form';
 
 type CreateReviewProps = {
@@ -24,6 +25,7 @@ type CreateReviewProps = {
 };
 
 const initialValues: FormType = {
+  rating: 0,
   comment: '',
 };
 
@@ -34,10 +36,10 @@ const CreateReview = ({ orderId, showModal, setShowModal, refetch }: CreateRevie
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (formData: FormType | React.FormEvent<HTMLFormElement>) => {
-    const { comment } = formData as FormType;
+    const { comment, rating } = formData as FormType;
     try {
       setLoading(true);
-      const result = await createReview({ orderId, comment });
+      const result = await createReview({ orderId, comment, rating });
       if ('error' in result) {
         const error = result.error as TReviewError;
         if (error.status === 403) {
@@ -91,6 +93,13 @@ const CreateReview = ({ orderId, showModal, setShowModal, refetch }: CreateRevie
               ref={formRef}
             >
               <div className='space-y-2'>
+                <TextField<FormType>
+                  name='rating'
+                  label='Rating'
+                  placeholder='4.5'
+                  className='w-full'
+                  required
+                />
                 <TextAreaField<FormType>
                   name='comment'
                   label='Comment'
