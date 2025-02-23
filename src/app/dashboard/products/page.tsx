@@ -27,7 +27,7 @@ import {
 } from '@/components/ui/table';
 import { TypographyH4, TypographyP } from '@/components/ui/typography';
 import { useToast } from '@/hooks/use-toast';
-import { revalidateCakes } from '@/lib/actions';
+import { revalidateCakes, revalidateFeaturedCakes } from '@/lib/actions';
 import { removeLocalStorage } from '@/lib/utils';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
@@ -77,6 +77,7 @@ const Products = () => {
           return;
         }
       }
+      revalidateFeaturedCakes();
     } catch (error) {
       console.log('error in handleUpdateProduct', error);
     }

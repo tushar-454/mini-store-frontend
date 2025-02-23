@@ -85,7 +85,7 @@ const Header = () => {
           <nav className='flex items-center justify-between'>
             <Link href='/'>
               <Image
-                src={assets.logo}
+                src={assets.logo1}
                 alt='logo'
                 width={100}
                 height={100}

@@ -15,7 +15,7 @@ const Featured = async () => {
   // Fetch top cakes
   try {
     const res: Response = await fetch(`${BASE_URL}/product?is_featured=true`, {
-      next: { revalidate: 600 },
+      next: { revalidate: 600, tags: ['featuredcakes'] },
     });
 
     if (!res.ok) {

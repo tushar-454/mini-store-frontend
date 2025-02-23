@@ -61,7 +61,13 @@ const Invoice = () => {
             <div className='invoice-header mb-8 text-center'>
               <div className='flex flex-col items-center gap-3'>
                 <h1 className='text-3xl font-bold'>Invoice</h1>
-                <Image src={assets.logo} alt='Logo' width={60} height={60} className='rounded-md' />
+                <Image
+                  src={assets.logo1}
+                  alt='Logo'
+                  width={60}
+                  height={60}
+                  className='rounded-md'
+                />
               </div>
               <div>
                 <TypographyH4>Mini Store</TypographyH4>

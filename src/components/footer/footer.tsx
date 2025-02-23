@@ -24,7 +24,7 @@ const Footer = () => {
           <div className='md:w-[316px]'>
             <Link href='/' className='flex items-center gap-2'>
               <Image
-                src={assets.logo}
+                src={assets.logo1}
                 alt='logo'
                 width={50}
                 height={50}
