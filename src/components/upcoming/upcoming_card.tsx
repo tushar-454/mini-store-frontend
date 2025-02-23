@@ -18,7 +18,7 @@ const UpcomingCard = ({ product }: { product: TProduct }) => {
         alt={product.name}
         width={250}
         height={250}
-        className='h-[320px] w-full rounded-lg sm:h-[350px] md:h-[280px] lg:h-[350px]'
+        className='h-[320px] w-full rounded-lg object-cover sm:h-[350px] md:h-[280px] lg:h-[350px]'
       />
       <div className='flex flex-grow flex-col space-y-2 bg-white pt-2'>
         <div className='flex-grow'>

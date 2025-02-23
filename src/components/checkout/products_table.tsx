@@ -59,8 +59,8 @@ const ProductsTable = () => {
   }, [carts, dispatch]);
 
   useEffect(() => {
-    if (order.division === '30') {
-      setShipping(80);
+    if (order.division === '30' && order.district === '26') {
+      setShipping(70);
     } else {
       setShipping(120);
     }

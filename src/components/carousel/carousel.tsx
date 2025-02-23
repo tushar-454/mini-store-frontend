@@ -48,7 +48,7 @@ const Carousel = () => {
         {/* Carousel wrapper  */}
         <div className='my-8'>
           <AsCarousel opts={{ align: 'start', loop: true }} plugins={[plugin.current]}>
-            <CarouselContent className='h-40 sm:h-[385px] 2xl:h-[750px]'>
+            <CarouselContent>
               {carousels.map((carousel) => (
                 <AsCarouselItem key={carousel._id}>
                   <CarouselItem carousel={carousel} />
