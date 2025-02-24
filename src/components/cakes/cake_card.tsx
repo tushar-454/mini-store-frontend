@@ -21,6 +21,8 @@ const CakeCard = ({ product }: { product: TProduct }) => {
           width={500}
           height={500}
           className='h-[250px] w-full rounded-lg object-cover md:h-[280px] lg:h-[350px]'
+          quality={85}
+          loading='lazy'
         />
       </Link>
       <div className='flex flex-grow flex-col space-y-2 bg-white pt-2'>

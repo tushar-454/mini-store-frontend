@@ -18,6 +18,8 @@ const CakesImages = ({ images, selectedImage, setSelectedImage }: CakeImagesProp
           width={1080}
           height={720}
           className='mb-4 h-full w-full rounded-lg object-cover shadow-md hover:object-contain'
+          quality={85}
+          loading='lazy'
         />
       </div>
       <div className='flex justify-center gap-4 overflow-x-auto py-4'>
@@ -28,6 +30,8 @@ const CakesImages = ({ images, selectedImage, setSelectedImage }: CakeImagesProp
             alt={image}
             width={200}
             height={200}
+            quality={60}
+            loading='lazy'
             className={`size-16 cursor-pointer rounded-md object-cover transition duration-300 hover:opacity-100 sm:size-20 ${image === selectedImage ? 'opacity-100' : 'opacity-60'}`}
             onClick={() => setSelectedImage(image)}
           />

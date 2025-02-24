@@ -136,7 +136,15 @@ const Orders = () => {
                       </SelectContent>
                     </Select>
                   </TableCell>
-                  <TableCell className='whitespace-nowrap p-4'>{order.tracking_id}</TableCell>
+                  <TableCell className='whitespace-nowrap p-4'>
+                    <a
+                      href={`/track-order/${order.tracking_id}`}
+                      target='_blank'
+                      className='hover:underline'
+                    >
+                      {order.tracking_id}
+                    </a>
+                  </TableCell>
                   <TableCell className='whitespace-nowrap p-4'>
                     <a href={`/invoice/${order.tracking_id}`} target='_blank'>
                       <Printer className='cursor-pointer' />

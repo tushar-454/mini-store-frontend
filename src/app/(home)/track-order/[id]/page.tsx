@@ -18,7 +18,7 @@ import { TRACKING_STATUS } from '@/constant';
 import { capitalizeFirstLetter, formatDate } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -32,6 +32,7 @@ export type FormType = z.infer<typeof schema>;
 const TrackOrder = () => {
   const [showModal, setShowModal] = useState(false);
   const [trackingId, setTrackingId] = useState(0);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const {
     data: { data: order } = {},
     isLoading,
@@ -49,6 +50,15 @@ const TrackOrder = () => {
       refetch();
     }
   };
+
+  useEffect(() => {
+    const pathname = window.location.pathname;
+    const id = pathname.split('/').pop();
+    if (id) {
+      formRef.current?.setValue('trackingId', id as string);
+      buttonRef.current?.click();
+    }
+  }, []);
 
   return (
     <>
@@ -74,7 +84,7 @@ const TrackOrder = () => {
                     className='w-full sm:w-[500px]'
                     inputClass='rounded-r-none'
                   />
-                  <Button type='submit' className='rounded-l-none'>
+                  <Button type='submit' className='rounded-l-none' ref={buttonRef}>
                     Track Order
                   </Button>
                 </div>
