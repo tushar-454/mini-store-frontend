@@ -61,9 +61,9 @@ const CakeDetails = () => {
                 {cake.rating}
               </div>
               <Badge variant={'destructive'}>{cake.sell_count} - Sells</Badge>
-              <p className='my-4 text-gray-700'>
+              <pre className='my-4 text-gray-700' style={{ fontFamily: 'inherit' }}>
                 <InnerHTML content={cake.description} />
-              </p>
+              </pre>
               <AddToCart cake={cake} selectedImage={selectedImage} />
             </div>
           </div>

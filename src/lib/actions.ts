@@ -3,9 +3,9 @@
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-export async function revalidateCakes() {
+export async function revalidateCakes(path?: string) {
   revalidateTag('cakes');
-  redirect('/dashboard/products');
+  redirect(path ? path : '/dashboard/products');
 }
 export async function revalidateFeaturedCakes() {
   revalidateTag('featuredcakes');

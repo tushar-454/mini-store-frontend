@@ -19,7 +19,6 @@ import { handleMultipleUpload, removeLocalStorage } from '@/lib/utils';
 import { FormType, schema } from '@/schema/create_product';
 import { PlusCircle } from 'lucide-react';
 import { signOut } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 
 const initialValues: FormType = {
@@ -37,7 +36,6 @@ const initialValues: FormType = {
 };
 
 const ProductCreate = () => {
-  const router = useRouter();
   const { toast } = useToast();
   const { data: { data: categories } = {} } = useCategoryQuery();
   const [createProduct] = useCreateProductMutation();
@@ -95,25 +93,23 @@ const ProductCreate = () => {
         const { data } = result;
         if (data.success) {
           toast({
-            title: 'Cake created successfully',
-            description: 'You have successfully created a new cake',
+            title: 'Product created successfully',
           });
           formRef.current?.reset();
           setLoading(false);
           setImages([]);
-          revalidateCakes();
-          router.push('/products/' + data.data.slug);
+          revalidateCakes('/products/' + data.data.slug);
         }
       }
     } catch (error) {
       setLoading(false);
-      console.log('Error creating cake', error);
+      console.log('Error creating product', error);
     }
   };
 
   return (
     <div className='p-4'>
-      <TypographyH4 className='mb-5'>Create a new cake</TypographyH4>
+      <TypographyH4 className='mb-5'>Create a new Product</TypographyH4>
       <GenericForm
         schema={schema}
         initialValues={initialValues}

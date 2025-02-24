@@ -188,3 +188,196 @@
     @apply bg-background text-foreground;
   }
 }
+
+.inner-html-wrapper {
+  all: unset;
+  display: block;
+  font-family: Arial, sans-serif !important;
+  color: #333 !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  width: 100% !important;
+  text-wrap: auto !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Headings */
+.inner-html-wrapper h1,
+.inner-html-wrapper h2,
+.inner-html-wrapper h3,
+.inner-html-wrapper h4,
+.inner-html-wrapper h5,
+.inner-html-wrapper h6 {
+  font-weight: bold !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.inner-html-wrapper h1 {
+  font-size: 2rem !important;
+}
+.inner-html-wrapper h2 {
+  font-size: 1.75rem !important;
+}
+.inner-html-wrapper h3 {
+  font-size: 1.5rem !important;
+}
+.inner-html-wrapper h4 {
+  font-size: 1.25rem !important;
+}
+.inner-html-wrapper h5 {
+  font-size: 1rem !important;
+}
+.inner-html-wrapper h6 {
+  font-size: 0.875rem !important;
+}
+
+/* Paragraphs & Links */
+.inner-html-wrapper p {
+  margin-bottom: 1rem !important;
+}
+
+.inner-html-wrapper a {
+  color: #007bff !important;
+  text-decoration: underline !important;
+}
+
+/* Lists */
+.inner-html-wrapper ul,
+.inner-html-wrapper ol {
+  margin: 1rem 0 !important;
+  padding-left: 1.5rem !important;
+}
+
+.inner-html-wrapper ul li,
+.inner-html-wrapper ol li {
+  margin-bottom: 0.5rem !important;
+}
+
+/* Tables */
+.inner-html-wrapper table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin-top: 1rem !important;
+}
+
+.inner-html-wrapper th,
+.inner-html-wrapper td {
+  border: 1px solid #ddd !important;
+  padding: 8px !important;
+  text-align: left !important;
+}
+
+.inner-html-wrapper th {
+  background-color: #f4f4f4 !important;
+  font-weight: bold !important;
+}
+
+/* Blockquote */
+.inner-html-wrapper blockquote {
+  padding: 1rem !important;
+  border-left: 4px solid #ccc !important;
+  background-color: #f9f9f9 !important;
+  margin: 1rem 0 !important;
+}
+
+/* Code */
+.inner-html-wrapper pre {
+  background-color: #f4f4f4 !important;
+  padding: 10px !important;
+  border-radius: 5px !important;
+  overflow-x: auto !important;
+}
+
+.inner-html-wrapper code {
+  font-family: monospace !important;
+  background-color: #f4f4f4 !important;
+  padding: 2px 5px !important;
+  border-radius: 3px !important;
+}
+
+/* Images */
+.inner-html-wrapper img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 1rem 0 !important;
+}
+
+/* Forms */
+.inner-html-wrapper input,
+.inner-html-wrapper button,
+.inner-html-wrapper textarea,
+.inner-html-wrapper select {
+  font-family: inherit !important;
+  font-size: 16px !important;
+  padding: 8px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  margin-bottom: 0.5rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.inner-html-wrapper input:focus,
+.inner-html-wrapper textarea:focus,
+.inner-html-wrapper select:focus {
+  outline: 2px solid #007bff !important;
+  border-color: #007bff !important;
+}
+
+.inner-html-wrapper button {
+  background-color: #007bff !important;
+  color: white !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.inner-html-wrapper button:hover {
+  background-color: #0056b3 !important;
+}
+
+/* Horizontal Line */
+.inner-html-wrapper hr {
+  border: 0 !important;
+  height: 1px !important;
+  background-color: #ccc !important;
+  margin: 1rem 0 !important;
+}
+
+/* Text Formatting */
+.inner-html-wrapper b,
+.inner-html-wrapper strong {
+  font-weight: bold !important;
+}
+
+.inner-html-wrapper i,
+.inner-html-wrapper em {
+  font-style: italic !important;
+}
+
+.inner-html-wrapper u {
+  text-decoration: underline !important;
+}
+
+/* Subscript & Superscript */
+.inner-html-wrapper sub {
+  vertical-align: sub !important;
+  font-size: smaller !important;
+}
+
+.inner-html-wrapper sup {
+  vertical-align: super !important;
+  font-size: smaller !important;
+}
+
+/* General Elements */
+.inner-html-wrapper div,
+.inner-html-wrapper span {
+  display: inline-block !important;
+}

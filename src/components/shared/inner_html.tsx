@@ -3,6 +3,6 @@ type InnerHTMLProps = {
 };
 
 const InnerHTML = ({ content }: InnerHTMLProps) => {
-  return <div dangerouslySetInnerHTML={{ __html: content }} />;
+  return <div className='inner-html-wrapper' dangerouslySetInnerHTML={{ __html: content }} />;
 };
 export { InnerHTML };
