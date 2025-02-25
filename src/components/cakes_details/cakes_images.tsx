@@ -1,14 +1,17 @@
 'use client';
 import { TProductsImages } from '@/api/product';
+import { setSelectedImage } from '@/store/features/globalReducer';
+import { AppDispatch, RootState } from '@/store/store';
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
 
 type CakeImagesProps = {
   images: TProductsImages;
-  selectedImage: string;
-  setSelectedImage: (image: string) => void;
 };
 
-const CakesImages = ({ images, selectedImage, setSelectedImage }: CakeImagesProps) => {
+const CakesImages = ({ images }: CakeImagesProps) => {
+  const selectedImage = useSelector((state: RootState) => state.global.selectedImage);
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <div className='mb-8 w-full px-4 md:w-1/2'>
       <div className='h-[32rem] w-full 2xl:h-[40rem]'>
@@ -33,7 +36,7 @@ const CakesImages = ({ images, selectedImage, setSelectedImage }: CakeImagesProp
             quality={60}
             loading='lazy'
             className={`size-16 cursor-pointer rounded-md object-cover transition duration-300 hover:opacity-100 sm:size-20 ${image === selectedImage ? 'opacity-100' : 'opacity-60'}`}
-            onClick={() => setSelectedImage(image)}
+            onClick={() => dispatch(setSelectedImage(image))}
           />
         ))}
       </div>

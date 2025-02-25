@@ -9,8 +9,11 @@ import { InnerHTML } from '@/components/shared/inner_html';
 import { Rating } from '@/components/shared/rating';
 import { Taka } from '@/components/shared/taka';
 import { Badge } from '@/components/ui/badge';
+import { setSelectedImage } from '@/store/features/globalReducer';
+import { AppDispatch } from '@/store/store';
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const CakeDetails = () => {
   const { slug } = useParams();
@@ -19,13 +22,12 @@ const CakeDetails = () => {
     isLoading,
     isError,
   } = useGetProductBySlugQuery(slug as string);
-
-  const [selectedImage, setSelectedImage] = useState('');
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setSelectedImage(cake?.images[0] || '');
-  }, [cake]);
+    dispatch(setSelectedImage(cake?.images[0] || ''));
+  }, [cake, dispatch]);
 
   return (
     <main className='min-h-screen'>
@@ -35,11 +37,7 @@ const CakeDetails = () => {
         {!isLoading && !isError && cake && (
           <div className='my-8 flex flex-wrap'>
             {/*  Product Images  */}
-            <CakesImages
-              images={cake.images}
-              selectedImage={selectedImage}
-              setSelectedImage={setSelectedImage}
-            />
+            <CakesImages images={cake.images} />
 
             {/*  Product Details  */}
             <div className='w-full px-4 md:w-1/2'>
@@ -64,7 +62,7 @@ const CakeDetails = () => {
               <pre className='my-4 text-gray-700' style={{ fontFamily: 'inherit' }}>
                 <InnerHTML content={cake.description} />
               </pre>
-              <AddToCart cake={cake} selectedImage={selectedImage} />
+              <AddToCart cake={cake} />
             </div>
           </div>
         )}

@@ -12,14 +12,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 
 type AddToCartProps = {
   cake: TProduct;
-  selectedImage: string;
 };
 
-const AddToCart = ({ cake, selectedImage }: AddToCartProps) => {
+const AddToCart = ({ cake }: AddToCartProps) => {
   const { toast } = useToast();
   const dispatch = useDispatch<AppDispatch>();
   const [variantId, setVariantId] = useState('');
   const carts = useSelector((state: RootState) => state.cart.carts);
+  const selectedImage = useSelector((state: RootState) => state.global.selectedImage);
 
   const addtocart = () => {
     const variant = cake.variants.find((variant) => variant._id === variantId);
