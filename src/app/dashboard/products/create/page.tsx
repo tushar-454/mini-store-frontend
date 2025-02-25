@@ -17,6 +17,7 @@ import { useToast } from '@/hooks/use-toast';
 import { revalidateCakes } from '@/lib/actions';
 import { handleMultipleUpload, removeLocalStorage } from '@/lib/utils';
 import { FormType, schema } from '@/schema/create_product';
+import DOMPurify from 'dompurify';
 import { PlusCircle } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import { useRef, useState } from 'react';
@@ -62,9 +63,13 @@ const ProductCreate = () => {
         return;
       }
       const imagesUrls = await handleMultipleUpload(images);
-
+      let cleanContent = '';
+      if ('description' in formData) {
+        cleanContent = formData.description;
+      }
       const result = await createProduct({
         ...formData,
+        description: DOMPurify.sanitize(cleanContent),
         images: imagesUrls,
       });
 
