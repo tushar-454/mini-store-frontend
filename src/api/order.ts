@@ -75,8 +75,11 @@ const order = createApi({
   reducerPath: 'apiOrder',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
   endpoints: (builder) => ({
-    orders: builder.query<OrdersResponse, void>({
-      query: () => '/order',
+    orders: builder.query<
+      OrdersResponse,
+      { statusFilter?: string; startAtFilter?: string; endAtFilter?: string }
+    >({
+      query: () => `/order/`, //?status=${statusFilter}&startDate=${startAtFilter}&endDate=${endAtFilter}
     }),
     order: builder.query<OrderResponse, number>({
       query: (trackingId) => `/tracking/${trackingId}`,

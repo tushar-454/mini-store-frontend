@@ -1,7 +1,8 @@
 'use client';
 
-import { useOrdersQuery, useUpdateOrderMutation } from '@/api/order';
+import { OrderData, useOrdersQuery, useUpdateOrderMutation } from '@/api/order';
 import TableSkeleton from '@/components/dashboard/table_skeleton';
+import { DateTimePicker } from '@/components/ui/date-time-picker';
 import {
   Select,
   SelectContent,
@@ -22,7 +23,7 @@ import { useToast } from '@/hooks/use-toast';
 import { capitalizeFirstLetter, formatDate, removeLocalStorage } from '@/lib/utils';
 import { Printer } from 'lucide-react';
 import { signOut } from 'next-auth/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const tableHeadData = [
   'No',
@@ -44,8 +45,12 @@ const tableHeadData = [
 
 const Orders = () => {
   const { toast } = useToast();
-  const { data: { data: orders } = {}, isError, isLoading, refetch } = useOrdersQuery();
   const [updateOrder] = useUpdateOrderMutation();
+  const [statusFilter, setStatusFilter] = useState('');
+  const [startAtFilter, setStartAtFilter] = useState('');
+  const [endAtFilter, setEndAtFilter] = useState('');
+  const { data: { data: orders } = {}, isError, isLoading, refetch } = useOrdersQuery({});
+  const [filterOrders, setFilterOrders] = useState<OrderData[]>([]);
 
   const handleOrderStatusUpdate = async (orderId: string, status: string) => {
     const { data, error } = await updateOrder({ _id: orderId, status });
@@ -70,13 +75,107 @@ const Orders = () => {
     }
   };
 
+  const handleDateFilter = (dateType: string, date: Date) => {
+    // const formatDate = `${date.getMonth() + 1}/${date?.getDate()}/${date?.getFullYear()}`;
+    if (dateType === 'startAtFilter') setStartAtFilter(date.toISOString());
+    if (dateType === 'endAtFilter') setEndAtFilter(date.toISOString());
+  };
+
+  useEffect(() => {
+    if (orders) {
+      if (!startAtFilter && !endAtFilter && !statusFilter) {
+        setFilterOrders(orders);
+        return;
+      }
+      if (startAtFilter && !endAtFilter && !statusFilter) {
+        setFilterOrders(
+          orders.filter((order) => new Date(order.createdAt) >= new Date(startAtFilter)),
+        );
+        return;
+      }
+      if (!startAtFilter && endAtFilter && !statusFilter) {
+        setFilterOrders(
+          orders.filter((order) => new Date(order.createdAt) <= new Date(endAtFilter)),
+        );
+        return;
+      }
+      if (!startAtFilter && !endAtFilter && statusFilter) {
+        setFilterOrders(orders.filter((order) => order.status === statusFilter));
+        return;
+      }
+      if (startAtFilter && endAtFilter && !statusFilter) {
+        setFilterOrders(
+          orders.filter(
+            (order) =>
+              new Date(order.createdAt) >= new Date(startAtFilter) &&
+              new Date(order.createdAt) <= new Date(endAtFilter),
+          ),
+        );
+        return;
+      }
+      if (startAtFilter && !endAtFilter && statusFilter) {
+        setFilterOrders(
+          orders.filter(
+            (order) =>
+              new Date(order.createdAt) >= new Date(startAtFilter) && order.status === statusFilter,
+          ),
+        );
+        return;
+      }
+      if (!startAtFilter && endAtFilter && statusFilter) {
+        setFilterOrders(
+          orders.filter(
+            (order) =>
+              new Date(order.createdAt) <= new Date(endAtFilter) && order.status === statusFilter,
+          ),
+        );
+        return;
+      }
+      if (startAtFilter && endAtFilter && statusFilter) {
+        setFilterOrders(
+          orders.filter(
+            (order) =>
+              new Date(order.createdAt) >= new Date(startAtFilter) &&
+              new Date(order.createdAt) <= new Date(endAtFilter) &&
+              order.status === statusFilter,
+          ),
+        );
+      }
+    }
+  }, [startAtFilter, endAtFilter, statusFilter, setFilterOrders, orders]);
+
   useEffect(() => {
     refetch();
   }, [refetch]);
 
   return (
     <div className='p-4'>
-      <TypographyH4 className='mb-5'>Orders</TypographyH4>
+      <div className='mb-5 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between'>
+        <TypographyH4>Orders</TypographyH4>
+        <div className='flex flex-col gap-2 lg:flex-row lg:items-center'>
+          <DateTimePicker
+            placeholder='Start Date'
+            onChange={(date) => date && handleDateFilter('startAtFilter', date)}
+          />
+          <DateTimePicker
+            placeholder='End Date'
+            onChange={(date) => date && handleDateFilter('endAtFilter', date)}
+          />
+          <Select onValueChange={(value) => setStatusFilter(value === 'all' ? '' : value)}>
+            <SelectTrigger className='w-full lg:w-[150px]'>
+              <SelectValue placeholder='Filter by status' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='all'>All</SelectItem>
+              <SelectItem value='pending'>Pending</SelectItem>
+              <SelectItem value='confirm'>Confirm</SelectItem>
+              <SelectItem value='shipped'>Shipped</SelectItem>
+              <SelectItem value='delivered'>Delivered</SelectItem>
+              <SelectItem value='cancelled'>Cancelled</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       <div className='w-full overflow-hidden'>
         {isLoading && <TableSkeleton height='h-8' />}
         {isError && (
@@ -97,7 +196,7 @@ const Orders = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {orders?.map((order, index) => (
+              {filterOrders?.map((order, index) => (
                 <TableRow
                   key={index}
                   className={`hover:bg-gray-200 ${index % 2 === 0 ? 'bg-gray-100' : ''}`}

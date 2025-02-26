@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -193,9 +194,9 @@
 .inner-html-wrapper {
   all: unset;
   display: block;
-  font-family: Arial, sans-serif !important;
   color: #333 !important;
   font-size: 16px !important;
+  font-family: 'Tiro Bangla', serif !important;
   line-height: 1.6 !important;
   width: 100% !important;
   text-wrap: auto !important;
@@ -206,7 +207,6 @@
   hyphens: auto !important;
   margin: 0 !important;
   padding: 0 !important;
-  font-family: 'Tiro Bangla', serif !important;
   font-weight: 400 !important;
   font-style: normal !important;
 }
