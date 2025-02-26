@@ -16,6 +16,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import {
   Table,
@@ -31,7 +38,7 @@ import { revalidateCakes, revalidateFeaturedCakes } from '@/lib/actions';
 import { removeLocalStorage } from '@/lib/utils';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const tableHeadData = [
   'No',
@@ -51,9 +58,13 @@ const Products = () => {
   const [deletedId, setDeletedId] = useState('');
   const [showModal, setShowModal] = useState(false);
   const { toast } = useToast();
-  const { data: { data: cakes } = {}, isError, isLoading } = useGetProductsQuery();
+  const [sortType, setSortType] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
+  const [filter, setFilter] = useState('');
+  const { data: { data: products } = {}, isError, isLoading } = useGetProductsQuery();
   const [deleteProduct, { isLoading: deleteProductLoading }] = useDeleteProductMutation();
   const [updateProduct] = useUpdateProductMutation();
+  const [sortedProducts, setSortedProducts] = useState<TProduct[]>([]);
 
   const handleProductSwitchUpdate = async (id: string, body: Partial<TProduct>) => {
     try {
@@ -117,10 +128,202 @@ const Products = () => {
     }
   };
 
+  useEffect(() => {
+    if (products) {
+      setSortedProducts(products);
+    }
+    if (products && sortType && sortOrder) {
+      const sorted = [...products].sort((a, b) => {
+        if (sortOrder === 'asc') {
+          if (sortType === 'price') {
+            return a.price - b.price;
+          }
+          if (sortType === 'discount') {
+            return a.discount - b.discount;
+          }
+          if (sortType === 'rating') {
+            return a.rating - b.rating;
+          }
+          if (sortType === 'sells') {
+            return a.sell_count - b.sell_count;
+          }
+        }
+        if (sortOrder === 'desc') {
+          if (sortType === 'price') {
+            return b.price - a.price;
+          }
+          if (sortType === 'discount') {
+            return b.discount - a.discount;
+          }
+          if (sortType === 'rating') {
+            return b.rating - a.rating;
+          }
+          if (sortType === 'sells') {
+            return b.sell_count - a.sell_count;
+          }
+        }
+        return 0;
+      });
+      setSortedProducts(sorted);
+    }
+    if (products && filter) {
+      const filtered = products.filter((product) => {
+        if (filter === 'stock') {
+          return product.stock;
+        }
+        if (filter === 'out_of_stock') {
+          return !product.stock;
+        }
+        if (filter === 'featured') {
+          return product.is_featured;
+        }
+        if (filter === 'not_featured') {
+          return !product.is_featured;
+        }
+        if (filter === 'upcoming') {
+          return product.is_upcoming;
+        }
+        if (filter === 'not_upcoming') {
+          return !product.is_upcoming;
+        }
+        if (filter === 'deleted') {
+          return product.is_deleted;
+        }
+        if (filter === 'not_deleted') {
+          return !product.is_deleted;
+        }
+        return product;
+      });
+      setSortedProducts(filtered);
+    }
+    if (products && sortType && sortOrder && filter) {
+      const sorted = [...products].sort((a, b) => {
+        if (sortOrder === 'asc') {
+          if (sortType === 'price') {
+            return a.price - b.price;
+          }
+          if (sortType === 'discount') {
+            return a.discount - b.discount;
+          }
+          if (sortType === 'rating') {
+            return a.rating - b.rating;
+          }
+          if (sortType === 'sells') {
+            return a.sell_count - b.sell_count;
+          }
+        }
+        if (sortOrder === 'desc') {
+          if (sortType === 'price') {
+            return b.price - a.price;
+          }
+          if (sortType === 'discount') {
+            return b.discount - a.discount;
+          }
+          if (sortType === 'rating') {
+            return b.rating - a.rating;
+          }
+          if (sortType === 'sells') {
+            return b.sell_count - a.sell_count;
+          }
+        }
+        return 0;
+      });
+      const filtered = sorted.filter((product) => {
+        if (filter === 'stock') {
+          return product.stock;
+        }
+        if (filter === 'out_of_stock') {
+          return !product.stock;
+        }
+        if (filter === 'featured') {
+          return product.is_featured;
+        }
+        if (filter === 'not_featured') {
+          return !product.is_featured;
+        }
+        if (filter === 'upcoming') {
+          return product.is_upcoming;
+        }
+        if (filter === 'not_upcoming') {
+          return !product.is_upcoming;
+        }
+        if (filter === 'deleted') {
+          return product.is_deleted;
+        }
+        if (filter === 'not_deleted') {
+          return !product.is_deleted;
+        }
+        return product;
+      });
+      setSortedProducts(filtered);
+    }
+  }, [sortType, sortOrder, filter, products]);
+
   return (
     <>
       <div className='p-4'>
-        <TypographyH4 className='mb-5'>Products</TypographyH4>
+        <div className='mb-5 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between'>
+          <TypographyH4>Products</TypographyH4>
+          <div className='flex flex-col gap-2 lg:flex-row lg:items-center'>
+            <Select
+              value={sortType}
+              onValueChange={(value) => setSortType(value === 'none' ? '' : value)}
+            >
+              <SelectTrigger className='w-full lg:w-[150px]'>
+                <SelectValue placeholder='Sort type' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='none'>None</SelectItem>
+                <SelectItem value='price'>Price</SelectItem>
+                <SelectItem value='discount'>Discount</SelectItem>
+                <SelectItem value='rating'>Rating</SelectItem>
+                <SelectItem value='sells'>Sells</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select
+              value={sortOrder}
+              onValueChange={(value) => setSortOrder(value === 'none' ? '' : value)}
+            >
+              <SelectTrigger className='w-full lg:w-[150px]'>
+                <SelectValue placeholder='Sort order' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='none'>None</SelectItem>
+                <SelectItem value='asc'>Low - High</SelectItem>
+                <SelectItem value='desc'>High - Low</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select
+              value={filter}
+              onValueChange={(value) => setFilter(value === 'none' ? '' : value)}
+            >
+              <SelectTrigger className='w-full lg:w-[150px]'>
+                <SelectValue placeholder='Choose one' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='none'>None</SelectItem>
+                <SelectItem value='stock'>Stock</SelectItem>
+                <SelectItem value='out_of_stock'>Out of stock</SelectItem>
+                <SelectItem value='featured'>Featured</SelectItem>
+                <SelectItem value='not_featured'>Not Featured</SelectItem>
+                <SelectItem value='upcoming'>Upcoming</SelectItem>
+                <SelectItem value='not_upcoming'>Not Upcoming</SelectItem>
+                <SelectItem value='deleted'>Deleted</SelectItem>
+                <SelectItem value='not_deleted'>Not Deleted</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button
+              variant={'destructive'}
+              onClick={() => {
+                setSortType('');
+                setSortOrder('');
+                setFilter('');
+              }}
+            >
+              Reset
+            </Button>
+          </div>
+        </div>
         <div className='w-full overflow-hidden'>
           {isLoading && <TableSkeleton height='h-8' />}
           {isError && (
@@ -133,52 +336,59 @@ const Products = () => {
             <Table className='min-w-[1024px] overflow-x-auto'>
               <TableHeader>
                 <TableRow>
-                  {tableHeadData?.map((head, index) => <TableHead key={index}>{head}</TableHead>)}
+                  {tableHeadData?.map((head, index) => (
+                    <TableHead
+                      key={index}
+                      className={head.toLowerCase() === sortType ? 'font-bold text-black' : ''}
+                    >
+                      {head}
+                    </TableHead>
+                  ))}
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {cakes?.map((cake, index) => (
+                {sortedProducts?.map((product, index) => (
                   <TableRow key={index}>
                     <TableCell className='whitespace-nowrap p-4'>{index + 1}</TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
-                      <Link href={`/products/${cake.slug}`} className='hover:underline'>
-                        {cake.name}
+                      <Link href={`/products/${product.slug}`} className='hover:underline'>
+                        {product.name}
                       </Link>
                     </TableCell>
-                    <TableCell className='whitespace-nowrap p-4'>{cake.price}</TableCell>
-                    <TableCell className='whitespace-nowrap p-4'>{cake.discount}</TableCell>
-                    <TableCell className='whitespace-nowrap p-4'>{cake.rating}</TableCell>
-                    <TableCell className='whitespace-nowrap p-4'>{cake.sell_count}</TableCell>
+                    <TableCell className='whitespace-nowrap p-4'>{product.price}</TableCell>
+                    <TableCell className='whitespace-nowrap p-4'>{product.discount}</TableCell>
+                    <TableCell className='whitespace-nowrap p-4'>{product.rating}</TableCell>
+                    <TableCell className='whitespace-nowrap p-4'>{product.sell_count}</TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
                       <Switch
                         onCheckedChange={(value) => {
-                          handleProductSwitchUpdate(cake._id, { stock: value });
+                          handleProductSwitchUpdate(product._id, { stock: value });
                         }}
-                        checked={cake.stock}
+                        checked={product.stock}
                       />
                     </TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
                       <Switch
                         onCheckedChange={(value) => {
-                          handleProductSwitchUpdate(cake._id, { is_featured: value });
+                          handleProductSwitchUpdate(product._id, { is_featured: value });
                         }}
-                        checked={cake.is_featured}
+                        checked={product.is_featured}
                       />
                     </TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
                       <Switch
                         onCheckedChange={(value) => {
-                          handleProductSwitchUpdate(cake._id, { is_upcoming: value });
+                          handleProductSwitchUpdate(product._id, { is_upcoming: value });
                         }}
-                        checked={cake.is_upcoming}
+                        checked={product.is_upcoming}
                       />
                     </TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
                       <Switch
                         onCheckedChange={(value) => {
-                          handleProductSwitchUpdate(cake._id, { is_deleted: value });
+                          handleProductSwitchUpdate(product._id, { is_deleted: value });
                         }}
-                        checked={cake.is_deleted}
+                        checked={product.is_deleted}
                       />
                     </TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
@@ -186,7 +396,7 @@ const Products = () => {
                       <Badge
                         variant={'destructive'}
                         onClick={() => {
-                          setDeletedId(cake._id);
+                          setDeletedId(product._id);
                           setShowModal(true);
                         }}
                         className='cursor-pointer'
