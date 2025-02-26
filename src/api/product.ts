@@ -8,6 +8,7 @@ export type TProduct = {
   price: number;
   discount: number;
   images: string[];
+  stock: boolean;
   is_featured: boolean;
   is_upcoming: boolean;
   is_deleted: boolean;

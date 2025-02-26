@@ -130,8 +130,8 @@ const Checkout = () => {
               <CustomInstruction />
               <CouponCode />
               <ShippingAddress />
-              <TransactionId />
               <PaymentInformation />
+              <TransactionId />
               <Button
                 variant={'default'}
                 loading={loading}
@@ -145,6 +145,7 @@ const Checkout = () => {
           </div>
         </Container>
       </main>
+      {/* tracking id dialog  */}
       <Dialog
         open={show}
         onOpenChange={() => {

@@ -12,9 +12,14 @@ const CakeCard = ({ product }: { product: TProduct }) => {
   return (
     <div
       key={product._id}
-      className='flex h-full flex-col rounded-2xl border bg-white p-2 shadow-md'
+      className='relative flex h-full flex-col rounded-2xl border bg-white p-2 shadow-md'
     >
-      <Link href={`/products/${product.slug}`}>
+      {!product.stock && (
+        <div className='absolute left-0 top-0 z-50 grid h-full w-full place-content-center rounded-2xl bg-black/60'>
+          <TypographyH3 className='rounded bg-white p-4 text-black'>Out of Stock</TypographyH3>
+        </div>
+      )}
+      <Link href={!product.stock ? '/' : `/products/${product.slug}`}>
         <Image
           src={product.images[0]}
           alt={product.name}
@@ -64,7 +69,7 @@ const CakeCard = ({ product }: { product: TProduct }) => {
               {product.discount}% Off
             </Badge>
           </span>
-          <Link href={`/products/${product.slug}`}>
+          <Link href={!product.stock ? '/' : `/products/${product.slug}`}>
             <Button variant={'secondary'}>View Details</Button>
           </Link>
         </div>

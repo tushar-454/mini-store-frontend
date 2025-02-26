@@ -40,6 +40,7 @@ const tableHeadData = [
   'Discount',
   'Rating',
   'Sells',
+  'Stock',
   'Featured',
   'Upcoming',
   'Deleted',
@@ -148,6 +149,14 @@ const Products = () => {
                     <TableCell className='whitespace-nowrap p-4'>{cake.discount}</TableCell>
                     <TableCell className='whitespace-nowrap p-4'>{cake.rating}</TableCell>
                     <TableCell className='whitespace-nowrap p-4'>{cake.sell_count}</TableCell>
+                    <TableCell className='whitespace-nowrap p-4'>
+                      <Switch
+                        onCheckedChange={(value) => {
+                          handleProductSwitchUpdate(cake._id, { stock: value });
+                        }}
+                        checked={cake.stock}
+                      />
+                    </TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
                       <Switch
                         onCheckedChange={(value) => {

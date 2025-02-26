@@ -18,7 +18,7 @@ const TopSelling = async () => {
 
   // Fetch top cakes
   try {
-    const res = await fetch(`${BASE_URL}/product?sell_count=20`, {
+    const res = await fetch(`${BASE_URL}/product?is_deleted=false&sell_count=20`, {
       next: { revalidate: 600 },
     });
 
