@@ -54,10 +54,10 @@ const nav_items: TNavItem[] = [
 ];
 
 const dashboard_nav_items = {
-  Inventory: [
+  Dashboard: [
     {
-      name: 'Inventory',
-      link: '/dashboard/inventory',
+      name: 'Dashboard',
+      link: '/dashboard',
       icon: LayoutDashboard,
     },
   ],

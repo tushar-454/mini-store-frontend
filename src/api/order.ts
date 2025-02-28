@@ -77,9 +77,15 @@ const order = createApi({
   endpoints: (builder) => ({
     orders: builder.query<
       OrdersResponse,
-      { statusFilter?: string; startAtFilter?: string; endAtFilter?: string }
+      { statusFilter?: string; startAtFilter?: string; endAtFilter?: string; length?: string }
     >({
-      query: () => `/order/`, //?status=${statusFilter}&startDate=${startAtFilter}&endDate=${endAtFilter}
+      query: ({ startAtFilter, statusFilter, endAtFilter, length }) => {
+        let url = `/order/?length=${length}`;
+        if (startAtFilter) url += `&startAt=${startAtFilter}`;
+        if (endAtFilter) url += `&endAt=${endAtFilter}`;
+        if (statusFilter) url += `&status=${statusFilter}`;
+        return url;
+      },
     }),
     order: builder.query<OrderResponse, number>({
       query: (trackingId) => `/tracking/${trackingId}`,

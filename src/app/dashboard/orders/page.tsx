@@ -23,6 +23,7 @@ import { useToast } from '@/hooks/use-toast';
 import { capitalizeFirstLetter, formatDate, removeLocalStorage } from '@/lib/utils';
 import { Printer } from 'lucide-react';
 import { signOut } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const tableHeadData = [
@@ -44,13 +45,16 @@ const tableHeadData = [
 ];
 
 const Orders = () => {
+  const searchParams = useSearchParams();
+  const status = searchParams.get('status');
   const { toast } = useToast();
   const [updateOrder] = useUpdateOrderMutation();
-  const [statusFilter, setStatusFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState(status || '');
   const [startAtFilter, setStartAtFilter] = useState('');
   const [endAtFilter, setEndAtFilter] = useState('');
   const { data: { data: orders } = {}, isError, isLoading, refetch } = useOrdersQuery({});
   const [filterOrders, setFilterOrders] = useState<OrderData[]>([]);
+  const router = useRouter();
 
   const handleOrderStatusUpdate = async (orderId: string, status: string) => {
     const { data, error } = await updateOrder({ _id: orderId, status });
@@ -148,6 +152,10 @@ const Orders = () => {
     refetch();
   }, [refetch]);
 
+  const handleStatusFilterFunc = (value: string) => {
+    setStatusFilter(value === 'all' ? '' : value);
+    router.push(`/dashboard/orders?status=${value === 'all' ? '' : value}`);
+  };
   return (
     <div className='p-4'>
       <div className='mb-5 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between'>
@@ -161,7 +169,7 @@ const Orders = () => {
             placeholder='End Date'
             onChange={(date) => date && handleDateFilter('endAtFilter', date)}
           />
-          <Select onValueChange={(value) => setStatusFilter(value === 'all' ? '' : value)}>
+          <Select value={statusFilter} onValueChange={(value) => handleStatusFilterFunc(value)}>
             <SelectTrigger className='w-full lg:w-[150px]'>
               <SelectValue placeholder='Filter by status' />
             </SelectTrigger>

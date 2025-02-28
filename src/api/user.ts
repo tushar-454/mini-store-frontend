@@ -21,8 +21,8 @@ const user = createApi({
   reducerPath: 'users',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
   endpoints: (builder) => ({
-    users: builder.query<TUserResponse, void>({
-      query: () => '/users',
+    users: builder.query<TUserResponse, { length?: string }>({
+      query: ({ length }) => `/users/?length=${length}`,
     }),
     updateUser: builder.mutation<TUser, Partial<TUser>>({
       query: ({ _id, ...data }) => ({

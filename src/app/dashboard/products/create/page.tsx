@@ -69,7 +69,10 @@ const ProductCreate = () => {
       }
       const result = await createProduct({
         ...formData,
-        description: DOMPurify.sanitize(cleanContent),
+        description: DOMPurify.sanitize(cleanContent, {
+          ALLOWED_TAGS: ['iframe'],
+          ALLOWED_ATTR: ['src', 'width', 'height', 'allow', 'allowfullscreen'],
+        }),
         images: imagesUrls,
       });
 

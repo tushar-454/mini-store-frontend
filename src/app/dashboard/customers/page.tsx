@@ -26,7 +26,7 @@ import { useEffect } from 'react';
 const tableHeadData = ['No', 'User', 'Phone', 'Role', 'Status', 'Deleted'];
 
 const Customers = () => {
-  const { data: { data: users } = {}, isError, isLoading, refetch } = useUsersQuery();
+  const { data: { data: users } = {}, isError, isLoading, refetch } = useUsersQuery({});
   const [updateUser] = useUpdateUserMutation();
 
   const handleRoleChange = async (id: string, value: string) => {
