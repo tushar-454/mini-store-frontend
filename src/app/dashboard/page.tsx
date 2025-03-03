@@ -2,12 +2,23 @@
 import { useOrdersQuery } from '@/api/order';
 import { useUsersQuery } from '@/api/user';
 import { TypographyH2, TypographyH4 } from '@/components/ui/typography';
+import { useToast } from '@/hooks/use-toast';
+import { removeLocalStorage } from '@/lib/utils';
 import { Link2 } from 'lucide-react';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 const Dashboard = () => {
+  const { toast } = useToast();
   const { data: { data: users } = {} } = useUsersQuery({ length: 'true' });
-  const { data: { data: totalOrders } = {} } = useOrdersQuery({ length: 'true' });
+  const {
+    data: { data: totalOrders, success } = {},
+    isLoading,
+    isError,
+  } = useOrdersQuery({
+    length: 'true',
+  });
   const { data: { data: pendingOrders } = {} } = useOrdersQuery({
     length: 'true',
     statusFilter: 'pending',
@@ -28,6 +39,21 @@ const Dashboard = () => {
     length: 'true',
     statusFilter: 'cancelled',
   });
+
+  useEffect(() => {
+    if (!isLoading && (!success || isError)) {
+      toast({
+        variant: 'destructive',
+        title: 'You are not authorized. Token expired',
+        description: 'Please login again.',
+      });
+      setTimeout(() => {
+        removeLocalStorage('isLogin');
+        signOut();
+      }, 2000);
+    }
+  }, [isLoading, success, isError, toast]);
+
   return (
     <div className='p-4'>
       <TypographyH4>Dashboard</TypographyH4>

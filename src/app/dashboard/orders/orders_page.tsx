@@ -86,6 +86,19 @@ const OrdersPage = () => {
   };
 
   useEffect(() => {
+    if (!isLoading && isError) {
+      toast({
+        variant: 'destructive',
+        title: 'You are not authorized. Token expired',
+        description: 'Please login again.',
+      });
+      setTimeout(() => {
+        removeLocalStorage('isLogin');
+        signOut();
+      }, 2000);
+      return;
+    }
+
     if (orders) {
       if (!startAtFilter && !endAtFilter && !statusFilter) {
         setFilterOrders(orders);
@@ -146,7 +159,16 @@ const OrdersPage = () => {
         );
       }
     }
-  }, [startAtFilter, endAtFilter, statusFilter, setFilterOrders, orders]);
+  }, [
+    startAtFilter,
+    endAtFilter,
+    statusFilter,
+    setFilterOrders,
+    orders,
+    isLoading,
+    isError,
+    toast,
+  ]);
 
   useEffect(() => {
     refetch();
