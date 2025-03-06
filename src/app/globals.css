@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap');
+@import url('https://cdn.rawgit.com/sh4hids/bangla-web-fonts/solaimanlipi/stylesheet.css');
 
 @tailwind base;
 @tailwind components;
@@ -195,8 +195,8 @@
   all: unset;
   display: block;
   color: #333 !important;
-  font-size: 16px !important;
-  font-family: 'Tiro Bangla', serif !important;
+  font-family: 'SolaimanLipi', sans-serif !important;
+  font-size: 1.2rem !important;
   line-height: 1.6 !important;
   width: 100% !important;
   text-wrap: auto !important;

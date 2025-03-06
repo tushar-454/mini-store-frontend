@@ -74,7 +74,7 @@ const AddToCart = ({ cake }: AddToCartProps) => {
             </SelectTrigger>
             <SelectContent>
               {cake.variants.map((variant) => (
-                <SelectItem key={variant._id} value={variant._id}>
+                <SelectItem key={variant._id} value={variant._id!}>
                   {variant.name}
                   {variant.price && ` - ${variant.price}`} <Taka size={12} />
                 </SelectItem>

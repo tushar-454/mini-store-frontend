@@ -392,7 +392,9 @@ const Products = () => {
                       />
                     </TableCell>
                     <TableCell className='whitespace-nowrap p-4'>
-                      <Badge className='mr-2 cursor-pointer'>Edit</Badge>
+                      <Badge className='mr-2 cursor-pointer'>
+                        <Link href={`/dashboard/products/update?slug=${product.slug}`}>Edit</Link>
+                      </Badge>
                       <Badge
                         variant={'destructive'}
                         onClick={() => {

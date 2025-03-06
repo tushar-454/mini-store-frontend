@@ -16,7 +16,7 @@ export type TProduct = {
   rating: number;
   category: string;
   variants: {
-    _id: string;
+    _id?: string;
     name: string;
     price: number;
   }[];
