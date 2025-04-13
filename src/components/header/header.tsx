@@ -24,7 +24,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cart from '../cart/cart';
 import { Container } from '../shared/container';
 import { Button } from '../ui/button';
-import Gradient from '../ui/gradient';
 
 const Header = () => {
   const [createUser] = useCreateUserMutation();
@@ -95,9 +94,9 @@ const Header = () => {
             <div
               className={`min-h-auto absolute left-0 top-[5.5rem] z-[999999] flex w-full origin-top justify-start border-y-2 bg-white/80 p-5 backdrop-blur transition-all lg:static lg:z-auto lg:scale-y-100 lg:justify-center lg:border-0 lg:bg-transparent ${showMenu ? 'nav_animation' : 'scale-y-0'}`}
             >
-              <ul className='flex flex-col items-start gap-8 lg:flex-row lg:items-center'>
+              <ul className='flex flex-col items-start gap-4 lg:flex-row lg:items-center'>
                 {nav_items.map((item) => {
-                  const Icon = item.icon;
+                  // const Icon = item.icon;
                   return (
                     <li key={item.name}>
                       <Link
@@ -105,10 +104,12 @@ const Header = () => {
                         className='whitespace-nowrap hover:text-gray-500'
                         onClick={() => setShowMenu(false)}
                       >
-                        <span className='flex items-center justify-center gap-2'>
-                          <Icon />
-                          <Gradient>{item.name}</Gradient>
-                        </span>
+                        {/* <span className='flex items-center justify-center gap-2'> */}
+                        {/* <Icon /> */}
+                        <p className='rounded-full bg-primary/90 px-5 py-1 text-white transition-all hover:bg-primary'>
+                          {item.name}
+                        </p>
+                        {/* </span> */}
                       </Link>
                     </li>
                   );
